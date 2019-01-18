@@ -1,0 +1,76 @@
+{% extends "videoplay/base.html"%}
+{% block content %}
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="#">CSVP</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Videos</a>
+                    </li>
+                  </ul>
+                    <div class="dropdown" id="accounts">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Accounts
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item"  href="#">Home</a>
+                        <a class="dropdown-item"  href="#">Settings</a>
+                        <a class="dropdown-item"  href="#">Contact</a>
+                        <a class="dropdown-item"  href="#">Logout</a>
+                    </div>
+                    </div>
+                </div>
+        </nav>
+                    <div class="container fluid">
+                            <div class="row">
+                              <div class="col text-center">
+                                <video id="myVideo" width="100%" height="auto" controls>
+                                        <source src= "https://www.youtube.com/embed/zpOULjyy-n8?rel=0">
+                                        Your browser does not support HTML5 video.
+                                </video>
+                                <br/>
+                                <br/> 
+                                 <button type="button" onclick="playVid()" class="btn btn-primary btn-lg">Play Video</button>
+                                 <button type="button" onclick="pauseVid()" class="btn btn-secondary btn-lg">Pause Video</button>
+                              </div>
+                            </div>
+                          </div>
+                    
+                </div>
+    <style>
+        #myVideo {
+            align: center;
+            padding-top: 10px;
+        }
+         #accounts {
+          padding-right: 20px;
+        }
+        .dropdown-item {
+          position: relative;
+        }
+    </style>
+  
+    <script> 
+        
+        var vid = document.getElementById("myVideo"); 
+        
+        function playVid() { 
+          vid.play(); 
+          let elem = document.querySelector("myVideo");
+          elem.requestFullscreen()
+        } 
+        
+        function pauseVid() { 
+          vid.pause(); 
+        } 
+    </script> 
+    {%endblock content%}

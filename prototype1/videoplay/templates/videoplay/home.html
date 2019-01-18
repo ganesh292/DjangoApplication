@@ -1,0 +1,65 @@
+
+{% extends "videoplay/base.html"%}
+{% block content %}
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="#">CSVP</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Videos</a>
+                    </li>
+                  </ul>
+                    <div class="dropdown" id="accounts">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Accounts
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item"  href="#">Home</a>
+                        <a class="dropdown-item"  href="#">Settings</a>
+                        <a class="dropdown-item"  href="#">Contact</a>
+                        <a class="dropdown-item"  href="#">Logout</a>
+                    </div>
+                    </div>
+                </div>
+        </nav>
+                    <div class="container fluid">
+                            <div class="row">
+                              <div class="col text-center">
+                                <div class="jumbotron">
+                                    <h1 class="display-4">Welcome!</h1>
+                                    <p class="lead">Thank you for your participation!</p>
+                                    <hr class="my-4">
+                                    <p>The Study comprises in total 20 Videos, Pause the video at any moment you want to take a break.At end of each video enter your rating from scale of 1-10</p>
+                                    <a class="btn btn-primary btn-lg" href="#" role="button">Start Watching!</a>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                    
+                </div>
+    <style>
+        body {
+            background-color:lightyellow
+        }
+         #accounts {
+          padding-right: 20px;
+        }
+        .dropdown-item {
+          position: relative;
+        }
+    </style>
+  
+    <script> 
+
+    </script> 
+    
+
+    {%endblock content%}
