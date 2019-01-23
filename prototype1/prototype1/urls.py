@@ -21,6 +21,7 @@ from user import views as user_views
 
 
 urlpatterns = [
+    path('', include('videoplay.urls')),
     path('admin/', admin.site.urls),
     path('videoplay/', include('videoplay.urls')),
     path('score/',views.score, name='score'),
