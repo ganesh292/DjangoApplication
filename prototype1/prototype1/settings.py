@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'user.apps.UserConfig',
     'videoplay.apps.VideoplayConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -124,9 +125,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+<<<<<<< HEAD
 # Add these new lines
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+=======
+LOGIN_REDIRECT_URL='videoplay-home'
+>>>>>>> 293d2380c0d7146b2010dc92eea9ce433bdeb1d3
