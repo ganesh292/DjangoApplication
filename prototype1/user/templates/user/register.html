@@ -1,0 +1,11 @@
+
+  <div class="content-section">
+    <form method="POST">
+      {%csrf_token%}
+      {{form.as_p}}
+      <button type="submit">Sign Up</button>
+    </form>
+    <div>
+      <small>Already have an Account?<a href="{%url 'login'%}">Login!</a></small>
+    </div>
+  </div>
