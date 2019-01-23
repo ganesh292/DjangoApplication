@@ -9,16 +9,17 @@
                                         Your browser does not support HTML5 video.
                                 </video>
                                 <br/>
-                                <br/> 
-                                 <button type="button" onclick="playVid()" class="btn btn-primary btn-lg">Play Video</button>
-                                 <button type="button" onclick="pauseVid()" class="btn btn-secondary btn-lg">Pause Video</button>
-                                 <button type="button" onclick="playVid()" class="btn btn-warning btn-lg">Rate Video</button>
-                                 <button type="button" onclick="pauseVid()" class="btn btn-success btn-lg">Next Video</button>
+                                <br/>
+                                 <button type="button" onclick="playVid()" class="btn btn-primary btn-md">Play Video</button>
+                                 <button type="button" onclick="pauseVid()" class="btn btn-secondary btn-md">Pause Video</button>
+                                 <button type="button" onclick="playVid()" class="btn btn-warning btn-md">Rate Video</button>
+                                 <button type="button" onclick="pauseVid()" class="btn btn-success btn-md">Next Video</button>
                               </div>
                             </div>
                           </div>
-                    
+
                 </div>
+<<<<<<< HEAD
 
   
     <script> 
@@ -27,17 +28,38 @@
         
         function playVid() { 
           
+=======
+    <style>
+        #myVideo {
+            align: center;
+            padding-top: 10px;
+        }
+         #accounts {
+          padding-right: 20px;
+        }
+        .dropdown-item {
+          position: relative;
+        }
+    </style>
+
+    <script>
+
+        var vid = document.getElementById("myVideo");
+
+        function playVid() {
+
+>>>>>>> e527f3c63dd2e956b2527151caac669d7955b9de
           vid.requestFullscreen()
-          vid.play(); 
-        } 
-        
-        function pauseVid() { 
-          vid.pause(); 
-        } 
+          vid.play();
+        }
+
+        function pauseVid() {
+          vid.pause();
+        }
 
         vid.addEventListener('ended',myHandler,false);
         function myHandler(e) {
             console.log('video ended')
         }
-    </script> 
+    </script>
     {%endblock content%}
