@@ -9,9 +9,6 @@ def score_submission(request):
     score= request.POST["score_input"]
     rating= score(score_input=score)
     rating.save()
-    return render(request,'feedback/sample.html')# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+    return render(request,'feedback/sample.html')
 
-from django.shortcuts import render
 
-# Create your views here.
