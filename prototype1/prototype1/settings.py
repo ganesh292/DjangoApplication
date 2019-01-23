@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'user.apps.UserConfig',
+    'crispy_forms',
     'videoplay.apps.VideoplayConfig',
     'feedback.apps.FeedbackConfig',
     'django.contrib.admin',
@@ -132,6 +133,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CRISPY_TEMPLATE_PACK='bootstrap4'
 
 # <<<<<<< HEAD
 # # Add these new lines
