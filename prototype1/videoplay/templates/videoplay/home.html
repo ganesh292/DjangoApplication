@@ -14,11 +14,10 @@
                                       <a class="btn btn-primary btn-lg" href="{%url 'videoplay-videos' %}" role="button">Start Watching!</a>
                                     {% else %}
                                       <div>
-                                        <small>
-                                          Need an Account?<a href="{%url 'register'%}">Sign Up!</a>
+                                          <b>Need an Account?  </b> <a  class="btn btn-primary btn-lg" href="{%url 'register'%}" role="button">Sign Up!</a>
                                           <br>
-                                          Already have an Account?<a href="{%url 'login'%}">Login!</a>
-                                        </small>
+                                          <br>
+                                          <b>Already have an Account?  </b><a class="btn btn-primary btn-lg"href="{%url 'login'%}" role="button">Login!</a>
                                     {% endif %}
                                   </div>
                               </div>
