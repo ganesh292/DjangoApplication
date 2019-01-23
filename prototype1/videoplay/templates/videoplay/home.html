@@ -1,7 +1,7 @@
 <!-- Zeba & Ganesh first change-->
 {% extends "videoplay/base.html"%}
 {% block content %}
-        
+
 <div class="container fluid">
                             <div class="row">
                               <div class="col text-center">
@@ -10,18 +10,26 @@
                                     <p class="lead">Thank you for your participation!</p>
                                     <hr class="my-4">
                                     <p>The Study comprises in total 20 Videos, Pause the video at any moment you want to take a break.At end of each video enter your rating from scale of 1-10</p>
-                                    <a class="btn btn-primary btn-lg" href="{%url 'videoplay-videos' %}" role="button">Start Watching!</a>
+                                    {% if user.is_authenticated %}
+                                      <a class="btn btn-primary btn-lg" href="{%url 'videoplay-videos' %}" role="button">Start Watching!</a>
+                                    {% else %}
+                                      <div>
+                                          <b>Need an Account?  </b> <a  class="btn btn-primary btn-lg" href="{%url 'register'%}" role="button">Sign Up!</a>
+                                          <br>
+                                          <br>
+                                          <b>Already have an Account?  </b><a class="btn btn-primary btn-lg"href="{%url 'login'%}" role="button">Login!</a>
+                                    {% endif %}
                                   </div>
                               </div>
                             </div>
                           </div>
-                    
+
                 </div>
 
-  
-    <script> 
 
-    </script> 
-    
+    <script>
+
+    </script>
+
 
     {%endblock content%}
