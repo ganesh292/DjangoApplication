@@ -42,9 +42,15 @@
        </nav>
   
 <!-- HTML for Uploading Score By Vaishali--> 
-<!-- Trigger the modal with a button -->
+<div class="container">
+  <h1>Rating</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+  </form>
+</div>
 
-<div class="container"
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
