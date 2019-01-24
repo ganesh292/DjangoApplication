@@ -3,10 +3,11 @@ from __future__ import unicode_literals
 from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
 from feedback.forms import ScoreForm
-# Create your views here.
+
+
 class score(TemplateView):
- 	template_name = 'sample.html'
-	
+	template_name = 'sample.html'
+
 	def get(self, request):
 		form = ScoreForm()
 		return render(request, self.template_name, {'form':form})
