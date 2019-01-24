@@ -6,4 +6,4 @@ class ScoreForm(forms.ModelForm):
 
 	class Meta:
 		model = Post	
-		fields= ('post',)
+		fields= ['post']
