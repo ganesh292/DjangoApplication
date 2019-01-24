@@ -4,6 +4,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class score(models.Model):
-    score_input = models.IntegerField()
+    score_input = models.IntegerField(default=0)
     user=models.ForeignKey(User,on_delete=models.DO_NOTHING,)
 
