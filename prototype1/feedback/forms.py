@@ -1,4 +1,4 @@
-from django import froms
+from django import forms
 from feedback.models import score
 
 class ScoreForm(forms.ModelForm):
