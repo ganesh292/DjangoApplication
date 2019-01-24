@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'user.apps.UserConfig',
-    #'crispy_forms',
+    'crispy_forms',
     'videoplay.apps.VideoplayConfig',
     'feedback.apps.FeedbackConfig',
     'django.contrib.admin',
