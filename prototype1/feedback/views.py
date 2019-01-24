@@ -7,11 +7,11 @@ from feedback.forms import ScoreForm
 class score(TemplateView):
  	template_name = 'sample.html'
 	
-	def get(self,request):
+	def get(self, request):
 		form = ScoreForm()
-		return render(request,self.template_name, {'form':form})
+		return render(request, self.template_name, {'form':form})
 
-	def post(self,request):
+	def post(self, request):
 		form = ScoreForm(request.POST)
 		if form.is_valid():
 			post = form.save(commit=False)
@@ -21,7 +21,7 @@ class score(TemplateView):
 			form = ScoreForm()
 			return redirect('sample')
 		args = {'form': form, 'text' : text}	
-		return render(request,self.template_name, args)
+		return render(request, self.template_name, args)
 
 
 
