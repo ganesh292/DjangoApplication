@@ -3,6 +3,14 @@ from django.http    import HttpResponse
 # Create your views here.
 
 
+context = {
+    'id1' : 'video/video1.mov',
+    'id2' : 'video/video2.mov'
+    
+
+}
+
+
 
 # Create your views here.
 def home(request):

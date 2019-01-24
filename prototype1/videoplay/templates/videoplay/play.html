@@ -5,8 +5,12 @@
                             <div class="row">
                               <div class="col text-center">
                                 <video id="myVideo" width="100%" height="auto" controls>
-                                        <source src = "{% static 'video/video1.mov' type = 'video/mov' %}">
-                                        Your browser does not support HTML5 video.
+                                  <!-- {% for vid in context %} -->
+                                     
+                                         <!-- <source src = "{% static '{{context[vid]}}' type = 'video/mov' %}"> -->
+                                          <source src = "{% static 'video/video1.mov' type = 'video/mov' %}">
+                                       Your browser does not support HTML5 video. 
+                                  <!-- {% endfor %} -->
                                 </video>
                                 <br/>
                                 <br/>
