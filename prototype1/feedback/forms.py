@@ -2,7 +2,7 @@ from django import forms
 from feedback.models import score
 
 class ScoreForm(forms.ModelForm):
-	post = forms.IntegerField()
+	post = forms.CharField()
 
 	class Meta:
 		model = score	
