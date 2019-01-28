@@ -1,9 +1,9 @@
 from django import forms
-from feedback.models import score
+from feedback.models import Post
 
 class ScoreForm(forms.ModelForm):
-	post = forms.IntegerField()
+	post = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Enter your score on scale of 1 to 10..'}))
 
 	class Meta:
-		model = score	
-		fields= ('score_input',)
+		model = Post	
+		fields= ['post']

@@ -15,13 +15,28 @@
                                 <br/>
                                  <button type="button" onclick="playVid()" class="btn btn-primary btn-md">Play Video</button>
                                  <button type="button" onclick="pauseVid()" class="btn btn-secondary btn-md">Pause Video</button>
-                                 <button type="button" onclick="playVid()" class="btn btn-warning btn-md">Rate Video</button>
-                                 <button type="button" onclick="pauseVid()" class="btn btn-success btn-md">Next Video</button>
+                                 <button id="ratevideo" type="button" onclick="location.href = '{%url 'score'%}';" class="btn btn-warning btn-md">Rate Video</button>
+                                 <button type="button" onclick="nextVid()" class="btn btn-success btn-md">Next Video</button>
                               </div>
                             </div>
                           </div>
 
                 </div>
 
-  
+                <script>
+                  var links=[
+                  "{% static 'video/video1.mov' type = 'video/mov' %}",
+                  "{% static 'video/video2.mov' type = 'video/mov' %}"
+                  ];
+                  var i=0;
+                  function nextVid(){
+                    vid.src=links[i];
+                    i++;
+                    if(i==2){
+                      i=0;
+                    }
+                }
+                </script>
+
+
     {%endblock content%}
