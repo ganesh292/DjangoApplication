@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'user.apps.UserConfig',
-    #'crispy_forms',
+    'crispy_forms',
     'videoplay.apps.VideoplayConfig',
     'feedback.apps.FeedbackConfig',
     'django.contrib.admin',
@@ -132,6 +132,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+import os.path
 STATIC_URL = '/static/'
 
 # Add these new lines

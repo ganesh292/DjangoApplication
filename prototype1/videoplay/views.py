@@ -1,14 +1,10 @@
+# from django.os import path
 from django.shortcuts import render
 from django.http    import HttpResponse
 # Create your views here.
 
 
-context = {
-    'id1' : 'video/video1.mov',
-    'id2' : 'video/video2.mov'
-    
-
-}
+news =['video1','video2','video3']
 
 
 
