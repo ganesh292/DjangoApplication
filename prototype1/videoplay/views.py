@@ -1,12 +1,11 @@
-# from django.os import path
+from os import path
 from django.shortcuts import render
 from django.http    import HttpResponse
 # Create your views here.
 
 
-news =['video1','video2','video3']
-
-
+# import glib
+# downloads_dir = glib.get_user_special_dir(glib.USER_DIRECTORY_DOWNLOAD)
 
 # Create your views here.
 def home(request):
