@@ -1,0 +1,99 @@
+{% extends "videoplay/base.html"%}
+{% block content %}
+{%load static%}
+<div class="container fluid">
+                            <div class="row">
+                              <div class="col text-center">
+                                <div class="jumbotron">
+                                    <h1 class="display-4">Welcome!</h1>
+                                    <p class="lead">Thank you for your participation!</p>
+                                    <hr class="my-4">
+                                    <div class="list-group">
+                                    <ol>
+                                    <li> As Step one download the videos using download button</li> 
+                                    <li>Once Videos are Downloaded provide the location to where the downloads are saved</li> 
+                                    <li>The Study comprises in total of 20 Videos,Pause the video at any moment you want to take a break.</li>
+                                    <li>At the end of each video enter your rating from scale of 1-10</li>
+                                    <li>Study will end only when ratings are given to all the videos</li>
+              
+                                   </ol>
+                                  </div>
+                                    {% if user.is_authenticated %}
+                                       
+                                        
+                                        <button type="button" class="btn btn-success btn-md" onclick = clickdownload()>Download Your Personalized Videos for the Ratings</button>
+                                    
+                                        
+                                        <br/>
+                                        <br/>
+                                        <form action="{%url 'videoplay-videos' %}">
+                                            
+                                          <a><b>Select All Videos Downloaded:</b></a>
+                                          <br/>
+                                            <input type="file" name="vid" multiple>
+                                            <br></br>
+                                            <input value= "Play Selected Videos" type="submit" class="btn btn-danger btn-md">
+                                          </form>
+                                       
+                                       
+                                    {% else %}
+                                      <div>
+                                          <b>Need an Account?  </b>
+                                          <p></p>
+                                          <a  class="btn btn-primary btn-md" href="{%url 'register'%}" role="button">Sign Up!</a>
+                                          <br>
+                                          <br>
+                                          <b>Already have an Account?  </b>
+                                          <p></p>
+                                          <a class="btn btn-success btn-md" href="{%url 'login'%}" role="button">Login!</a>
+                                    {% endif %}
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+
+                </div>
+            <script>
+
+// var urls = "{{ urls|safe }}";
+var urls = [
+     "{% static 'video/video1.mp4' %}",
+     "{% static 'video/video2.mp4' %}",
+     "{% static 'video/video3.mp4' %}"
+
+       ]
+var stati_url = "{{ static|safe }}";
+
+  function clickdownload(){
+    console.log(urls);
+    console.log(stati_url);
+    var interval = setInterval(ondownload, 300, urls);
+    if (urls.length == 0) {
+        clearInterval(interval);
+        return;
+      }
+  }
+
+
+    function ondownload(urls) {
+      if (urls.length == 0) {
+        return;
+      }
+    
+      var url = urls.pop();
+
+      var a = document.createElement("a");
+      a.setAttribute('href',  url);
+      a.setAttribute('download', '');
+      a.setAttribute('target', '_blank');
+      a.click();
+
+     
+    }
+
+
+            
+            </script>
+
+
+    {%endblock content%}

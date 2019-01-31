@@ -1,14 +1,29 @@
-from os import path
+# from django.os import path
+import os
+from django.conf import settings
 from django.shortcuts import render
 from django.http    import HttpResponse
-# Create your views here.
+from wsgiref.util import FileWrapper
 
+# urls = [
+#       "{% static 'video/video1.mp4' %}",
+#       "{% static 'video/video2.mp4' %}",
+#       "{% static 'video/video3.mp4' %}"',
 
-# import glib
-# downloads_dir = glib.get_user_special_dir(glib.USER_DIRECTORY_DOWNLOAD)
+#       ]
+urls = [ 'video/video1.mp4', 'video/video2.mp4', 'video/video3.mp4',
+
+      ]
+stat_url = ["{% static url%}"]
+
+context1 = {'static':stat_url ,'urls': urls}
 
 # Create your views here.
 def home(request):
     return render(request,'videoplay/home.html')
 def videos(request):
     return render(request,'videoplay/play.html')
+
+def download(request):
+
+    return render(request,'videoplay/download.html',context1)
