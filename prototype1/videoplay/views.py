@@ -25,5 +25,4 @@ def videos(request):
     return render(request,'videoplay/play.html')
 
 def download(request):
-
     return render(request,'videoplay/download.html',context1)
