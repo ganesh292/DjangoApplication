@@ -20,8 +20,11 @@
                                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange" disabled>
                                    <p style="color: yellow;">Score: <span id="demo"></span></p>
                                  </div>
-                                 <button type="button" onclick="nextVid()" class="btn btn-success btn-md">Submit Score</button>
+                                 <form method="POST">
+                                 {% csrf_token %}
+                                 <button type="submit" onclick="nextVid()" class="btn btn-success btn-md">Submit Score</button>
                                  <!-- <button type="button" onclick="nextVid()" class="btn btn-success btn-md">Next Video</button> -->
+                                 </form>
                               </div>
                             </div>
                           </div>
