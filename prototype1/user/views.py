@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm
+from feedback import views as entry_views
 
 def register(request):
     if request.method=='POST':
@@ -8,7 +9,7 @@ def register(request):
         if form.is_valid():#form validation
             form.save()# to save user info to your admin page
             username=form.cleaned_data.get('username')# retrieves user name
-            messages.success(request, f'Account created for {username}!. You can now Log in')#alert message for user creation
+            entry_views.NewEntry(username)
             return redirect('login')# redirects you to 'name=some_name' page after submission
     else:
         form = UserRegisterForm()
