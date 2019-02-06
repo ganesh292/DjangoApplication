@@ -16,5 +16,6 @@ class ScoreOneStimulus(models.Model):
     vid_id=models.CharField(max_length=10)
     score=models.IntegerField(blank=True,null=True)
     session_id=models.IntegerField()
+    userScore=models.Manager()
     def __str__(self):
         return self.vid_id

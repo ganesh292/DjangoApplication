@@ -5,22 +5,28 @@ from django.shortcuts import render, redirect
 from feedback.forms import ScoreForm
 from feedback.models import VideoUrl,ScoreOneStimulus
 #################BackEnd Functionality###################################
-def func1(username):
+def checkUserExists(username):
 #To check if newuser or existing user?
-	obj=ScoreOneStimulus.objects.filter(user_name=username)
+	obj=ScoreOneStimulus.userScore.filter(user_name=username)
 	# print(obj)
 	if(len(obj)==0):
 		return 'newuser'
 	else:
 		return 'existinguser'
-def func2(username,video_id_list):
-#To insert initial data into the table 
-	for item in video_id_list:
-		obj=ScoreOneStimulus(user_name=username,session_id=1,vid_id=item)
+# def NewEntry(username,video_id_list):
+# #To insert initial data into the table 
+# 	for item in video_id_list:
+# 		obj=ScoreOneStimulus(user_name=username,session_id=1,vid_id=item)
+# 		obj.save()
+
+def NewEntry(username):
+	#To insert initial data into the table
+	#for item in video_id_list:
+		obj = ScoreOneStimulus(user_name=username, session_id=1, vid_id="video1.mp4")
 		obj.save()
-def func3(username):
+def checkSession(username):
 #To check if its new session or old session
-	obj=ScoreOneStimulus.objects.filter(user_name=username).filter(score__isnull=True)
+	obj=ScoreOneStimulus.userScore.filter(user_name=username).filter(score__isnull=True)
 	if(len(obj)==0):
 		return ('newsession','Dummy')
 	else:
@@ -30,27 +36,27 @@ def func3(username):
 		return ('oldsession',vid_sublist)
 	# print(len(obj))
 	# return
-def func4(username):
+def incSessionId(username):
 	#To increment sessionid after fetching last session id
-	obj=ScoreOneStimulus.objects.filter(user_name=username).order_by('-session_id')[0]
+	obj=ScoreOneStimulus.userScore.filter(user_name=username).order_by('-session_id')[0]
 	return (obj.session_id +1)
 
-def func5(video_id_list):
+def fetchVideo(video_id_list):
 #To fetch video url from database corresponding to each video id
 	vid_url_list= []
 	for item in video_id_list:
 		print(item)
 		vid_url_list.append(Video_Url.objects.get(vid_id=item).vid_url)
 	return vid_url_list
-def func6(username):
+def findSessionId(username):
 #To find last session id
-	obj=ScoreOneStimulus.objects.filter(user_name=username).order_by('-session_id')[0]
+	obj=ScoreOneStimulus.userScore.filter(user_name=username).order_by('-session_id')[0]
 	# print(obj.session_id)
 	return obj.session_id
 
-def func7(username,sid,vid,scr):
+def updateScore(username,sid,vid,scr):
 # To update score in the database table
-	obj=ScoreOneStimulus.objects.get(user_name=username,session_id=sid,vid_id=vid)
+	obj=ScoreOneStimulus.userScore.get(user_name=username,session_id=sid,vid_id=vid)
 	# print(obj.score)
 	obj.score=scr
 	obj.save()
