@@ -14,16 +14,17 @@
                                 <br/>
                                 <br/>
 
-
+                                
                                  <button type="button" onclick="toggleFullscreen()" class="btn btn-primary btn-md">Play Video</button>
                                  <div class="slidecontainer">
                                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange" disabled>
                                    <p style="color: yellow;">Score: <span id="demo"></span></p>
-                                 </div>
+                                 </div> 
                                  <form method="POST">
                                  {% csrf_token %}
                                  <button type="submit" onclick="nextVid()" class="btn btn-success btn-md">Submit Score</button>
                                  <!-- <button type="button" onclick="nextVid()" class="btn btn-success btn-md">Next Video</button> -->
+                                 <input type="hidden" id="username_problem" name="username_problem" value="{{user.username}}">
                                  </form>
                               </div>
                             </div>

@@ -66,10 +66,12 @@ var urls = [
 
        ]
 var stati_url = "{{ static|safe }}";
+var username = "{{username}}";
 
   function clickdownload(){
     console.log(urls);
     console.log(stati_url);
+    console.log(username)
     var interval = setInterval(ondownload, 300, urls);
     if (urls.length == 0) {
         clearInterval(interval);

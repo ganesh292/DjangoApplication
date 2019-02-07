@@ -8,6 +8,7 @@ class Post(models.Model):
 class VideoUrl(models.Model):
     vid_id=models.CharField(max_length=10,unique=True)
     vid_url=models.CharField(max_length=256,unique=True)
+    urlobj = models.Manager()
 class ScoreOneStimulus(models.Model):
     user_name=models.CharField(max_length=10)
     vid_id=models.CharField(max_length=10)

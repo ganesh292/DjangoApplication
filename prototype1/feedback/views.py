@@ -15,7 +15,7 @@ def checkUserExists(username):
 		return 'existinguser'
 # def NewEntry(username,video_id_list):
 # #To insert initial data into the table 
-# 	for item in video_id_list:
+# 	for item in video_id=_list:
 # 		obj=ScoreOneStimulus(user_name=username,session_id=1,vid_id=item)
 # 		obj.save()
 
@@ -46,11 +46,11 @@ def fetchVideo(video_id_list):
 	vid_url_list= []
 	for item in video_id_list:
 		print(item)
-		vid_url_list.append(Video_Url.objects.get(vid_id=item).vid_url)
+		vid_url_list.append(Video_Url.urlobj.get(vid_id=item).vid_url)
 	return vid_url_list
 def findSessionId(username):
 #To find last session id
-	obj=ScoreOneStimulus.userScore.filter(user_name=username).order_by('-session_id')[0]
+	obj=ScoreOneStimulus.objects.filter(user_name=username).order_by('-session_id')[0]
 	# print(obj.session_id)
 	return obj.session_id
 
