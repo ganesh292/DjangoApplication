@@ -5,9 +5,10 @@ from django.conf import settings
 from django.shortcuts import render
 from django.http    import HttpResponse
 from wsgiref.util import FileWrapper
-from feedback.models import ScoreOneStimulus
+from feedback.models import ScoreOneStimulus,VideoUrl
 from feedback.views import updateScore
 from user import views as user_views
+from django.template import loader
 
 # urls = [
 #       "{% static 'video/video1.mp4' %}",
@@ -15,30 +16,37 @@ from user import views as user_views
 #       "{% static 'video/video3.mp4' %}"',
 
 #       ]
-urls = [ 'video/video1.mp4', 'video/video2.mp4', 'video/video3.mp4',
+# urls = [ 'video/video1.mp4', 'video/video2.mp4', 'video/video3.mp4',
 
-      ]
-stat_url = ["{% static url%}"]
+      # ]
 
-context1 = {'static':stat_url ,'urls': urls}
+
+video_lists = ['0001','0003']
+
 
 # Create your views here.
 def home(request):
     return render(request,'videoplay/home.html')
-
+def fetchVideo(video_id_list):
+#To fetch video url from database corresponding to each video id
+	vid_url_list= []
+	for item in video_id_list:
+		print(item)
+		vid_url_list.append(VideoUrl.urlobj.get(vid_id=item).vid_url)
+	return vid_url_list
 class PlayView(TemplateView):
       template_name = 'videoplay/play.html'
 
       def get(self, request):
-            posts=ScoreOneStimulus.userScore.all()
-            print(posts)
             return render(request, self.template_name)
       def post(self,request):
-            updateScore("teamcsvr",1,"video1.mp4",70)
             return render(request, self.template_name)
 
 def download(request):
-    return render(request,'videoplay/download.html',context1)
+      urls=fetchVideo(video_lists)
+      context1={}
+      context1['urls'] = ','.join([str(i) for i in urls])
+      return render(request,'videoplay/download.html',context1)
 
 
 
