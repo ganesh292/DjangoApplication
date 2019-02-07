@@ -94,3 +94,7 @@ myVideo.pause();
 }
 
 console.log("Hello! Static Cnnected");
+
+
+
+   

@@ -1,14 +1,103 @@
 {% extends "videoplay/base.html"%}
 {% load static %}
 {% block content %}
+
+<script>
+  var objs = '{{urls}}'.split(',');
+  stati_url = ["{% static url%}"];
+
+  
+// var objs = JSON.parse( parse);
+// var stati_url = JSON.parse("[" + stati_url_parse + "]");
+
+  function clickdownload(){
+    console.log(objs);
+    console.log(stati_url[0]);
+    var interval = setInterval(ondownload, 300,objs);
+    if (objs.length == 0) {
+        clearInterval(interval);
+        return;
+      }
+  }
+ 
+    function ondownload(objs) {
+      if (objs.length == 0) {
+        return;
+      }
+ 
+      var url = objs.pop();
+      console.log(url)
+ 
+      var a = document.createElement("a");
+      a.setAttribute('href',  url);
+      a.setAttribute('download', '');
+      a.setAttribute('target', '_blank');
+      a.click();
+     }
+ 
+ 
+ // //For fetching and playing Videos
+ // var slider = document.getElementById("myRange");
+ // var output = document.getElementById("demo");
+ // var fileList;
+ // var i=0;
+ // function readFiles(event) {
+ //     fileList = event.target.files;
+ //     vid.requestFullscreen()
+ //     loadAsUrl(fileList[i]);
+ 
+ // }
+ // // output.innerHTML = slider.value;
+ // // slider.oninput = function() {
+ // //   output.innerHTML = this.value;
+ // //   score=this.value;
+ // // }
+ 
+ // function loadAsUrl(theFile) {
+ //     var reader = new FileReader();
+ 
+ //     reader.onload = function(loadedEvent) {
+ //         //playVid();
+ //         var vid = document.getElementById("vid");
+ //         vid.src=loadedEvent.target.result;
+ //         // vid.addEventListener('ended',myHandler,false);
+ //         // function myHandler(e) {
+ //         //        slider.style.opacity=0.8;
+ //         //        slider.disabled=false;
+ //         // }
+ //     }
+ 
+ //     reader.readAsDataURL(theFile);
+ // }
+ 
+ //     function nextVid(){
+ //       i++;
+ //       if(i==3){
+ //         i=0;
+ //       }
+ //       loadAsUrl(fileList[i]);
+ //       slider.value=50;
+ //       output.innerHTML=50;
+ //     }
+ 
+ 
+ // //Setting source of video
+ // function setSrc(){
+ //    var mySrc=document.querySelector("#headerPopup iframe");
+ //    mySrc.src="https://www.youtube.com/embed/qN3OueBm9F4?autoplay=1";
+ // }
+ 
+ 
+ </script>
+ 
 <div class="container fluid">
                             <div class="row">
                               <div class="col text-center">
                                 <div class="jumbotron">
                                     <h1 class="display-4">Welcome!</h1>
                                     <p class="lead">Thank you for your participation!</p>
-                                    <hr class="my-4">
-                                    <div class="list-group">
+                                    <hr class="my-4 text-center">
+                                    <div class="list-group text-left">
                                     <ol>
                                     <li> As Step one download the videos using download button given below</li>
                                     <li>Once Videos are Downloaded click "Start Watching" and provide the location to the downloaded videos by clicking the "Select Videos" button on the next page</li>
@@ -19,7 +108,8 @@
                                    </ol>
                                   </div>
                                     {% if user.is_authenticated %}
-
+   
+                                       
 
                                         <button type="button" class="btn btn-success btn-md" onclick = clickdownload()>Download Your Personalized Videos for the Ratings</button>
 
@@ -56,96 +146,5 @@
                      <!-- <div id="headerPopup" class="embed-responsive embed-responsive-16by9"> -->
                       <!-- </div> -->
 
-<script>
 
-// var urls = "{{ urls|safe }}";
-var urls = [
-     "{% static 'video/video1.mp4' %}",
-     "{% static 'video/video2.mp4' %}",
-     "{% static 'video/video3.mp4' %}"
-
-       ]
-var stati_url = "{{ static|safe }}";
-var username = "{{username}}";
-
-  function clickdownload(){
-    console.log(urls);
-    console.log(stati_url);
-    console.log(username)
-    var interval = setInterval(ondownload, 300, urls);
-    if (urls.length == 0) {
-        clearInterval(interval);
-        return;
-      }
-  }
-
-    function ondownload(urls) {
-      if (urls.length == 0) {
-        return;
-      }
-
-      var url = urls.pop();
-
-      var a = document.createElement("a");
-      a.setAttribute('href',  url);
-      a.setAttribute('download', '');
-      a.setAttribute('target', '_blank');
-      a.click();
-
-
-    }
-// //For fetching and playing Videos
-// var slider = document.getElementById("myRange");
-// var output = document.getElementById("demo");
-// var fileList;
-// var i=0;
-// function readFiles(event) {
-//     fileList = event.target.files;
-//     vid.requestFullscreen()
-//     loadAsUrl(fileList[i]);
-
-// }
-// // output.innerHTML = slider.value;
-// // slider.oninput = function() {
-// //   output.innerHTML = this.value;
-// //   score=this.value;
-// // }
-
-// function loadAsUrl(theFile) {
-//     var reader = new FileReader();
-
-//     reader.onload = function(loadedEvent) {
-//         //playVid();
-//         var vid = document.getElementById("vid");
-//         vid.src=loadedEvent.target.result;
-//         // vid.addEventListener('ended',myHandler,false);
-//         // function myHandler(e) {
-//         //        slider.style.opacity=0.8;
-//         //        slider.disabled=false;
-//         // }
-//     }
-
-//     reader.readAsDataURL(theFile);
-// }
-
-//     function nextVid(){
-//       i++;
-//       if(i==3){
-//         i=0;
-//       }
-//       loadAsUrl(fileList[i]);
-//       slider.value=50;
-//       output.innerHTML=50;
-//     }
-
-
-// //Setting source of video
-// function setSrc(){
-//    var mySrc=document.querySelector("#headerPopup iframe");
-//    mySrc.src="https://www.youtube.com/embed/qN3OueBm9F4?autoplay=1";
-// }
-
-
-</script>
-
-    {%endblock content%}
+  {%endblock content%}
