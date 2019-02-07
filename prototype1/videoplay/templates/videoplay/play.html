@@ -23,6 +23,7 @@
                                  <form method="POST">
                                  {% csrf_token %}
                                  <button type="submit" onclick="nextVid()" class="btn btn-success btn-md">Submit Score</button>
+                                 <input type="hidden" id="user_name" name="user_name" value="{{user.username}}">
                                  <!-- <button type="button" onclick="nextVid()" class="btn btn-success btn-md">Next Video</button> -->
                                  </form>
                               </div>
