@@ -8,6 +8,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', views.home,name='videoplay-home'),
     path('download/',views.download,name='videoplay-download'),
-    path('videos/', PlayView.as_view(),name='videoplay-videos')
+    path('videos/', PlayView.as_view(),name='videoplay-videos'),
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

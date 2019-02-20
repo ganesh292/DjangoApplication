@@ -17,12 +17,15 @@
 
                                  <button type="button" onclick="toggleFullscreen()" class="btn btn-primary btn-md">Play Video</button>
                                  <div class="slidecontainer">
-                                   <input type="range" min="1" max="100" value="50" class="slider" id="myRange" disabled>
+                                   <input type="range" min="1" max="100" value="50" class="slider" id="myRange" oninput="myFun(this.value)" disabled>
+                                   
                                    <p style="color: yellow;">Score: <span id="demo"></span></p>
                                  </div>
                                  <form method="POST">
                                  {% csrf_token %}
+                                 <input type="hidden" name="score" value="">
                                  <button type="submit" onclick="nextVid()" class="btn btn-success btn-md">Submit Score</button>
+                              
                                  <input type="hidden" id="user_name" name="user_name" value="{{user.username}}">
                                  <!-- <button type="button" onclick="nextVid()" class="btn btn-success btn-md">Next Video</button> -->
                                  </form>

@@ -3,7 +3,7 @@ import os
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.shortcuts import render
-from django.http    import HttpResponse
+from django.http import HttpResponse
 from wsgiref.util import FileWrapper
 from feedback.models import ScoreOneStimulus,VideoUrl
 from feedback.views import updateScore
@@ -43,10 +43,13 @@ class PlayView(TemplateView):
             return render(request, self.template_name)
 
 def download(request):
-      urls=fetchVideo(video_lists)
-      context1={}
-      context1['urls'] = ','.join([str(i) for i in urls])
-      return render(request,'videoplay/download.html',context1)
+      #urls=fetchVideo(video_lists)
+      #context1={}
+      #context1['urls'] = ','.join([str(i) for i in urls])
+      user=request.user
+      #score=request.GET.get['demo']
+      
+      return render(request,'videoplay/download.html')#,context1)
 
 
 

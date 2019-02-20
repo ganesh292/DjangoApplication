@@ -9,12 +9,17 @@ function readFiles(event) {
     console.log(fileList[i]);
 }
 
-slider.oninput = function() {
-  output.innerHTML = this.value;
-  //score=this.value;
+// slider.oninput = function() {
+//   output.innerHTML = this.value;
+//   score=this.value;
+//   output.setAttribute("score",this.value);
+// }
+
+function myFun(val)
+{
+    output.innerHTML=val;
+    console.log(val);
 }
-
-
 function nextVid(){
   if(i==3){
     i=0;
