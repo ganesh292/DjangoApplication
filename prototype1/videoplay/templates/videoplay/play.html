@@ -3,35 +3,57 @@
 {% block content %}
 <!-- {% static 'video/video1.mp4' %} -->
                     <div class="container fluid">
+                      <div class="selectingVideo">
                       <input class="inputfile" type="file" name="file" id="file" onchange="readFiles(event)" multiple>
                       <label for="file">Select Videos</label>
+                      </div>
                             <div class="row">
                               <div class="col text-center">
-                                <video id="myVideo" width="100%" height="100%" controls>
+                                <video style="display: none" id="myVideo" width="100%" height="100%">
                                       <source src = "" type="video/mp4">
                                        Your browser does not support HTML5 video.
                                 </video>
                                 <br/>
                                 <br/>
 
-
-                                 <button type="button" onclick="toggleFullscreen()" class="btn btn-primary btn-md">Play Video</button>
+                                  <h1 style="color: green">{{message}}</h1>
+                                 <button id="playBtn" type="button" onclick="toggleFullscreen()" class="btn btn-primary btn-md">Begin</button>
                                  <div class="slidecontainer">
-                                   <input type="range" min="1" max="100" value="50" class="slider" id="myRange" disabled>
-                                   <p style="color: yellow;">Score: <span id="demo"></span></p>
+                                   <input type="range" min="1" max="100" value="50" class="slider" id="myRange" disabled hidden>
+                                   <p id="scoreDisp" style="color: yellow;" hidden>Score: <span id="demo"></span></p>
                                  </div>
-                                 <form method="POST">
-                                 {% csrf_token %}
-                                 <button type="submit" onclick="nextVid()" class="btn btn-success btn-md">Submit Score</button>
-                                 <input type="hidden" id="user_name" name="user_name" value="{{user.username}}">
+                                 {% comment %} <form action="{%url 'videoplay-videos'%}?score">  {% endcomment %}
+                                 {% comment %} method="GET" action="{% url 'videoplay-videos' %}"> {% endcomment %}
+                                 {% comment %} {% csrf_token %} {% endcomment %}
+                                 <a id="scorelink" href="{%url 'videoplay-videos'%}?score=&videoID="><button id="submitBtn" type="submit" onclick="nextVid()" class="btn btn-success btn-md" hidden>Submit Score</button></a>
+                                 {% comment %} <input type="hidden" id="user_name" name="user_name" value="{{user.username}}"> {% endcomment %}
+                                 {% comment %} <input id="myRange" class="slider" type="range" name="score" disabled hidden> {% endcomment %}
+                                 {% comment %} <input id="videoid" type="hidden" name="videoID" value=""> {% endcomment %}
+                                 {% comment %} <p id="scoreDisp" style="color: yellow;" hidden>Score: <span id="demo"></span></p> {% endcomment %}
                                  <!-- <button type="button" onclick="nextVid()" class="btn btn-success btn-md">Next Video</button> -->
-                                 </form>
+                                 {% comment %} </form> {% endcomment %}
                               </div>
                             </div>
                           </div>
 
 
 <style>
+
+
+  .selectingVideo{
+    position: absolute;
+    top: 210px;
+    left: 45%;
+    display: block;
+  }
+
+  #playBtn{
+    position: absolute;
+    top: 230px;
+    left: 540px;
+    display: block;
+  }
+
   .slidecontainer {
     width: 50%;
     margin: 0 auto;
@@ -51,6 +73,19 @@
     opacity: 0.2;
     -webkit-transition: .2s;
     transition: opacity .2s;
+  }
+
+  #submitBtn{
+    position: absolute;
+    top: 350px;
+    left: 500px;
+  }
+
+
+  #myRange{
+    position: absolute;
+    top: 300px;
+    left: 20px;
   }
 
   .slider:hover {
@@ -74,52 +109,22 @@
   }
 </style>
 
-<!-- <script type="text/javascript">
-  var vid = document.getElementById("myVideo");
-  var slider = document.getElementById("myRange");
-  var output = document.getElementById("demo");
-  var fileList;
-  var i=0;
-  function readFiles() {
-      // fileList = document.getElementById('fileList');
 
-      var divElement = document.getElementById('iframeId').contentWindow.document.getElementById("fileList");
-      //console.log("Srivasthava");
-      loadAsUrl(divElement[i]);
-       console.log(divElement);
-  }
 
-   slider.oninput = function() {
-     output.innerHTML = this.value;
-     //score=this.value;
-   }
+{% comment %} 
+<script type="text/javascript">
+  const params=new URLSearchParams({
+    query: 'dinner',
+    language: 'en'
+  })
 
-  function nextVid(){
-    i++;
-    if(i==3){
-      i=0;
-    }
-    loadAsUrl(fileList[i]);
-    slider.value=50;
-    output.innerHTML=50;
-  }
+  const url='{% url 'videoplay-videos' %}?${params.toString()}'
+  console.log(url)
 
-  function loadAsUrl(fileList[i]) {
-      var reader = new FileReader();
-
-      reader.onload = function(loadedEvent) {
-          vid.setAttribute("src", loadedEvent.target.result);
-          vid.addEventListener('ended',myHandler,false);
-          function myHandler(e) {
-                 slider.style.opacity=0.8;
-                 slider.disabled=false;
-          }
-      }
-
-      reader.readAsDataURL(theFile);
-  }
-
-</script> -->
+  fetch(url)
+    .then(response=>response.text())
+    .then(console.log)
+</script> {% endcomment %}
 
 
 

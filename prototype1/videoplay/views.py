@@ -34,19 +34,30 @@ def fetchVideo(video_id_list):
 		print(item)
 		vid_url_list.append(VideoUrl.urlobj.get(vid_id=item).vid_url)
 	return vid_url_list
-class PlayView(TemplateView):
-      template_name = 'videoplay/play.html'
+# class PlayView(TemplateView):
+#       template_name = 'videoplay/play.html'
 
-      def get(self, request):
-            return render(request, self.template_name)
-      def post(self,request):
-            return render(request, self.template_name)
+#       def get(self, request):
+#             # query=request.GET.get('score')#this variable holds the value of score
+#             # message="The score is {}".format(query)
+#             # context={'message':message,}
+#             return render(request, self.template_name)#,context)
+#       def post(self,request):
+#             return render(request, self.template_name)
+
+
+def play(request):
+      #getting scores
+      query=request.GET.get('score')
+      message="The score is {}".format(query)
+      context={'message':message,}
+      return render(request, 'videoplay/play.html', context)
 
 def download(request):
-      urls=fetchVideo(video_lists)
-      context1={}
-      context1['urls'] = ','.join([str(i) for i in urls])
-      return render(request,'videoplay/download.html',context1)
+      #urls=fetchVideo(video_lists)
+      #context1={}
+      #context1['urls'] = ','.join([str(i) for i in urls])
+      return render(request,'videoplay/download.html')#,context1)
 
 
 
