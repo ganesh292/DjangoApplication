@@ -5,6 +5,8 @@ from django.shortcuts import render, redirect
 from feedback.forms import ScoreForm
 from feedback.models import VideoUrl,ScoreOneStimulus
 #################BackEnd Functionality###################################
+
+video_id_list = ['0001','0002','0003']
 def checkUserExists(username):
 #To check if newuser or existing user?
 	obj=ScoreOneStimulus.userScore.filter(user_name=username)
@@ -21,8 +23,8 @@ def checkUserExists(username):
 
 def NewEntry(username):
 	#To insert initial data into the table
-	#for item in video_id_list:
-		obj = ScoreOneStimulus(user_name=username, session_id=1, vid_id="video1.mp4")
+	for item in video_id_list:
+		obj = ScoreOneStimulus(user_name=username, session_id=1, vid_id=item)
 		obj.save()
 def checkSession(username):
 #To check if its new session or old session

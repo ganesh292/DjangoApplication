@@ -16,6 +16,7 @@ slider.oninput = function() {
 
 
 function nextVid(){
+    console.log('next video');
   if(i==3){
     i=0;
   }
@@ -49,6 +50,7 @@ function loadAsUrl(theFile) {
 
 function playVid(){
     //vid.requestFullscreen();
+    console.log('play');
     myVideo.play();
     i++;
 
@@ -94,7 +96,6 @@ myVideo.pause();
 }
 
 console.log("Hello! Static Cnnected");
-
 
 
    
