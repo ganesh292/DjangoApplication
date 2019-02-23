@@ -48,7 +48,7 @@ def fetchVideo(video_id_list):
 	vid_url_list= []
 	for item in video_id_list:
 		print(item)
-		vid_url_list.append(Video_Url.urlobj.get(vid_id=item).vid_url)
+		vid_url_list.append(VideoUrl.urlobj.get(vid_id=item).vid_url)
 	return vid_url_list
 def findSessionId(username):
 #To find last session id

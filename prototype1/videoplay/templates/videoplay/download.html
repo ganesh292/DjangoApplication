@@ -116,13 +116,14 @@
 
                                         <br/>
                                         <br/>
-                                        <form action="{%url 'videoplay-videos' %}" >
+                                        {% comment %} <form action="{%url 'videoplay-videos' %}?score=&videoID=" > {% endcomment %}
                                           <br/>
                                             <!-- <input type="file" onchange="readFiles(event)" multiple> -->
 
-                                            <br></br>
-                                            <input value= "Start Watching" type="submit" class="btn btn-danger btn-md">
-                                          </form>
+                                            <br/>
+                                          <a href="{% url 'videoplay-videos' %}"><button type="button" class="btn btn-danger btn-md">Start Watching</button></a>
+                                          
+                                        {% comment %} </form> {% endcomment %}
 
 
                                     {% else %}
