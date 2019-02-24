@@ -7,7 +7,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.home,name='videoplay-home'),
-    path('download/',views.download,name='videoplay-download'),
+    re_path('download/', views.download,name='videoplay-download'),
     #regex for appending query 
     path('temp/',views.temp, name='score-collection'),
     path('videos/', views.play, name='videoplay-videos'),

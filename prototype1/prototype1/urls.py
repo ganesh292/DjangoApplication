@@ -18,6 +18,9 @@ from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from feedback.views import score
 from user import views as user_views
+#from dajaxice.core import dajaxice_autodiscover
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+#dajaxice_autodiscover()
 
 
 urlpatterns = [
@@ -28,4 +31,6 @@ urlpatterns = [
     path('register/', user_views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='user/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='videoplay/home.html'), name='logout'),
+    #path(r'^%s/' % settings.DAJAXICE_MEDIA_PREFIX, include('dajaxice.urls')),
 ]
+
