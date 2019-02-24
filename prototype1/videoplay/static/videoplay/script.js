@@ -34,17 +34,6 @@ slider.oninput = function() {
 }
 
 function nextVid(){
-<<<<<<< HEAD
-    console.log('next video');
-  if(i==3){
-    i=0;
-  }
-  loadAsUrl(fileList[i]);
-  slider.value=50;
-  output.innerHTML=50;
-  disableScroll();
-
-=======
 if (i == 3) {
   i = 0;
 }
@@ -63,7 +52,6 @@ a.setAttribute('href', "?score=" + score + "&videoID=" + fileList[i-1].name);
   // //Add a second foo parameter.
   // params.append('foo', 4);
   //toggleFullscreen()
->>>>>>> 048c3468c36d33d36d5871fcc637ba9c71f56c32
 }
 
 function disableScroll(){
@@ -100,12 +88,8 @@ function loadAsUrl(theFile) {
 
 function playVid(){
     //vid.requestFullscreen();
-<<<<<<< HEAD
-    console.log('play');
-=======
     console.log("Inside play vid...this is supposed to be called again and again.....value of i is..."+i)
     //loadAsUrl(fileList[i]);
->>>>>>> 048c3468c36d33d36d5871fcc637ba9c71f56c32
     myVideo.play();
     i++;
 
