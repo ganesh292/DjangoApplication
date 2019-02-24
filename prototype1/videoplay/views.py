@@ -63,11 +63,7 @@
 
 # from django.os import path
 import os
-<<<<<<< HEAD
-import getpass
-=======
 import json
->>>>>>> ae769466edb19898bff780757e89ac0b99f6ce90
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.shortcuts import render
