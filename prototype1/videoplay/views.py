@@ -63,7 +63,11 @@
 
 # from django.os import path
 import os
+<<<<<<< HEAD
 import getpass
+=======
+import json
+>>>>>>> ae769466edb19898bff780757e89ac0b99f6ce90
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.shortcuts import render
@@ -215,7 +219,7 @@ def download(request):
       print(urls)
       context1 = {}
       context1['urls'] = ','.join([str(i) for i in urls])
-      return render(request, 'videoplay/download.html', context1)
+      return render(request, 'videoplay/download.html/', context1)
 
 query=0
 query1=""
@@ -247,21 +251,31 @@ def play(request):
       # url = request.POST.get('score',"")
       # print(url)
       query =request.GET.get('score')
-      query1=request.GET.get('videoID')
-      # query2 = request.GET.get('videoID')
-      query2 = '0000002'
-      if(query == None or query2 == None):
-            print("query is", query)
-            pass
-      else:
-            updateScore(request.user,findSessionId(request.user),query2,query)
-            print('Bingo!')
-            print("score.....", query)
-            print(" I am in Play Function .......vid_id....", query2)
-            print("Sid", findSessionId(request.user))
-      message = "Thank You for watching!"
-      context = {'message': message,}
-      return render(request, 'videoplay/play.html',context)
+      #print(query)
+      # query1=request.GET.get('videoID')
+      # # # query2 = request.GET.get('videoID')
+      # # query2 = '0000002'
+      # # if(query == None or query2 == None):
+      # #       print("query is", query)
+      # #       pass
+      # # else:
+      # #       updateScore(request.user,findSessionId(request.user),query2,query)
+      # #       print('Bingo!')
+      # #       print("score.....", query)
+      # #       print(" I am in Play Function .......vid_id....", query2)
+      # #       print("Sid", findSessionId(request.user))
+      # message = "Thank You for watching! {}".format(query)
+      # context = {'message': message,}
+      # return render(request, 'videoplay/play.html',context)
+      # if request.method == 'POST':
+      #       JSONdata = request.POST['data']
+      #       dict = simplejson.JSONDecoder().decode(JSONdata)
+      #       query=dict['score']
+      #       message = "Thank You for watching! {}".format(query)
+      #       context = {'message': message, }
+      #       # doSomething with pieFact here...
+      #       return render(request, 'videoplay/temp.html', context)
+      return render(request, 'videoplay/play.html')
 
 # def download(request):
 #       #urls=fetchVideo(video_lists)
@@ -272,16 +286,11 @@ def play(request):
 def temp(request):
       #query = request.GET.get('score')
       #query1=request.GET.get('videoID')
-      query2 = '0000002'
-      if(query == None or query2 == None):
-            print("query is", query)
-            pass
-      else:
-            updateScore(request.user,findSessionId(request.user),query2,query)
-            print('Bingo!')
-            print("score.....", query)
-            print(" I am in Play Function .......vid_id....", query2)
-            print("Sid", findSessionId(request.user))
-      message = "Thank You for watching!"
-      context = {'message': message,}
-      return render(request,"videoplay/temp.html",context)
+      if request.method == 'POST':
+            query = json.loads(request.POST['score'])
+            print(query)
+            message = "Thank You for watching! {}".format(query)
+            context = {'message': message, }
+            # doSomething with pieFact here...
+            return render(request, 'videoplay/temp.html', context)
+      return render(request, 'videoplay/temp.html')

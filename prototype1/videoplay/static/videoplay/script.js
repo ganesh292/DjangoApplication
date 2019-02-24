@@ -7,6 +7,7 @@ var submitButton=document.getElementById("submitBtn");
 var a=document.getElementById("scorelink");
 //var URL="{% url 'videoplay-videos' %}"
 var vidId = document.getElementById("videoid")
+//var xhttp=new XMLHttpRequest();
 //location.search;
 //var userscore=document.getElementById("userscore");
 // var videoid=document.getElementById("videoid");
@@ -17,27 +18,81 @@ const param=new URLSearchParams(location.search);
 // console.log(param.has('score'))
 var fileList;
 var i=0;
-var score=0;
+var score={};
+
 function readFiles(event) {
     fileList = event.target.files;
     loadAsUrl(fileList[i]);
-    console.log(fileList[0]);
+    for(var j=0;j<3;j++){
+    score[fileList[j].name]=0;
+    }
+    
   //window.localStorage.setItem("someVarKey", fileList);
 }
 //console.log(window.localStorage.getItem("someVarKey"));
 
+function getCookie(name) {
+  var cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = jQuery.trim(cookies[i]);
+      // Does this cookie string begin with the name we want?
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+
+
+var data={
+  'csrfmiddlewaretoken': csrftoken,
+  'score':score
+}
+
+
+function updateScore(){
+  // var data = { 'score': score, 'csrfmiddlewaretoken':csrftoken} ;
+  // $.post("/videoplay/temp/", data, function (response) {
+  //   if (response === 'success') { alert('Yay!'); }
+  //   else { alert('Error! :('); }
+  // });
+  $.ajax({
+      url: "/videoplay/temp/",
+      type: "POST",
+      dataType: "json",
+      data: data,
+      success: function (json) {
+        alert("Successfully sent the URL to Django");
+      },
+      error: function (xhr, errmsg, err) {
+        alert("Could not send URL to Django. Error: " + xhr.status + ": " + xhr.responseText);
+      }
+    });
+}
+
+// $('#submitBtn').click(function () {
+//   updateScore();
+// });
 
 slider.oninput = function() {
   output.innerHTML = this.value;
-  score=this.value;
+  score[fileList[i].name]=this.value;
   // userscore.value=score;
 }
 
 function nextVid(){
+  i++;
 if (i == 3) {
-  i = 0;
+  data['score'] = JSON.stringify(data['score'])
+  console.log(score);
+  updateScore();
 }
-//loadAsUrl(fileList[i]);
+loadAsUrl(fileList[i]);
 //i++;
 //loadAsUrl(fileList[i]);
 slider.value = 50;
@@ -45,13 +100,12 @@ output.innerHTML = 50;
 disableScroll();
 
 //setting url pattern
-a.setAttribute('href', "?score=" + score + "&videoID=" + fileList[i-1].name);
   // let url = new URL("http://127.0.0.1:8000/videoplay/videos/?");
   // let params = new URLSearchParams(url.search.slice(1));
 
   // //Add a second foo parameter.
   // params.append('foo', 4);
-  //toggleFullscreen()
+  toggleFullscreen()
 }
 
 function disableScroll(){
@@ -68,7 +122,6 @@ function enableDisablebuttons(e) {
        playButton.style.display="none";
        selVideo[0].style.display="none";
        submitButton.hidden=false;
-       document.getElementById("mssg").hidden=false;
 
        // i++;
       //  videoid.value=myVideo.src;
@@ -91,7 +144,6 @@ function playVid(){
     console.log("Inside play vid...this is supposed to be called again and again.....value of i is..."+i)
     //loadAsUrl(fileList[i]);
     myVideo.play();
-    i++;
 
   }
 //AJAX to send data-figure it out....
