@@ -1,4 +1,4 @@
 {
-    "python.pythonPath": "/home/ganesh/anaconda3/bin/python",
+    "python.pythonPath": "/usr/bin/python",
     "python.linting.pylintEnabled": true
 }

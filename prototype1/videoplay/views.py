@@ -207,13 +207,40 @@ def fetchVideo(video_id_list):
 
 
 def download(request):
-      #urls=fetchVideo(video_lists)
-      #context1={}
-      #context1['urls'] = ','.join([str(i) for i in urls])
-      user=request.user
-      #score=request.GET.get['demo']
-      
-      return render(request,'videoplay/download.html')#,context1)
+      print(request.user)
+      print("I am inside download and gonna call backened logic")
+      video_lists1 = backendlogic(request.user, 98)
+      print(video_lists1)
+      urls = fetchVideo(video_lists1)
+      print(urls)
+      context1 = {}
+      context1['urls'] = ','.join([str(i) for i in urls])
+      return render(request, 'videoplay/download.html/', context1)
+
+query=0
+query1=""
+# Create your views here.
+def home(request):
+    return render(request, 'videoplay/home.html')
+# def fetchVideo(video_id_list):
+# #To fetch video url from database corresponding to each video id
+# 	vid_url_list= []
+# 	for item in video_id_list:
+# 		print(item)
+# 		vid_url_list.append(VideoUrl.urlobj.get(vid_id=item).vid_url)
+# 	return vid_url_list
+# class PlayView(TemplateView):
+#       template_name = 'videoplay/play.html'
+
+#       def get(self, request):
+#             # query=request.GET.get('score')#this variable holds the value of score
+#             # message="The score is {}".format(query)
+#             # context={'message':message,}
+#             return render(request, self.template_name)#,context)
+#       def post(self,request):
+#             return render(request, self.template_name)
+
+def play(request):
 
       #getting scores
       # query=request.user;

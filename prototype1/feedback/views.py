@@ -21,12 +21,11 @@ def checkUserExists(username):
 # 		obj=ScoreOneStimulus(user_name=username,session_id=1,vid_id=item)
 # 		obj.save()
 
-def NewEntry(username,score):
-	print("Score:",score)
+def NewEntry(username):
 	#To insert initial data into the table
-	#for item in video_id_list:
-	obj = ScoreOneStimulus(user_name=username, session_id=1, vid_id="video1.mp4")
-	obj.save()
+	for item in video_id_list:
+		obj = ScoreOneStimulus(user_name=username, session_id=1, vid_id=item)
+		obj.save()
 def checkSession(username):
 #To check if its new session or old session
 	obj=ScoreOneStimulus.userScore.filter(user_name=username).filter(score__isnull=True)
@@ -71,6 +70,11 @@ def updateScore(username,sid,vid,scr):
 # func7('a101',1,'0001',9)
 # func6('a101')
 # print('Function5',func5(['0001','0003']))
+
+
+
+
+
 
 
 
