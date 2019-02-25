@@ -22,21 +22,7 @@
                                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange" disabled hidden>
                                    <p id="scoreDisp" style="color: yellow;" hidden>Score: <span id="demo"></span></p>
                                  </div>
-                                 {% comment %} <form method="POST">   {% endcomment %}
-                                 {% comment %} method="GET" action="{% url 'videoplay-videos' %}"> {% endcomment %}
-                                 {% comment %} {% csrf_token %} {% endcomment %}
-                                 {% comment %} <button id="playBtn" type="submit" class="btn btn-primary btn-md">Begin</button> {% endcomment %}
-                                 {% comment %} <a id="scorelink" href="{%url 'videoplay-videos'%}?score=&videoID="><button id="submitBtn" type="button" onclick="nextVid()" class="btn btn-success btn-md" hidden>Submit Score</button></a> {% endcomment %}
                                  <button id="submitBtn" type="submit" onclick="nextVid()" class="btn btn-success btn-md" hidden>Submit Score</button>
-                                {% comment %} <a id="scorelink" href="{%url 'videoplay-videos'%}?score=&videoID="></a> {% endcomment %}
-                                  {% comment %} <button id="submitBtn" type="submit" class="btn btn-success btn-md" onclick="nextVid()" hidden>Submit Score</button> {% endcomment %}
-                                 {% comment %} <input type="hidden" id="scorelink" name="score" value="{{request.GET.score}}"> {% endcomment %}
-                                 {% comment %} <input type="hidden" id="scorelink" name="score" value=""> {% endcomment %}
-                                 {% comment %} <input id="myRange" class="slider" type="range" name="score" value="{{request.GET.score}}"> {% endcomment %}
-                                 {% comment %} <input id="videoid" type="hidden" name="videoID" value=""> {% endcomment %}
-                                 {% comment %} <p id="scoreDisp" style="color: yellow;" hidden>Score: <span id="demo"></span></p> {% endcomment %}
-                                 <!-- <button type="button" onclick="nextVid()" class="btn btn-success btn-md">Next Video</button> -->
-                                 {% comment %} </form> {% endcomment %}
                               </div>
                             </div>
                           </div>
@@ -113,26 +99,6 @@
     cursor: pointer;
   }
 </style>
-
-
-
-{% comment %} 
-<script type="text/javascript">
-  const params=new URLSearchParams({
-    query: 'dinner',
-    language: 'en'
-  })
-
-  const url='{% url 'videoplay-videos' %}?${params.toString()}'
-  console.log(url)
-
-  fetch(url)
-    .then(response=>response.text())
-    .then(console.log)
-</script> {% endcomment %}
-
-
-{% comment %} <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> {% endcomment %}
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 {% endblock content %}

@@ -1,18 +1,10 @@
 {% extends "videoplay/base.html"%}
 {% load static %}
 {% block content %}
-
-<script>
+ <script>
   var objs = '{{urls}}'.split(',');
-  // stati_url = ["{% static url%}"];
-
-  
-// var objs = JSON.parse( parse);
-// var stati_url = JSON.parse("[" + stati_url_parse + "]");
 
   function clickdownload(){
-    // console.log(objs);
-    // console.log(stati_url[0]);
     var interval = setInterval(ondownload, 300,objs);
     if (objs.length == 0) {
         clearInterval(interval);
@@ -20,7 +12,7 @@
       }
   }
  
-    function ondownload(objs) {
+    function ondownload(objs){
       if (objs.length == 0) {
         return;
       }
@@ -36,59 +28,7 @@
      }
  
  
- // //For fetching and playing Videos
- // var slider = document.getElementById("myRange");
- // var output = document.getElementById("demo");
- // var fileList;
- // var i=0;
- // function readFiles(event) {
- //     fileList = event.target.files;
- //     vid.requestFullscreen()
- //     loadAsUrl(fileList[i]);
- 
- // }
- // // output.innerHTML = slider.value;
- // // slider.oninput = function() {
- // //   output.innerHTML = this.value;
- // //   score=this.value;
- // // }
- 
- // function loadAsUrl(theFile) {
- //     var reader = new FileReader();
- 
- //     reader.onload = function(loadedEvent) {
- //         //playVid();
- //         var vid = document.getElementById("vid");
- //         vid.src=loadedEvent.target.result;
- //         // vid.addEventListener('ended',myHandler,false);
- //         // function myHandler(e) {
- //         //        slider.style.opacity=0.8;
- //         //        slider.disabled=false;
- //         // }
- //     }
- 
- //     reader.readAsDataURL(theFile);
- // }
- 
- //     function nextVid(){
- //       i++;
- //       if(i==3){
- //         i=0;
- //       }
- //       loadAsUrl(fileList[i]);
- //       slider.value=50;
- //       output.innerHTML=50;
- //     }
- 
- 
- // //Setting source of video
- // function setSrc(){
- //    var mySrc=document.querySelector("#headerPopup iframe");
- //    mySrc.src="https://www.youtube.com/embed/qN3OueBm9F4?autoplay=1";
- // }
- 
- 
- </script>
+ </script> 
  
 <div class="container fluid">
                             <div class="row">
@@ -106,24 +46,22 @@
                                     <li>Study will end only when ratings are given to all the videos</li>
 
                                    </ol>
-                                  </div>
+                                
+    function ondownload(objs) {   </div>
                                     {% if user.is_authenticated %}
    
                                        
 
-                                        <button type="button" class="btn btn-success btn-md" onclick = clickdownload()>Download Your Personalized Videos for the Ratings</button>
+                                        <button type="button" class="btn btn-success btn-md" onclick ="clickdownload()">Download Your Personalized Videos for the Ratings</button>
 
 
                                         <br/>
                                         <br/>
-                                        {% comment %} <form action="{%url 'videoplay-videos' %}?score=&videoID=" > {% endcomment %}
                                           <br/>
-                                            <!-- <input type="file" onchange="readFiles(event)" multiple> -->
 
                                             <br/>
                                           <a href="{% url 'videoplay-videos' %}"><button type="button" class="btn btn-danger btn-md">Start Watching</button></a>
                                           
-                                        {% comment %} </form> {% endcomment %}
 
 
                                     {% else %}
@@ -144,8 +82,7 @@
 
                 </div>
 
-                     <!-- <div id="headerPopup" class="embed-responsive embed-responsive-16by9"> -->
-                      <!-- </div> -->
-
 
   {%endblock content%}
+ 
+  function ondownload(objs) {
