@@ -193,7 +193,7 @@ def update_urllookup():
             obj.save()
             # print(cells)
       return
-#update_urllookup()
+# update_urllookup()
 
 
 def fetchVideo(video_id_list):
@@ -268,7 +268,7 @@ def play(request):
       #       dict = simplejson.JSONDecoder().decode(JSONdata)
       #       query=dict['score']
       #       message = "Thank You for watching! {}".format(query)
-      #       context = {'message': message, }
+      #       contevision-pc4.eng.uwaterloo.ca:/videos/3_fps24.mp4vision-pc4.eng.uwaterloo.ca:/videos/3_fps24.mp4xt = {'message': message, }
       #       # doSomething with pieFact here...
       #       return render(request, 'videoplay/temp.html', context)
       return render(request, 'videoplay/play.html')
