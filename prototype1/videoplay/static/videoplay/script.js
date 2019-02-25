@@ -75,7 +75,6 @@ function updateScore(){
     });
 }
 
-<<<<<<< HEAD
 // $('#submitBtn').click(function () {
 //   updateScore();
 // });
@@ -86,19 +85,6 @@ slider.oninput = function() {
   // userscore.value=score;
 }
 
-=======
-// slider.oninput = function() {
-//   output.innerHTML = this.value;
-//   score=this.value;
-//   output.setAttribute("score",this.value);
-// }
-
-function myFun(val)
-{
-    output.innerHTML=val;
-    console.log(val);
-}
->>>>>>> 897bd2dad75ee549634a39a95b10ecc8ea842370
 function nextVid(){
   i++;
 if (i == 3) {

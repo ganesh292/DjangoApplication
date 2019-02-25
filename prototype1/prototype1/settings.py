@@ -116,11 +116,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'CSVR',
         'USER': 'postgres',
-<<<<<<< HEAD
         'PASSWORD': 'admin',
-=======
-        'PASSWORD': '12345',
->>>>>>> 897bd2dad75ee549634a39a95b10ecc8ea842370
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
