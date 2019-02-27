@@ -1,10 +1,15 @@
 {% extends "videoplay/base.html"%}
 {% load static %}
 {% block content %}
- <script>
+<script src="{% static 'videoplay/jszip.js' %}" type="text/javascript"></script>
+<script src="{% static 'videoplay/FileSaver.js' %}" type="text/javascript"></script>
+<script>
+  
   var objs = '{{urls}}'.split(',');
-
-  function clickdownload(){
+  //var zip = new JSZip();
+  //var count = 0;
+  //var zipFilename = "zipFilename.zip";
+  /*function clickdownload(){
     var interval = setInterval(ondownload, 300,objs);
     if (objs.length == 0) {
         clearInterval(interval);
@@ -12,11 +17,11 @@
       }
   }
  
-    function ondownload(objs){
+  function ondownload(objs){
       if (objs.length == 0) {
         return;
       }
- 
+      
       var url = objs.pop();
       console.log(url)
  
@@ -25,11 +30,69 @@
       a.setAttribute('download', '');
       a.setAttribute('target', '_blank');
       a.click();
-     }
- 
- 
- </script> 
- 
+     }*/
+     
+     
+function createZip()
+{     /*console.log("inside function create zip");
+var zip = new JSZip();
+      var a = document.querySelector("a");
+     
+
+      function request(url) {
+        return new Promise(function(resolve) {
+          var httpRequest = new XMLHttpRequest();
+          httpRequest.open("GET", url);
+          httpRequest.onload = function() {
+            zip.file(url, this.responseText);
+            resolve()
+          }
+          httpRequest.send()
+        })
+      }
+
+      Promise.all(objs.map(function(url) {
+          return request(url)
+        }))
+        .then(function() {
+          console.log(zip);
+          zip.generateAsync({
+              type: "blob"
+          })
+          .then(function(content) {
+            a.download = "folder" + new Date().getTime();
+            a.href = URL.createObjectURL(content);
+            a.innerHTML = "download " + a.download;
+          });
+        })*/
+        var zip = new JSZip();
+
+// Add an top-level, arbitrary text file with contents
+//zip.file("Hello.txt", "Hello World\n");
+
+// Generate a directory within the Zip file structure
+var video = zip.folder("videos");
+
+// Add a file to the directory, in this case an image with data URI as contents
+for(var i =0;i<objs.length;i++)
+{
+  var f = objs[i];
+
+  video.file(f, data, {binary:true});
+  console.log(f);
+  console.log(video);
+}
+
+// Generate the zip file asynchronously
+zip.generateAsync({type:"blob"})
+.then(function(content) {
+    // Force down of the Zip file
+    saveAs(content, "videos.zip");
+});
+        
+}
+</script>
+
 <div class="container fluid">
                             <div class="row">
                               <div class="col text-center">
@@ -47,12 +110,12 @@
 
                                    </ol>
                                 
-    function ondownload(objs) {   </div>
+                                 </div>
                                     {% if user.is_authenticated %}
    
                                        
 
-                                        <button type="button" class="btn btn-success btn-md" onclick ="clickdownload()">Download Your Personalized Videos for the Ratings</button>
+                                        <button type="button" class="btn btn-success btn-md" onclick ="createZip()">Download Your Personalized Videos for the Ratings</button>
 
 
                                         <br/>
