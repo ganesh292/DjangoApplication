@@ -1,26 +1,13 @@
 {% extends "videoplay/base.html"%}
 {% load static %}
 {% block content %}
-<style>
-  i2 {
-  border: solid white;
-  border-width: 0 5px 5px 0;
-  display: inline-block;
-  padding: 3px;
-}
-
-.right {
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-}
-</style>
+ <script type="text/javascript" src="{% static 'videoplay/jszip.js' %}"></script>
+ <script type="text/javascript" src="{% static 'videoplay/jszip.min.js' %}"></script>
+ <script type="text/javascript" src="{% static 'videoplay/FileSaver.js' %}"></script>
  <script>
   var objs = '{{urls}}'.split(',');
 
-  function clickdownload(){
-    //Enabling and Disabling start and download button
-    document.getElementById("downloadButton").disabled=true;
-    document.getElementById("startButton").disabled=false;
+  /*function clickdownload(){
     var interval = setInterval(ondownload, 300,objs);
     if (objs.length == 0) {
         clearInterval(interval);
@@ -41,8 +28,38 @@
       a.setAttribute('download', '');
       a.setAttribute('target', '_blank');
       a.click();
-     }
- 
+     }*/
+ //for creating zip folder
+ function createZip()
+{
+var zip = new JSZip();
+
+// Add an top-level, arbitrary text file with contents
+//zip.file("Hello.txt", "Hello World\n");
+
+// Generate a directory within the Zip file structure
+var video = zip.folder("videos");
+// Add a file to the directory, in this case an image with data URI as contents
+for(var i =0;i<objs.length;i++)
+{
+var f = "Access-Control-Allow-Origin:" + objs[i];
+
+$.get(f,function(data, status){
+      alert("Data: " + data + "\nStatus: " + status);     
+})
+
+// video.file(f, {binary:true});
+console.log(f);
+console.log(video);
+}
+
+// Generate the zip file asynchronously
+zip.generateAsync({type:"Blob"})
+.then(function(content) {
+// Force down of the Zip file
+saveAs(content, "videos.zip");
+});
+}
  
  </script> 
  
@@ -66,12 +83,12 @@
 
                                    </ol>
                                 
-      </div>
+                                </div>
                                     {% if user.is_authenticated %}
    
                                     <br>
 
-                                    <button type="button" id="downloadButton" class="btn btn-primary btn-md" style="width:100%;border-color:gray;background-color:rgb(8, 3, 56);;border-width:3px " onclick ="clickdownload()"><i class="fa fa-download"></i> Download Your Personalized Videos for the Ratings</button>
+                                    <button type="button" id="downloadButton" class="btn btn-primary btn-md" style="width:100%;border-color:gray;background-color:rgb(8, 3, 56);;border-width:3px " onclick ="createZip()"><i class="fa fa-download"></i> Download Your Personalized Videos for the Ratings</button>
 
 
                                         <br/>
@@ -103,4 +120,3 @@
 
   {%endblock content%}
  
-  function ondownload(objs) {
