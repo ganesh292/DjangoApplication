@@ -15,7 +15,7 @@ stat_url = ["{% static url%}"]
 
 #Jatin's Backend code
 video_lists = ['0000001', '0000002']
-
+# jatin's changes moving to master
 
 def checkUserExists(username):
 	#To check if newuser or existing user?
