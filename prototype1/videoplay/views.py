@@ -14,7 +14,7 @@ username = ''
 stat_url = ["{% static url%}"]
 
 #Jatin's Backend code
-video_lists = ['0000001', '0000002']
+video_lists = ['0000003', '0000004','0000008']
 # jatin's changes moving to master
 
 def checkUserExists(username):
@@ -93,9 +93,14 @@ def update_urllookup():
             obj = VideoUrl(vid_id=cells[0], vid_url='http://' + cells[1])
             obj.save()
       return
+<<<<<<< HEAD
+#don' delete this #update_urllookup()
+# update_urllookup()
+=======
 #don' delete this #
 #update_urllookup()
 
+>>>>>>> 69e6e5e54119cb30770b3fa7503aab1f08da1909
 
 def fetchVideo(video_id_list):
       #To fetch video url from database corresponding to each video id
@@ -116,7 +121,7 @@ def download(request):
       print(urls)
       context1 = {}
       context1['urls'] = ','.join([str(i) for i in urls])
-      return render(request, 'videoplay/download.html/', context1)
+      return render(request, 'videoplay/download.html', context1)
 
 
 # Create your views here.
@@ -124,13 +129,20 @@ def home(request):
     return render(request, 'videoplay/home.html')
 
 def play(request):
+      if request.method == 'POST':
+            query = json.loads(request.POST['score'])
+            query1=(request.POST['fileName'])
+            print(query1)
+            message = "Thank You for watching! {}".format(query)
+            context = {'message': message, }
+            return render(request, 'videoplay/play.html', context)
       return render(request, 'videoplay/play.html')
 
 def temp(request):
-      if request.method == 'POST':
-            query = json.loads(request.POST['score'])
-            print(query)
-            message = "Thank You for watching! {}".format(query)
-            context = {'message': message, }
-            return render(request, 'videoplay/temp.html', context)
+      # if request.method == 'POST':
+      #       query = json.loads(request.POST['score'])
+      #       print(query)
+      #       message = "Thank You for watching! {}".format(query)
+      #       context = {'message': message, }
+      #       return render(request, 'videoplay/temp.html', context)
       return render(request, 'videoplay/temp.html')
