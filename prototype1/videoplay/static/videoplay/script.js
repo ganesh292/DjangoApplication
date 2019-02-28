@@ -8,19 +8,18 @@ var a=document.getElementById("scorelink");
 
 var vidId = document.getElementById("videoid")
 const param=new URLSearchParams(location.search);
-var fileList;
 var i=0;
-var score={};
+var score=0;
+var files={};
 //Selecting Videos
+var videoafterparse;
 function readFiles(event) {
-    fileList = event.target.files;
-    loadAsUrl(fileList[i]);
-    for(var j=0;j<3;j++){
-    score[fileList[j].name]=0;
-    }
-    
-
+  files=document.getElementById("file").files;
+  console.log(files);
+  loadAsUrl(files[i]);
 }
+  
+
 //Generating csrf token for POST operation
 function getCookie(name) {
   var cookieValue = null;
@@ -48,12 +47,13 @@ var data={
 //Function called after viewing all videos
 function updateScore(){
   $.ajax({
-      url: "/videoplay/temp/",
+      url: "/videoplay/videos/",
       type: "POST",
-      dataType: "json",
+      //dataType: "json",
       data: data,
       success: function (json) {
-        alert("Successfully sent the URL to Django");
+        console.log(files[i].name);
+        loadAsUrl(files[i]);
       },
       error: function (xhr, errmsg, err) {
         alert("Could not send URL to Django. Error: " + xhr.status + ": " + xhr.responseText);
@@ -64,25 +64,32 @@ function updateScore(){
 //Score slider
 slider.oninput = function() {
   output.innerHTML = this.value;
-  score[fileList[i].name]=this.value;
+  score=this.value;
+  data['score']=score;
 }
 //To go to next video:'Submit Score' button
 function nextVid(){
-  i++;
+  //i++;
+  console.log(files[i]);
+  console.log(i);
+  
 if (i == 3) {
-  data['score'] = JSON.stringify(data['score'])
+  i=0;
   console.log(score);
-  updateScore();
+  // updateScore();
 }
-loadAsUrl(fileList[i]);
+data['score'] = JSON.stringify(data['score'])
+updateScore();
+// loadAsUrl(files[i]);
 slider.value = 50;
 output.innerHTML = 50;
 disableScroll();
-toggleFullscreen()
 }
 
 
 function disableScroll(){
+  submitButton.hidden = true;
+  slider.hidden = true;
   slider.style.opacity=0.2;
   slider.disabled=true;
 }
@@ -96,7 +103,7 @@ function enableDisablebuttons(e) {
        playButton.style.display="none";
        selVideo[0].style.display="none";
        submitButton.hidden=false;
-
+       i++;
        document.getElementById("scoreDisp").hidden=false;
        document.exitFullscreen();
 }
@@ -105,22 +112,41 @@ function loadAsUrl(theFile) {
     var reader = new FileReader();
 
     reader.onload = function(loadedEvent) {
-        myVideo.setAttribute("src", loadedEvent.target.result);
+      myVideo.setAttribute("src", loadedEvent.target.result);
+        
     }
 
     reader.readAsDataURL(theFile);
 }
+
 //Play the videos
 function playVid(){
-    console.log("Inside play vid...this is supposed to be called again and again.....value of i is..."+i)
-    myVideo.play();
+    if(i>0){
+      data['score'] = JSON.stringify(data['score'])
+      updateScore();
+      submitButton.hidden = true;
+      slider.hidden = true;
+      slider.style.opacity = 0.2;
+      slider.disabled = true;
+      myVideo.autoplay=true;
+    }
+    if(i==3){
+      i=0;
+    }
 
+    myVideo.style.display = "block";
+    playButton.style.display = "none";
+    myVideo.play();
+    console.log(i);
+    
   }
 
-//Change to full screen
+// //Change to full screen
 function toggleFullscreen() {
   console.log("Toggle Screen");
 
+  if(myVideo.paused)
+  {
   if (myVideo.requestFullscreen) {
       myVideo.requestFullscreen();
   }
@@ -133,10 +159,11 @@ function toggleFullscreen() {
   else if (myVideo.msRequestFullscreen) {
       myVideo.msRequestFullscreen();
   }
+  playVid();
+}
    else {
     document.exitFullscreen();
   }
-    playVid();
     myVideo.style.display="block";
     console.log(i);
     
@@ -145,7 +172,7 @@ function toggleFullscreen() {
 function pauseVid() {
 myVideo.pause();
 }
-//Just to make sure static files are connected, see this messahe in console
+//Just to make sure static files are connected, see this message in console
 console.log("Hello! Static Cnnected");
 
 
