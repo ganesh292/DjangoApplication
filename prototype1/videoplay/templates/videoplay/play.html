@@ -1,11 +1,23 @@
 {% extends "videoplay/base.html"%}
 {% load static %}
 {% block content %}
+<script>
+  //To enable and disable the select and begin button
+  function enableBeginButton()
+  {
+    document.getElementById("selectBtn").disabled=true;
+    document.getElementById("playBtn").hidden=false;
+  }
+</script>
 <!-- {% static 'video/video1.mp4' %} -->
                     <div class="container fluid">
                       <div class="selectingVideo">
                       <input class="inputfile" type="file" name="file" id="file" onchange="readFiles(event)" multiple>
+                      <div class="button1">
+                      <button type="button" id="selectBtn" class="btn btn-primary btn-lg" style="border-block-start-width:200%;border-block-end-width: 200%; border-color:gray;background-color:rgb(8, 3, 56);border-width:2px;" onclick="enableBeginButton()">
                       <label for="file">Select Videos</label>
+                      </button>
+                      </div>
                       </div>
                             <div class="row">
                               <div class="col text-center">
@@ -17,19 +29,25 @@
                                 <br/>
 
                                   <h1 id="mssg" style="color: white">{{message}}</h1>
-                                 <button id="playBtn" type="button" onclick="toggleFullscreen()" class="btn btn-primary btn-md">Begin</button>
+                                 <button id="playBtn" type="button" onclick="toggleFullscreen()" style="border-color:gray;background-color:rgb(8, 3, 56);border-width:2px " class="btn btn-primary btn-md" hidden>Begin</button>
                                  <div class="slidecontainer">
                                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange" disabled hidden>
-                                   <p id="scoreDisp" style="color: yellow;" hidden>Score: <span id="demo"></span></p>
+                                   <p id="scoreDisp" style="color:white;font-weight:bolder;" hidden>SCORE: <span id="demo"></span></p>
                                  </div>
-                                 <button id="submitBtn" type="submit" onclick="nextVid()" class="btn btn-success btn-md" hidden>Submit Score</button>
+                                 <button id="submitBtn" type="submit" onclick="nextVid()" class="btn btn-success btn-md" style="border-color:gray;background-color:black;border-width:3px " hidden>Submit Score</button>
                               </div>
                             </div>
                           </div>
 
 
 <style>
-
+.button1 {
+  color: white;
+  text-align: center;
+  display: inline-block;
+  border-radius: 12px;
+  font-size: 18px;
+}
 
   .selectingVideo{
     position: absolute;

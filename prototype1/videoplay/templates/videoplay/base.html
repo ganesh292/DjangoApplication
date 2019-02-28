@@ -25,7 +25,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css?family=Numans');
       html,body{
-      background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+      background-image : url("{% static 'img/bg-image.jpg' %}");
       background-size: cover;
       background-repeat: repeat;
       height: 100%;
@@ -48,7 +48,7 @@
   <body>
 
     {% if user.is_authenticated %}
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:rgb(8, 3, 56);">
           <a class="navbar-brand" href="{%url}">CSVP</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -56,24 +56,24 @@
 
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link" href="{%url 'videoplay-home'%}">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{%url 'videoplay-download'%}">Download</a>
+                <a class="nav-link text-white-70" href="{%url 'videoplay-download'%}">Download</a>
               </li>
             </ul>
-              <div class="dropdown" id="accounts">
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div class="dropdown" id="accounts" >
+              <a class="btn btn-secondary dropdown-toggle bg-transparent" style="border-color: gray;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Accounts
               </a>
 
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <a class="dropdown-item"  href="#">Home</a>
-                  <a class="dropdown-item"  href="#">Settings</a>
-                  <a class="dropdown-item"  href="#">Contact</a>
+              <div class="dropdown-menu" style="background-color: black;"aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item text-light"   href="#">Home</a>
+                  <a class="dropdown-item text-light"  href="#">Settings</a>
+                  <a class="dropdown-item text-light"  href="#">Contact</a>
 
-                  <a class="dropdown-item"  href="{%url 'logout'%}">Logout</a>
+                  <a class="dropdown-item text-light"  href="{%url 'logout'%}">Logout</a>
 
               </div>
     {% endif %}

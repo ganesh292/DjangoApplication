@@ -93,7 +93,8 @@ def update_urllookup():
             obj = VideoUrl(vid_id=cells[0], vid_url='http://' + cells[1])
             obj.save()
       return
-#don' delete this #update_urllookup()
+#don' delete this #
+#update_urllookup()
 
 
 def fetchVideo(video_id_list):

@@ -5,7 +5,6 @@ var playButton=document.getElementById("playBtn");
 var selVideo = document.getElementsByClassName("selectingVideo");
 var submitButton=document.getElementById("submitBtn");
 var a=document.getElementById("scorelink");
-
 var vidId = document.getElementById("videoid")
 const param=new URLSearchParams(location.search);
 var fileList;
@@ -19,7 +18,6 @@ function readFiles(event) {
     score[fileList[j].name]=0;
     }
     
-
 }
 //Generating csrf token for POST operation
 function getCookie(name) {
@@ -38,13 +36,11 @@ function getCookie(name) {
   return cookieValue;
 }
 var csrftoken = getCookie('csrftoken');
-
 //Data to POST
 var data={
   'csrfmiddlewaretoken': csrftoken,
   'score':score
 }
-
 //Function called after viewing all videos
 function updateScore(){
   $.ajax({
@@ -60,7 +56,6 @@ function updateScore(){
       }
     });
 }
-
 //Score slider
 slider.oninput = function() {
   output.innerHTML = this.value;
@@ -80,8 +75,6 @@ output.innerHTML = 50;
 disableScroll();
 toggleFullscreen()
 }
-
-
 function disableScroll(){
   slider.style.opacity=0.2;
   slider.disabled=true;
@@ -96,31 +89,25 @@ function enableDisablebuttons(e) {
        playButton.style.display="none";
        selVideo[0].style.display="none";
        submitButton.hidden=false;
-
        document.getElementById("scoreDisp").hidden=false;
        document.exitFullscreen();
 }
 //Loading the video files
 function loadAsUrl(theFile) {
     var reader = new FileReader();
-
     reader.onload = function(loadedEvent) {
         myVideo.setAttribute("src", loadedEvent.target.result);
     }
-
     reader.readAsDataURL(theFile);
 }
 //Play the videos
 function playVid(){
     console.log("Inside play vid...this is supposed to be called again and again.....value of i is..."+i)
     myVideo.play();
-
   }
-
 //Change to full screen
 function toggleFullscreen() {
   console.log("Toggle Screen");
-
   if (myVideo.requestFullscreen) {
       myVideo.requestFullscreen();
   }
@@ -147,6 +134,4 @@ myVideo.pause();
 }
 //Just to make sure static files are connected, see this messahe in console
 console.log("Hello! Static Cnnected");
-
-
    
