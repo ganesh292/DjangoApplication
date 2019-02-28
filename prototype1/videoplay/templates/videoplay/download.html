@@ -32,6 +32,9 @@
  //for creating zip folder
  function createZip()
 {
+  //Enabling and Disabling start and download button
+  document.getElementById("downloadButton").disabled=true;
+    document.getElementById("startButton").disabled=false;
 var zip = new JSZip();
 
 // Add an top-level, arbitrary text file with contents
@@ -88,7 +91,7 @@ saveAs(content, "videos.zip");
    
                                     <br>
 
-                                    <button type="button" id="downloadButton" class="btn btn-primary btn-md" style="width:100%;border-color:gray;background-color:black;border-width:2px " onclick ="clickdownload()"><i class="fa fa-download"></i> Download Your Personalized Videos for the Ratings</button>
+                                    <button type="button" id="downloadButton" class="btn btn-primary btn-md" style="width:100%;border-color:gray;background-color:black;border-width:2px " onclick ="createZip()"><i class="fa fa-download"></i> Download Your Personalized Videos for the Ratings</button>
 
 
                                         <br/>

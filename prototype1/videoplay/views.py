@@ -93,14 +93,8 @@ def update_urllookup():
             obj = VideoUrl(vid_id=cells[0], vid_url='http://' + cells[1])
             obj.save()
       return
-<<<<<<< HEAD
 #don' delete this #update_urllookup()
 # update_urllookup()
-=======
-#don' delete this #
-#update_urllookup()
-
->>>>>>> 69e6e5e54119cb30770b3fa7503aab1f08da1909
 
 def fetchVideo(video_id_list):
       #To fetch video url from database corresponding to each video id

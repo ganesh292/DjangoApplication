@@ -34,6 +34,9 @@ var data = {
 var files={};
 //Selecting Videos
 function readFiles(event) {
+  //To enable and disable the select and begin button
+  document.getElementById("selectLbl").style.display="none";
+  document.getElementById("playBtn").hidden=false;
   files=document.getElementById("file").files;
   data['fileName']=files[i].name;
   loadAsUrl(files[i]);
