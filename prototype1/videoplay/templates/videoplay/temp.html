@@ -2,11 +2,22 @@
 {% load static %}
 {% block content %}
 
-<div>
-<h1>{{message}}</h1>
-{% comment %} <a href="{%url 'videoplay-videos'%}"><button onclick="toggelFullscreen()">Continue</button></a> {% endcomment %}
-</div>
+<div class="container fluid">
+                            <div class="row">
+                              <div class="col text-center">
+                                <div class="jumbotron">
+                                    <h1 class="display-4">Experiment Completed!</h1>
+                                    <p class="lead">Thank you for your participation!</p>
+                                    <hr class="my-4">
+                                    
+                                    <br>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+
+                </div>
 
 
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 {% endblock content %}

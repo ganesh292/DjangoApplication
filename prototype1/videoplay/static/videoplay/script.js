@@ -5,22 +5,11 @@ var playButton=document.getElementById("playBtn");
 var selVideo = document.getElementsByClassName("selectingVideo");
 var submitButton=document.getElementById("submitBtn");
 var a=document.getElementById("scorelink");
-
 var vidId = document.getElementById("videoid")
 const param=new URLSearchParams(location.search);
 var i=0;
 var score=0;
-var files={};
-//Selecting Videos
-var videoafterparse;
-function readFiles(event) {
-  files=document.getElementById("file").files;
-  console.log(files);
-  loadAsUrl(files[i]);
-}
-  
 
-//Generating csrf token for POST operation
 function getCookie(name) {
   var cookieValue = null;
   if (document.cookie && document.cookie !== '') {
@@ -38,11 +27,24 @@ function getCookie(name) {
 }
 var csrftoken = getCookie('csrftoken');
 
-//Data to POST
-var data={
+var data = {
   'csrfmiddlewaretoken': csrftoken,
-  'score':score
+  'score': score
 }
+var files={};
+//Selecting Videos
+function readFiles(event) {
+  files=document.getElementById("file").files;
+  data['fileName']=files[i].name;
+  loadAsUrl(files[i]);
+}
+
+// localStorage.setItem('storeObj', JSON.stringify(myObj));
+// console.log(JSON.parse(localStorage.getItem('storeObj')));
+
+//Generating csrf token for POST operation
+
+//Data to POST
 
 //Function called after viewing all videos
 function updateScore(){
@@ -52,7 +54,7 @@ function updateScore(){
       //dataType: "json",
       data: data,
       success: function (json) {
-        console.log(files[i].name);
+        //console.log(files[i].name);
         loadAsUrl(files[i]);
       },
       error: function (xhr, errmsg, err) {
@@ -60,6 +62,7 @@ function updateScore(){
       }
     });
 }
+
 
 //Score slider
 slider.oninput = function() {
@@ -85,6 +88,23 @@ slider.value = 50;
 output.innerHTML = 50;
 disableScroll();
 }
+
+// document.addEventListener('fullscreenchange', exitHandler);
+// document.addEventListener('webkitfullscreenchange', exitHandler);
+// document.addEventListener('mozfullscreenchange', exitHandler);
+// document.addEventListener('MSFullscreenChange', exitHandler);
+
+// function exitHandler() {
+//   if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
+//     ///fire your event
+//    alert("hey");
+    
+//   }
+// }
+
+
+
+
 
 
 function disableScroll(){
@@ -118,11 +138,11 @@ function loadAsUrl(theFile) {
 
     reader.readAsDataURL(theFile);
 }
-
 //Play the videos
 function playVid(){
     if(i>0){
       data['score'] = JSON.stringify(data['score'])
+      data['fileName'] = files[i-1].name;
       updateScore();
       submitButton.hidden = true;
       slider.hidden = true;
@@ -130,10 +150,10 @@ function playVid(){
       slider.disabled = true;
       myVideo.autoplay=true;
     }
-    if(i==3){
-      i=0;
-    }
 
+  if(i==files.length){
+    window.location.href="/videoplay/temp/"
+  }
     myVideo.style.display = "block";
     playButton.style.display = "none";
     myVideo.play();
