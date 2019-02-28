@@ -94,7 +94,7 @@ def update_urllookup():
             obj.save()
       return
 #don' delete this #update_urllookup()
-
+# update_urllookup()
 
 def fetchVideo(video_id_list):
       #To fetch video url from database corresponding to each video id
@@ -115,7 +115,7 @@ def download(request):
       print(urls)
       context1 = {}
       context1['urls'] = ','.join([str(i) for i in urls])
-      return render(request, 'videoplay/download.html/', context1)
+      return render(request, 'videoplay/download.html', context1)
 
 
 # Create your views here.
