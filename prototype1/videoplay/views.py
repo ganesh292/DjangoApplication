@@ -123,13 +123,19 @@ def home(request):
     return render(request, 'videoplay/home.html')
 
 def play(request):
-      return render(request, 'videoplay/play.html')
-
-def temp(request):
       if request.method == 'POST':
             query = json.loads(request.POST['score'])
             print(query)
             message = "Thank You for watching! {}".format(query)
             context = {'message': message, }
-            return render(request, 'videoplay/temp.html', context)
+            return render(request, 'videoplay/play.html', context)
+      return render(request, 'videoplay/play.html')
+
+def temp(request):
+      # if request.method == 'POST':
+      #       query = json.loads(request.POST['score'])
+      #       print(query)
+      #       message = "Thank You for watching! {}".format(query)
+      #       context = {'message': message, }
+      #       return render(request, 'videoplay/temp.html', context)
       return render(request, 'videoplay/temp.html')
