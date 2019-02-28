@@ -126,7 +126,8 @@ def home(request):
 def play(request):
       if request.method == 'POST':
             query = json.loads(request.POST['score'])
-            print(query)
+            query1=(request.POST['fileName'])
+            print(query1)
             message = "Thank You for watching! {}".format(query)
             context = {'message': message, }
             return render(request, 'videoplay/play.html', context)
