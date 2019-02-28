@@ -69,7 +69,7 @@ def updateScore(username, sid, vid, scr):
       obj = ScoreOneStimulus.userScore.get(user_name=username, session_id=sid, vid_id=vid)
       obj.score = scr
       obj.save()
-      print("Score updated in backend Bingo!")
+      print("Score updated in backend Bingo!!!")
       return
 
 
