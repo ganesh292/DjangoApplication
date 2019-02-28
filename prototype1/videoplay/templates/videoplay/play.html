@@ -14,8 +14,8 @@
                       <div class="selectingVideo">
                       <input class="inputfile" type="file" name="file" id="file" onchange="readFiles(event)" multiple>
                       <div class="button1">
-                      <button type="button" id="selectBtn" class="btn btn-primary btn-lg" style="border-block-start-width:200%;border-block-end-width: 200%; border-color:gray;background-color:rgb(8, 3, 56);border-width:2px;" onclick="enableBeginButton()">
-                      <label for="file">Select Videos</label>
+                      <button type="button" id="selectBtn" class="btn btn-primary btn-lg" style="width:300%; border-color:gray;background-color:black;border-width:1px;" onclick="enableBeginButton()">
+                      <label for="file">SELECT VIDEOS</label>
                       </button>
                       </div>
                       </div>
@@ -29,12 +29,12 @@
                                 <br/>
 
                                   <h1 id="mssg" style="color: white">{{message}}</h1>
-                                 <button id="playBtn" type="button" onclick="toggleFullscreen()" style="border-color:gray;background-color:rgb(8, 3, 56);border-width:2px " class="btn btn-primary btn-md" hidden>Begin</button>
+                                 <button id="playBtn" type="button" onclick="toggleFullscreen()" style="border-color:gray;background-color:black;border-width:1px " class="btn btn-primary btn-md" hidden>Begin</button>
                                  <div class="slidecontainer">
                                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange" disabled hidden>
                                    <p id="scoreDisp" style="color:white;font-weight:bolder;" hidden>SCORE: <span id="demo"></span></p>
                                  </div>
-                                 <button id="submitBtn" type="submit" onclick="nextVid()" class="btn btn-success btn-md" style="border-color:gray;background-color:black;border-width:3px " hidden>Submit Score</button>
+                                 <button id="submitBtn" type="submit" onclick="nextVid()" class="btn btn-success btn-md" style="border-color:gray;background-color:black;border-width:2px " hidden>Submit Score</button>
                               </div>
                             </div>
                           </div>
@@ -47,6 +47,8 @@
   display: inline-block;
   border-radius: 12px;
   font-size: 18px;
+  margin-right: 200px;
+  margin-left: -220px;
 }
 
   .selectingVideo{
@@ -70,7 +72,7 @@
 
   }
   #demo{
-    color: yellow;
+    color: white;
   }
 
   .slider {
@@ -106,7 +108,7 @@
     appearance: none;
     width: 25px;
     height: 25px;
-    background: blue;
+    background: black;
     cursor: pointer;
   }
 
