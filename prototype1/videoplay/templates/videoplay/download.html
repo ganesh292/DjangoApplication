@@ -39,19 +39,22 @@ var zip = new JSZip();
 
 // Generate a directory within the Zip file structure
 var video = zip.folder("videos");
-
 // Add a file to the directory, in this case an image with data URI as contents
 for(var i =0;i<objs.length;i++)
 {
-var f = objs[i];
+var f = "Access-Control-Allow-Origin:" + objs[i];
 
-video.file(f, data, {binary:true});
+$.get(f,function(data, status){
+      alert("Data: " + data + "\nStatus: " + status);     
+})
+
+// video.file(f, {binary:true});
 console.log(f);
 console.log(video);
 }
 
 // Generate the zip file asynchronously
-zip.generateAsync({type:"blob"})
+zip.generateAsync({type:"Blob"})
 .then(function(content) {
 // Force down of the Zip file
 saveAs(content, "videos.zip");
@@ -115,4 +118,3 @@ saveAs(content, "videos.zip");
 
   {%endblock content%}
  
-  function ondownload(objs) {
