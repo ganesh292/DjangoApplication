@@ -13,18 +13,9 @@ var files={};
 //Selecting Videos
 var videoafterparse;
 function readFiles(event) {
-<<<<<<< HEAD
   files=document.getElementById("file").files;
   console.log(files);
   loadAsUrl(files[i]);
-=======
-    fileList = event.target.files;
-    loadAsUrl(fileList[i]);
-    for(var j=0;j<3;j++){
-    score[fileList[j].name]=0;
-    }
-    
->>>>>>> 25a311504a02a8c00e53c3f3647189abea214c19
 }
   
 
@@ -106,10 +97,7 @@ function enableDisablebuttons(e) {
        playButton.style.display="none";
        selVideo[0].style.display="none";
        submitButton.hidden=false;
-<<<<<<< HEAD
        i++;
-=======
->>>>>>> 25a311504a02a8c00e53c3f3647189abea214c19
        document.getElementById("scoreDisp").hidden=false;
        document.exitFullscreen();
 }
@@ -125,7 +113,6 @@ function loadAsUrl(theFile) {
 
 //Play the videos
 function playVid(){
-<<<<<<< HEAD
     if(i>0){
       data['score'] = JSON.stringify(data['score'])
       updateScore();
@@ -152,14 +139,6 @@ function toggleFullscreen() {
 
   if(myVideo.paused)
   {
-=======
-    console.log("Inside play vid...this is supposed to be called again and again.....value of i is..."+i)
-    myVideo.play();
-  }
-//Change to full screen
-function toggleFullscreen() {
-  console.log("Toggle Screen");
->>>>>>> 25a311504a02a8c00e53c3f3647189abea214c19
   if (myVideo.requestFullscreen) {
       myVideo.requestFullscreen();
   }
