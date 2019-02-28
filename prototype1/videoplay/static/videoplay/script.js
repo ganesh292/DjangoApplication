@@ -130,12 +130,10 @@ function enableDisablebuttons(e) {
 //Loading the video files
 function loadAsUrl(theFile) {
     var reader = new FileReader();
-
     reader.onload = function(loadedEvent) {
       myVideo.setAttribute("src", loadedEvent.target.result);
         
     }
-
     reader.readAsDataURL(theFile);
 }
 //Play the videos
@@ -194,6 +192,4 @@ myVideo.pause();
 }
 //Just to make sure static files are connected, see this message in console
 console.log("Hello! Static Cnnected");
-
-
    
