@@ -5,7 +5,6 @@ var playButton=document.getElementById("playBtn");
 var selVideo = document.getElementsByClassName("selectingVideo");
 var submitButton=document.getElementById("submitBtn");
 var a=document.getElementById("scorelink");
-
 var vidId = document.getElementById("videoid")
 const param=new URLSearchParams(location.search);
 var i=0;
@@ -14,9 +13,18 @@ var files={};
 //Selecting Videos
 var videoafterparse;
 function readFiles(event) {
+<<<<<<< HEAD
   files=document.getElementById("file").files;
   console.log(files);
   loadAsUrl(files[i]);
+=======
+    fileList = event.target.files;
+    loadAsUrl(fileList[i]);
+    for(var j=0;j<3;j++){
+    score[fileList[j].name]=0;
+    }
+    
+>>>>>>> 25a311504a02a8c00e53c3f3647189abea214c19
 }
   
 
@@ -37,13 +45,11 @@ function getCookie(name) {
   return cookieValue;
 }
 var csrftoken = getCookie('csrftoken');
-
 //Data to POST
 var data={
   'csrfmiddlewaretoken': csrftoken,
   'score':score
 }
-
 //Function called after viewing all videos
 function updateScore(){
   $.ajax({
@@ -60,7 +66,6 @@ function updateScore(){
       }
     });
 }
-
 //Score slider
 slider.oninput = function() {
   output.innerHTML = this.value;
@@ -85,8 +90,6 @@ slider.value = 50;
 output.innerHTML = 50;
 disableScroll();
 }
-
-
 function disableScroll(){
   submitButton.hidden = true;
   slider.hidden = true;
@@ -103,24 +106,26 @@ function enableDisablebuttons(e) {
        playButton.style.display="none";
        selVideo[0].style.display="none";
        submitButton.hidden=false;
+<<<<<<< HEAD
        i++;
+=======
+>>>>>>> 25a311504a02a8c00e53c3f3647189abea214c19
        document.getElementById("scoreDisp").hidden=false;
        document.exitFullscreen();
 }
 //Loading the video files
 function loadAsUrl(theFile) {
     var reader = new FileReader();
-
     reader.onload = function(loadedEvent) {
       myVideo.setAttribute("src", loadedEvent.target.result);
         
     }
-
     reader.readAsDataURL(theFile);
 }
 
 //Play the videos
 function playVid(){
+<<<<<<< HEAD
     if(i>0){
       data['score'] = JSON.stringify(data['score'])
       updateScore();
@@ -147,6 +152,14 @@ function toggleFullscreen() {
 
   if(myVideo.paused)
   {
+=======
+    console.log("Inside play vid...this is supposed to be called again and again.....value of i is..."+i)
+    myVideo.play();
+  }
+//Change to full screen
+function toggleFullscreen() {
+  console.log("Toggle Screen");
+>>>>>>> 25a311504a02a8c00e53c3f3647189abea214c19
   if (myVideo.requestFullscreen) {
       myVideo.requestFullscreen();
   }
@@ -174,6 +187,4 @@ myVideo.pause();
 }
 //Just to make sure static files are connected, see this message in console
 console.log("Hello! Static Cnnected");
-
-
    

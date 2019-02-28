@@ -63,14 +63,17 @@ saveAs(content, "videos.zip");
  
  </script> 
  
-<div class="container fluid">
-                            <div class="row">
-                              <div class="col text-center">
-                                <div class="jumbotron">
-                                    <h1 class="display-4">Welcome!</h1>
-                                    <p class="lead">Thank you for your participation!</p>
+ <div class="container fluid">
+    <div class="row">
+      <div class="col text-center">
+                                  
+                                    <h1 class="display-4 text-white">Welcome!</h1>
+                                    <p class="lead text-muted">Thank you for your participation!</p>
                                     <hr class="my-4 text-center">
-                                    <div class="list-group text-left">
+
+
+                                    
+                                    <div class="list-group text-left text-white">
                                     <ol>
                                     <li> As Step one download the videos using download button given below</li>
                                     <li>Once Videos are Downloaded click "Start Watching" and provide the location to the downloaded videos by clicking the "Select Videos" button on the next page</li>
@@ -83,9 +86,9 @@ saveAs(content, "videos.zip");
                                 </div>
                                     {% if user.is_authenticated %}
    
-                                       
+                                    <br>
 
-                                        <button type="button" class="btn btn-success btn-md" onclick ="createZip()">Download Your Personalized Videos for the Ratings</button>
+                                    <button type="button" id="downloadButton" class="btn btn-primary btn-md" style="width:100%;border-color:gray;background-color:rgb(8, 3, 56);;border-width:3px " onclick ="createZip()"><i class="fa fa-download"></i> Download Your Personalized Videos for the Ratings</button>
 
 
                                         <br/>
@@ -93,7 +96,7 @@ saveAs(content, "videos.zip");
                                           <br/>
 
                                             <br/>
-                                          <a href="{% url 'videoplay-videos' %}"><button type="button" class="btn btn-danger btn-md">Start Watching</button></a>
+                                          <a href="{% url 'videoplay-videos' %}"><button type="button" id="startButton" class="btn btn-primary btn-md" style="border-color:gray;background-color:rgb(8, 3, 56);;" disabled=true>Start Watching <i2 class="arrow right"></i2></button></a>
                                           
 
 
@@ -112,7 +115,6 @@ saveAs(content, "videos.zip");
                               </div>
                             </div>
                           </div>
-
                 </div>
 
 
