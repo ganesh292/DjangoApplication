@@ -14,7 +14,7 @@ username = ''
 stat_url = ["{% static url%}"]
 
 #Jatin's Backend code
-video_lists = ['0000001', '0000002']
+video_lists = ['0000001', '0000002','0000003']
 # jatin's changes moving to master
 
 def checkUserExists(username):

@@ -42,7 +42,7 @@ var video = zip.folder("videos");
 // Add a file to the directory, in this case an image with data URI as contents
 for(var i =0;i<objs.length;i++)
 {
-var f = "Access-Control-Allow-Origin:" + objs[i];
+var f =  objs[i];
 
 $.get(f,function(data, status){
       alert("Data: " + data + "\nStatus: " + status);     
