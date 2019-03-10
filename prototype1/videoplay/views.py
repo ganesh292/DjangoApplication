@@ -14,7 +14,7 @@ username = ''
 stat_url = ["{% static url%}"]
 
 #Jatin's Backend code
-video_lists = ['0000003', '0000004','0000008']
+video_lists = ['0000001', '0000002','0000003']
 # jatin's changes moving to master
 
 def checkUserExists(username):
@@ -66,11 +66,11 @@ def findSessionId(username):
 
 def updateScore(username, sid, vid, scr):
 	# To update score in the database table
-	obj = ScoreOneStimulus.userScore.get(
-		user_name=username, session_id=sid, vid_id=vid)
-	obj.score = scr
-	obj.save()
-	return
+      obj = ScoreOneStimulus.userScore.get(user_name=username, session_id=sid, vid_id=vid)
+      obj.score = scr
+      obj.save()
+      print("Score updated in backend Bingo!!!")
+      return
 
 
 def backendlogic(username, scr=50):
@@ -96,6 +96,13 @@ def update_urllookup():
 #don' delete this #update_urllookup()
 # update_urllookup()
 
+def getvid(videoname):
+      #To get vid id from database for given video name"
+      print("Given below is the url for reverselookup")
+      print('http://vision-pc4.eng.uwaterloo.ca:/videos/'+videoname)
+      vid=VideoUrl.urlobj.get(vid_url='http://vision-pc4.eng.uwaterloo.ca:/videos/'+videoname).vid_id
+      print(vid)
+      return vid
 def fetchVideo(video_id_list):
       #To fetch video url from database corresponding to each video id
       vid_url_list = []
@@ -126,7 +133,9 @@ def play(request):
       if request.method == 'POST':
             query = json.loads(request.POST['score'])
             query1=(request.POST['fileName'])
+            print(query)
             print(query1)
+            updateScore(request.user, findSessionId(request.user), getvid(query1), query)
             message = "Thank You for watching! {}".format(query)
             context = {'message': message, }
             return render(request, 'videoplay/play.html', context)

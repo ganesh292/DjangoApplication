@@ -42,7 +42,7 @@ var video = zip.folder("videos");
 // Add a file to the directory, in this case an image with data URI as contents
 for(var i =0;i<objs.length;i++)
 {
-var f = "Access-Control-Allow-Origin:" + objs[i];
+var f =  objs[i];
 
 $.get(f,function(data, status){
       alert("Data: " + data + "\nStatus: " + status);     
@@ -96,7 +96,7 @@ saveAs(content, "videos.zip");
                                           <br/>
 
                                             <br/>
-                                          <a href="{% url 'videoplay-videos' %}"><button type="button" id="startButton" class="btn btn-primary btn-md" style="border-color:gray;background-color:rgb(8, 3, 56);;" disabled=true>Start Watching <i2 class="arrow right"></i2></button></a>
+                                          <a href="{% url 'videoplay-videos' %}"><button type="button" id="startButton" class="btn btn-primary btn-md" style="border-color:gray;background-color:rgb(8, 3, 56);;">Start Watching <i2 class="arrow right"></i2></button></a>
                                           
 
 
