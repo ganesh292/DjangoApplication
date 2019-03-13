@@ -16,6 +16,7 @@ stat_url = ["{% static url%}"]
 #Jatin's Backend code
 video_lists = ['0000001', '0000002','0000003']
 # jatin's changes moving to master
+videoIdName={}
 
 def checkUserExists(username):
 	#To check if newuser or existing user?
@@ -94,7 +95,7 @@ def update_urllookup():
             obj.save()
       return
 #don' delete this #update_urllookup()
-# update_urllookup()
+#update_urllookup()
 
 def getvid(videoname):
       #To get vid id from database for given video name"
@@ -130,22 +131,28 @@ def home(request):
     return render(request, 'videoplay/home.html')
 
 def play(request):
-      if request.method == 'POST':
-            query = json.loads(request.POST['score'])
-            query1=(request.POST['fileName'])
-            print(query)
-            print(query1)
-            updateScore(request.user, findSessionId(request.user), getvid(query1), query)
-            message = "Thank You for watching! {}".format(query)
-            context = {'message': message, }
-            return render(request, 'videoplay/play.html', context)
+      # if request.method == 'POST':
+      #       query = json.loads(request.POST['score'])
+      #       query1=(request.POST['video1'])
+      #       query2=(request.POST['video2'])
+      #       print(query)
+      #       print(query1)
+      #       print(query2)
+      #       #updateScore(request.user, findSessionId(request.user), getvid(query1), query)
+      #       message = "Thank You for watching! {}".format(query)
+      #       context = {'message': message, }
+      #       return render(request, 'videoplay/play.html', context)
+      # videoIdName['vids'] = ','.join([str(i) for i in video_lists])
       return render(request, 'videoplay/play.html')
 
 def temp(request):
-      # if request.method == 'POST':
-      #       query = json.loads(request.POST['score'])
-      #       print(query)
-      #       message = "Thank You for watching! {}".format(query)
-      #       context = {'message': message, }
-      #       return render(request, 'videoplay/temp.html', context)
+      if request.method == 'POST':
+            query = (request.POST['score'])
+            query1 = (request.POST['video1'])
+            query2 = (request.POST['video2'])
+            print(query)
+            print(query1)
+            print(query2)
+            #updateScore(request.user, findSessionId(request.user), getvid(query1), query)
+            return render(request, 'videoplay/temp.html')
       return render(request, 'videoplay/temp.html')
