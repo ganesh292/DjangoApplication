@@ -158,7 +158,10 @@ function disableScroll(){
 //        document.exitFullscreen();
 // }
 
-
+function dummy(){
+  myVideo.play();
+  
+}
 //Series of events after video ends for preference score
 myVideo.addEventListener('ended', enableDisablebuttons, false);
 function enableDisablebuttons(e) {
@@ -166,7 +169,8 @@ function enableDisablebuttons(e) {
   if(i!=files.length){
     loadAsUrl(files[i])
     myVideo.autoplay=true;
-    myVideo.play();
+    window.setTimeout(dummy,5000)
+    
   }
   else{
        slider.style.opacity=0.8;
