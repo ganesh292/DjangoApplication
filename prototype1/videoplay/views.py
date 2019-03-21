@@ -171,15 +171,15 @@ def fetchVideo(video_id_list):
 
 
 def download(request):
-      print(request.user)
-      print("I am inside download and gonna call backened logic")
+      #print(request.user)
+      #print("I am inside download and gonna call backened logic")
       video_lists2 = backendlogic_2(request.user, 98)
-      print(video_lists2)
+      #print(video_lists2)
       # urls = fetchVideo(video_lists1)
       # print(urls)
       context1 = {}
       # context1['urls'] = ','.join([str(i) for i in urls])
-      return render(request, 'videoplay/download.html', context1)
+      return render(request, 'videoplay/download.html')
 
 
 # Create your views here.
