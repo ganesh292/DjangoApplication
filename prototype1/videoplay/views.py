@@ -149,6 +149,9 @@ def update_urllookup():
             obj = VideoUrl(vid_id=cells[0], vid_url='http://' + cells[1])
             obj.save()
       return
+#don' delete this #update_urllookup()
+# update_urllookup()
+
 def getvid(videoname):
       #To get vid id from database for given video name"
       print("Given below is the url for reverselookup")
