@@ -10,13 +10,6 @@ var vidId = document.getElementById("videoid");
 const param=new URLSearchParams(location.search);
 var i=0;
 var score=0;
-var start=0;
-var vid_pair_num=0;
-var name_list=[['1_fps25.mp4','4_fps25.mp4'],['2_fps24.mp4','4_fps25.mp4']]
-console.log(name_list.length)
-
-
-
 
 var objs = ["video1","video2"];
 for(var i =0;i<objs.length;i++)
@@ -69,7 +62,6 @@ function getCookie(name) {
     var cookies = document.cookie.split(';');
     for (var i = 0; i < cookies.length; i++) {
       var cookie = jQuery.trim(cookies[i]);
-      console.log(cookie)
       // Does this cookie string begin with the name we want?
       if (cookie.substring(0, name.length + 1) === (name + '=')) {
         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
@@ -88,13 +80,9 @@ var data = {
 var files={};
 //Selecting Videos
 function readFiles(event) {
-  console.log("Inside ReadFile Function")
   files=document.getElementById("file").files;
   data['fileName']=files[i].name;
-  console.log(files.length)
-  // console.log(data['fileName'])
-  // console.log(files[i])
-  // loadAsUrl(files[i]);
+  loadAsUrl(files[i]);
 }
 
 // localStorage.setItem('storeObj', JSON.stringify(myObj));
@@ -107,13 +95,13 @@ function readFiles(event) {
 //Function called after viewing all videos
 function updateScore(){
   $.ajax({
-      url: "/videoplay/videos2/",
+      url: "/videoplay/videos/",
       type: "POST",
       //dataType: "json",
       data: data,
       success: function (json) {
         //console.log(files[i].name);
-        // loadAsUrl(files[i]);
+        loadAsUrl(files[i]);
       },
       error: function (xhr, errmsg, err) {
         alert("Could not send URL to Django. Error: " + xhr.status + ": " + xhr.responseText);
@@ -128,26 +116,24 @@ slider.oninput = function() {
   score=this.value;
   data['score']=score;
 }
-
-
 //To go to next video:'Submit Score' button
-// function nextVid(){
-//   //i++;
-//   console.log(files[i]);
-//   console.log(i);
+function nextVid(){
+  //i++;
+  console.log(files[i]);
+  console.log(i);
   
-// if (i == 3) {
-//   i=0;
-//   console.log(score);
-//   // updateScore();
-// }
-// data['score'] = JSON.stringify(data['score'])
-// updateScore();
-// // loadAsUrl(files[i]);
-// slider.value = 50;
-// output.innerHTML = 50;
-// disableScroll();
-// }
+if (i == 3) {
+  i=0;
+  console.log(score);
+  // updateScore();
+}
+data['score'] = JSON.stringify(data['score'])
+updateScore();
+// loadAsUrl(files[i]);
+slider.value = 50;
+output.innerHTML = 50;
+disableScroll();
+}
 
 // document.addEventListener('fullscreenchange', exitHandler);
 // document.addEventListener('webkitfullscreenchange', exitHandler);
@@ -173,16 +159,12 @@ function disableScroll(){
   slider.style.opacity=0.2;
   slider.disabled=true;
 }
-var vid_num = 1;
 //Series of events after video ends
-myVideo.addEventListener('ended', videoloop,false);
-/////////////////////////////////////////////////////////
-
-
-function enableDisablebuttons() {
+myVideo.addEventListener('ended', enableDisablebuttons,false);
+function enableDisablebuttons(e) {
        slider.style.opacity=0.8;
        slider.disabled=false;
-       slider.hidden=true;
+       slider.hidden=false;
        myVideo.style.display = "none";
        playButton.style.display="none";
        selVideo[0].style.display="none";
@@ -201,27 +183,27 @@ function loadAsUrl(theFile) {
     reader.readAsDataURL(theFile);
 }
 //Play the videos
-// function playVid(){
-//     if(i>0){
-//       data['score'] = JSON.stringify(data['score'])
-//       data['fileName'] = files[i-1].name;
-//       updateScore();
-//       submitButton.hidden = true;
-//       slider.hidden = true;
-//       slider.style.opacity = 0.2;
-//       slider.disabled = true;
-//       myVideo.autoplay=true;
-//     }
+function playVid(){
+    if(i>0){
+      data['score'] = JSON.stringify(data['score'])
+      data['fileName'] = files[i-1].name;
+      updateScore();
+      submitButton.hidden = true;
+      slider.hidden = true;
+      slider.style.opacity = 0.2;
+      slider.disabled = true;
+      myVideo.autoplay=true;
+    }
 
-//   if(i==files.length){
-//     window.location.href="/videoplay/temp/"
-//   }
-//     myVideo.style.display = "block";
-//     playButton.style.display = "none";
-//     myVideo.play();
-//     console.log(i);
+  if(i==files.length){
+    window.location.href="/videoplay/temp/"
+  }
+    myVideo.style.display = "block";
+    playButton.style.display = "none";
+    myVideo.play();
+    console.log(i);
     
-//   }
+  }
 
 // //Change to full screen
 function toggleFullscreen() {
@@ -229,7 +211,6 @@ function toggleFullscreen() {
 
   if(myVideo.paused)
   {
-    console.log("Video is Paused")
   if (myVideo.requestFullscreen) {
       myVideo.requestFullscreen();
   }
@@ -242,12 +223,9 @@ function toggleFullscreen() {
   else if (myVideo.msRequestFullscreen) {
       myVideo.msRequestFullscreen();
   }
-
-    doublestimulus(name_list);
-
+  playVid();
 }
    else {
-     console.log("Video is not Pause")
     document.exitFullscreen();
   }
     myVideo.style.display="block";
@@ -258,134 +236,6 @@ function toggleFullscreen() {
 function pauseVid() {
 myVideo.pause();
 }
-
-///////////////////////////////////////////////////
-function getuploadedpath(vid_name)
-{
-  for (var i = 0; i < files.length; i++)
-  {
-    if (files[i].name==vid_name)
-    {
-      return files[i];
-    }
-  }
-}
-///////////////////////////////////////////////////////
-function playVid2()
-{
-  console.log("Inside playVid2")
-  submitButton.hidden = true;
-  slider.hidden = true;
-  slider.style.opacity = 0.2;
-  slider.disabled = true;
-  myVideo.autoplay=true;
-  myVideo.style.display = "block";
-  playButton.style.display = "none";
-  myVideo.play();
-  console.log("finished playing video")
-  return;
-}
-
-var pair_end=0;
-function doublestimulus(name_list)
-{
-  console.log("Inside Double Stimulus function")
-  // debugger;
-  if(vid_pair_num<name_list.length)
-  {
-    if(vid_num==1){
-      console.log("Gonna Play Vid1")
-      console.log(name_list[vid_pair_num][0])
-      path1 = getuploadedpath(name_list[vid_pair_num][0])
-      console.log('path1\n',path1)
-      loadAsUrl(path1)
-      playVid2();
-      vid_num=2
-    }
-    else{
-      console.log("Gonna Play Vid2")
-    console.log(name_list[vid_pair_num][1])
-    path2 = getuploadedpath(name_list[vid_pair_num][1])
-    console.log('path2\n',path2)
-    loadAsUrl(path2)
-    // await sleep(3000)
-    console.log('gonna sleep for 3 sec')
-    k=0
-    while(k<1000000)
-    {
-      k++;
-    }
-    window.setTimeout(playVid2,3000);
-    // window.setTimeout(playVid2,10000)
-    vid_num=1
-    vid_pair_num+=1;
-    pair_end=1;
-    // enableDisablebuttons()
-    }
-    
-  }
-  else{
-    window.location.href="/videoplay/temp/"
-  } 
-  
-  return;
-}
-
-function videoloop(e)
-{
-  console.log("Inside Videoloop")
-  // doublestimulus(name_list);
-  if(pair_end==1)
-  {
-    nextpair()
-    pair_end=0;
-  }
-  else{
-    doublestimulus(name_list);
-  }
-
-}
-  // toggleFullscreen();
-  // if(vid_num==2)
-  // {
-  //  console.log("Going to play second video in pair")
-  //  console.log(name_list[vid_pair_num][1])
-  //  path2 = getuploadedpath(name_list[vid_pair_num][1])
-  //  console.log('path2\n',path2)
-  //  loadAsUrl(path2)
-  //  playVid2();
-  //  vid_num=1
-  // //  enableDisablebuttons()
-  //  return;
-  // }
-  // else
-  // {
-  //   console.log("Going to play first video in pair")
-  //   doublestimulus(name_list)
-  // }
-  
-
-  function nextpair()
-  {
-    enableDisablebuttons()
-    //myVideo.style.display="none"
-    var preference = prompt("Enter 1 if first video was better else enter 2!");
-    data['preference']=preference
-    data['preference']=JSON.stringify(data['preference'])
-    data['vid_name1']=name_list[vid_pair_num-1][0]
-    data['vid_name2']=name_list[vid_pair_num-1][1]
-    updateScore();
-    // toggleFullscreen()
-  }
-
-
-
-
-
-
-
-
-
 //Just to make sure static files are connected, see this message in console
 console.log("Hello! Static Cnnected");
    
