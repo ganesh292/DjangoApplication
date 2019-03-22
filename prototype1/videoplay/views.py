@@ -32,7 +32,7 @@ def checkUserExists_2(username):
 		return False
 	else:
 		return True
-def NewEntry_1(username, sid=1):
+def NewEntry_1(username,video_lists, sid=1):
 	#To insert initial data into the table for single stimulus
 
       for item in video_lists:
@@ -41,7 +41,7 @@ def NewEntry_1(username, sid=1):
             	user_name=username, session_id=sid, vid_id=item)
             obj.save()
       return video_lists
-def NewEntry_2(username, sid=1):
+def NewEntry_2(username,video_lists2, sid=1):
 	#To insert initial data into the table for double stimulus
 
       for item in video_lists2:
@@ -118,28 +118,28 @@ def updatePref_2(username, sid, vid1,vid2, pref):
       print("Pref is updated in backend Bingo!!!")
       return
 # updatePref_2('abcd121',1,'0000003','0000001','0000003')
-def backendlogic_1(username, scr=50):
+def backendlogic_1(username):
       # For Single Stimulus
       if checkUserExists_1(username) == False:
-            NewEntry_1(username)
+            NewEntry_1(username,video_lists)
             return video_lists
       else:
             if(checkSession_1(username)[0] == 'oldsession'):
                   return checkSession_1(username)[1]
             else:
                   sid = incSessionId_1(username)
-                  return NewEntry_1(username, sid)
-def backendlogic_2(username, scr=50):
+                  return NewEntry_1(username,video_lists, sid)
+def backendlogic_2(username):
       # For Double Stimulus
       if checkUserExists_2(username) == False:
-            NewEntry_2(username)
+            NewEntry_2(username,video_lists2)
             return video_lists2
       else:
             if(checkSession_2(username)[0] == 'oldsession'):
                   return checkSession_2(username)[1]
             else:
                   sid = incSessionId_2(username)
-                  return NewEntry_2(username, sid)
+                  return NewEntry_2(username,video_lists2, sid)
 
 def update_urllookup():
       data = open('static/video_list.txt', 'r',).read()
@@ -172,7 +172,7 @@ def fetchVideo(video_id_list):
 def download(request):
       print(request.user)
       print("I am inside download and gonna call backened logic")
-      video_lists2 = backendlogic_2(request.user, 98)
+      video_lists1 = backendlogic_1(request.user)
       print(video_lists2)
       # urls = fetchVideo(video_lists1)
       # print(urls)
