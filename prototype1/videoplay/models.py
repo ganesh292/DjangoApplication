@@ -16,3 +16,13 @@ class ScoreOneStimulus(models.Model):
     userScore=models.Manager()
     def __str__(self):
         return self.vid_id
+
+class ScoreTwoStimulus(models.Model):
+    session_id=models.IntegerField()
+    user_name=models.CharField(max_length=10)
+    vid_id1=models.CharField(max_length=10)
+    vid_id2=models.CharField(max_length=10)
+    preference=models.CharField(max_length=10,blank=True,null=True)
+    userPref=models.Manager()
+    def __str__(self):
+        return self.vid_id1

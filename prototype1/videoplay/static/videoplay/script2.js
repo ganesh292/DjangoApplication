@@ -5,8 +5,7 @@ var playButton=document.getElementById("playBtn");
 var selVideo = document.getElementsByClassName("selectingVideo");
 var submitButton=document.getElementById("submitBtn");
 var a=document.getElementById("scorelink");
-var vidId = document.getElementById("videoid");
-
+var vidId = document.getElementById("videoid")
 const param=new URLSearchParams(location.search);
 var i=0;
 var score=0;
@@ -18,51 +17,6 @@ console.log(name_list.length)
 
 
 
-var objs = ["video1","video2"];
-for(var i =0;i<objs.length;i++)
-{
-    console.log("hi");
-    var f =  objs[i];
-   console.log(f);
-}
-
-//document.getElementById('radio1').value = f;
-var radiob1 = document.getElementsByName("optradio1");
-for (var i = 0, length = radiob1.length; i < length; i++)
-{
-console.log(radiob1[i]);
-}
-function preference()
-{
-// var b1 = document.getElementById('radio1');
-// var b2 = document.getElementById('radio2');
-console.log("Inside func peference");
-
-//console.log("length is ",radiob1.length);
-if(document.getElementById('radio1').checked) {
-  //Male radio button is checked
-  console.log(radiob1[0].value);
-}else if(document.getElementById('radio2').checked) {
-  //Female radio button is checked
-  console.log(radiob1[1].value);
-}
-
-// for (var i = 0, length = radiob1.length; i < length; i++)
-// {
-// console.log(radiob1[i]);
-// if (radiob1[i].checked)
-// {
-// // do whatever you want with the checked radio
-// console.log("yes");
-// console.log(radiob1[i].value);
-// break;
-
-// // only one radio can be logically checked, don't check the rest
-
-// }
-// }
-
-}
 function getCookie(name) {
   var cookieValue = null;
   if (document.cookie && document.cookie !== '') {
@@ -282,8 +236,14 @@ function playVid2()
   myVideo.style.display = "block";
   playButton.style.display = "none";
   myVideo.play();
-  console.log("finished playing video")
+  console.log("started playing video and jumping to next instruction")
   return;
+}
+function sleep(miliseconds) {
+  var currentTime = new Date().getTime();
+
+  while (currentTime + miliseconds >= new Date().getTime()) {
+  }
 }
 
 var pair_end=0;
@@ -310,11 +270,12 @@ function doublestimulus(name_list)
     loadAsUrl(path2)
     // await sleep(3000)
     console.log('gonna sleep for 3 sec')
-    k=0
-    while(k<1000000)
-    {
-      k++;
-    }
+    // k=0
+    // while(k<1000000)
+    // {
+    //   k++;
+    // }
+    sleep(3000)
     window.setTimeout(playVid2,3000);
     // window.setTimeout(playVid2,10000)
     vid_num=1
