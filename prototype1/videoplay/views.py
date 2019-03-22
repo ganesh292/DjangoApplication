@@ -17,6 +17,7 @@ stat_url = ["{% static url%}"]
 video_lists = ['0000001', '0000002','0000003']
 video_lists2 = [('0000001', '0000004'),('0000002','0000004')]
 # jatin's changes moving to master
+videoIdName={}
 
 def checkUserExists_1(username):
 	#To check if newuser or existing user?- For Single Stimulus
@@ -150,6 +151,7 @@ def update_urllookup():
             obj.save()
       return
 #don' delete this #update_urllookup()
+#update_urllookup()
 # update_urllookup()
 
 def getvid(videoname):
@@ -170,6 +172,10 @@ def fetchVideo(video_id_list):
 
 
 def download(request):
+      #print(request.user)
+      #print("I am inside download and gonna call backened logic")
+      video_lists2 = backendlogic_2(request.user)
+      #print(video_lists2)
       print(request.user)
       print("I am inside download and gonna call backened logic")
       video_lists1 = backendlogic_1(request.user)
@@ -178,7 +184,7 @@ def download(request):
       # print(urls)
       context1 = {}
       # context1['urls'] = ','.join([str(i) for i in urls])
-      return render(request, 'videoplay/download.html', context1)
+      return render(request, 'videoplay/download.html')
 
 
 # Create your views here.
@@ -227,10 +233,28 @@ def play2(request):
 def temp(request):
       # if request.method == 'POST':
       #       query = json.loads(request.POST['score'])
+      #       query1=(request.POST['video1'])
+      #       query2=(request.POST['video2'])
       #       print(query)
+      #       print(query1)
+      #       print(query2)
+      #       #updateScore(request.user, findSessionId(request.user), getvid(query1), query)
       #       message = "Thank You for watching! {}".format(query)
       #       context = {'message': message, }
-      #       return render(request, 'videoplay/temp.html', context)
+      #       return render(request, 'videoplay/play.html', context)
+      # videoIdName['vids'] = ','.join([str(i) for i in video_lists])
+      return render(request, 'videoplay/play.html')
+
+def temp(request):
+      if request.method == 'POST':
+            query = (request.POST['score'])
+            query1 = (request.POST['video1'])
+            query2 = (request.POST['video2'])
+            print(query)
+            print(query1)
+            print(query2)
+            #updateScore(request.user, findSessionId(request.user), getvid(query1), query)
+            return render(request, 'videoplay/temp.html')
       return render(request, 'videoplay/temp.html')
 
 def preference(request):
