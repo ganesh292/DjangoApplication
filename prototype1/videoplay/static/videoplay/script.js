@@ -114,51 +114,6 @@ slider.oninput = function() {
 }
 
 
-//To go to next video:'Submit Score' button
-// function nextVid(){
-//   //i++;
-//   console.log(files[i]);
-//   console.log(i);
-  
-// if (i == 3) {
-//   i=0;
-//   console.log(score);
-//   // updateScore();
-// }
-// data['score'] = JSON.stringify(data['score'])
-// updateScore_preference();
-// // loadAsUrl(files[i]);
-// slider.value = 50;
-// output.innerHTML = 50;
-// disableScroll();
-// }
-// if (i == 3) {
-//   i=0;
-//   console.log(score);
-//   // updateScore();
-// }
-// data['score'] = JSON.stringify(data['score'])
-// updateScore();
-// // loadAsUrl(files[i]);
-// slider.value = 50;
-// output.innerHTML = 50;
-// disableScroll();
-// }
-
-// document.addEventListener('fullscreenchange', exitHandler);
-// document.addEventListener('webkitfullscreenchange', exitHandler);
-// document.addEventListener('mozfullscreenchange', exitHandler);
-// document.addEventListener('MSFullscreenChange', exitHandler);
-
-// function exitHandler() {
-//   if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
-//     ///fire your event
-//    alert("hey");
-    
-//   }
-// }
-
-
 
 
 

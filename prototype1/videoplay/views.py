@@ -191,7 +191,7 @@ def download(request):
 def home(request):
     return render(request, 'videoplay/home.html')
 
-def play(request):
+def play_for_single(request):
       if request.method == 'POST':
             query = json.loads(request.POST['score'])
             query1=(request.POST['fileName'])
@@ -202,7 +202,9 @@ def play(request):
             context = {'message': message, }
             return render(request, 'videoplay/play.html', context)
       return render(request, 'videoplay/play.html')
-def play2(request):
+
+
+def play_for_double(request):
       if request.method == 'POST':
             # query = json.loads(request.POST['score'])
             # query1=(request.POST['fileName'])
@@ -230,20 +232,6 @@ def play2(request):
             return render(request, 'videoplay/play2.html', context)
       return render(request, 'videoplay/play2.html')
 
-def temp(request):
-      # if request.method == 'POST':
-      #       query = json.loads(request.POST['score'])
-      #       query1=(request.POST['video1'])
-      #       query2=(request.POST['video2'])
-      #       print(query)
-      #       print(query1)
-      #       print(query2)
-      #       #updateScore(request.user, findSessionId(request.user), getvid(query1), query)
-      #       message = "Thank You for watching! {}".format(query)
-      #       context = {'message': message, }
-      #       return render(request, 'videoplay/play.html', context)
-      # videoIdName['vids'] = ','.join([str(i) for i in video_lists])
-      return render(request, 'videoplay/play.html')
 
 def temp(request):
       if request.method == 'POST':
