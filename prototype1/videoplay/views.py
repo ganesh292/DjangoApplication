@@ -232,3 +232,12 @@ def temp(request):
       #       context = {'message': message, }
       #       return render(request, 'videoplay/temp.html', context)
       return render(request, 'videoplay/temp.html')
+
+def preference(request):
+      # if request.method == 'POST':
+      #       query = json.loads(request.POST['score'])
+      #       print(query)
+      #       message = "Thank You for watching! {}".format(query)
+      #       context = {'message': message, }
+      #       return render(request, 'videoplay/temp.html', context)
+      return render(request, 'videoplay/preference.html')
