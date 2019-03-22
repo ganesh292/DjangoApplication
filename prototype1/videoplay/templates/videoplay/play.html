@@ -3,7 +3,6 @@
 {% block content %}
 <script>
   //To enable and disable the select and begin button
-  var objs='{{vids}}'.split(',');
   function enableBeginButton()
   {
     document.getElementById("selectBtn").disabled=true;
@@ -35,7 +34,7 @@
                                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange" disabled hidden>
                                    <p id="scoreDisp" style="color:white;font-weight:bolder;" hidden>SCORE: <span id="demo"></span></p>
                                  </div>
-                                 <button id="submitBtn" type="submit" onclick="sendScore()" class="btn btn-success btn-md" style="border-color:gray;background-color:black;border-width:3px " hidden>Submit Score</button>
+                                 <button id="submitBtn" type="submit" onclick="toggleFullscreen()" class="btn btn-success btn-md" style="border-color:gray;background-color:black;border-width:3px" hidden>Submit Score</button>
                               </div>
                             </div>
                           </div>
