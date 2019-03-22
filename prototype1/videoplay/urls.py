@@ -10,5 +10,4 @@ urlpatterns = [
     path('temp/',views.temp, name='score-collection'),
     path('preference/',views.preference, name='score-preference'),
     path('videos/', views.play, name='videoplay-videos'),
-    path('videos2/', views.play2, name='videoplay-videos2')
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
