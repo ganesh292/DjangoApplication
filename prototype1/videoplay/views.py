@@ -152,6 +152,7 @@ def update_urllookup():
       return
 #don' delete this #update_urllookup()
 #update_urllookup()
+# update_urllookup()
 
 def getvid(videoname):
       #To get vid id from database for given video name"
