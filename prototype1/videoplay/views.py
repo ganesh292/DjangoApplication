@@ -38,12 +38,8 @@ def uniquelistfordownload(video_lists2):
             list1.append(item1[1])
       return list(set(list1))
 print(uniquelistfordownload(video_lists2))
-
-
-
-
 name_list=vidlist2vidname(video_lists2)
-
+print("name_list",name_list)
 
 
 def checkUserExists_1(username):

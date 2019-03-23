@@ -3,6 +3,7 @@ from videoplay.models import ScoreOneStimulus, VideoUrl,ScoreTwoStimulus
 import videoplay.views as views
 import re
 class ScoreOneStimulusTest(TestCase):
+    multi_db=True
     @classmethod
     def setUpTestData(cls):
         print("setUpTestData: Run once to set up non-modified data for all class methods.")
@@ -15,9 +16,9 @@ class ScoreOneStimulusTest(TestCase):
         line6=ScoreOneStimulus.userScore.create(user_name="test01", session_id=2, vid_id="vid_007")
         pass
 
-    # def setUp(self):
-    #     print("setUp: Run once for every test method to setup clean data.")
-    #     pass
+    def setUp(self):
+        print("setUp: Run once for every test method to setup clean data.")
+        pass
     def test_Score_Table_Intialization(self):
         line1=ScoreOneStimulus.userScore.get(user_name="test01", session_id=1, vid_id="vid_001")
         score=line1.score
@@ -48,6 +49,7 @@ class ScoreOneStimulusTest(TestCase):
 
 
 class ScoreTwoStimulusTest(TestCase):
+    multi_db=True
     @classmethod
     def setUpTestData(cls):
         print("setUpTestData: Run once to set up non-modified data for all class methods.")
@@ -64,9 +66,9 @@ class ScoreTwoStimulusTest(TestCase):
         # line6=ScoreOneStimulus.userScore.create(user_name="test01", session_id=2, vid_id="vid_007")
         pass
 
-    # def setUp(self):
-    #     print("setUp: Run once for every test method to setup clean data.")
-    #     pass
+    def setUp(self):
+        print("setUp: Run once for every test method to setup clean data.")
+        pass
     def test_Score_Table_Intialization(self):
         line1=ScoreTwoStimulus.userPref.get(user_name="test01", session_id=1, vid_id1="vid_001",vid_id2="vid_002")
         pref=line1.preference
@@ -97,6 +99,7 @@ class ScoreTwoStimulusTest(TestCase):
         self.assertEqual(views.backendlogic_2("random"),views.video_lists2)
 
 class VideoUrlTest(TestCase):
+    multi_db=True
     @classmethod
     def setUpTestData(cls):
         line1=VideoUrl(vid_id="0000001",vid_url="http:/testurl1")
@@ -104,9 +107,9 @@ class VideoUrlTest(TestCase):
         line1.save()
         line2.save()
 
-    # def setUp(self):
-    #     print("setUp: Run once for every test method to setup clean data.")
-    #     pass
+    def setUp(self):
+        print("setUp: Run once for every test method to setup clean data.")
+        pass
     def test_getvid(self):
         self.assertEqual(views.getvid("testurl1"), "0000001")
     def test_fetchvideo(self):
