@@ -91,7 +91,11 @@ WSGI_APPLICATION = 'prototype1.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+<<<<<<< HEAD
         'NAME': 'CSVR',
+=======
+        'NAME': 'csvr',
+>>>>>>> 016a798521dd947bdd2fa844eac5ce1c4b1037fb
         'USER': 'postgres',
         'PASSWORD': 'Jatin@156',
         'HOST': '127.0.0.1',

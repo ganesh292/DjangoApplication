@@ -15,7 +15,11 @@ stat_url = ["{% static url%}"]
 
 #Jatin's Backend code
 video_lists = ['0000001', '0000002','0000003']
+<<<<<<< HEAD
 video_lists2 = [('0000001', '0000003'),('0000002','0000004')]
+=======
+video_lists2 = [('0000002', '0000004'),('0000001','0000004')]
+>>>>>>> 016a798521dd947bdd2fa844eac5ce1c4b1037fb
 # jatin's changes moving to master
 
 def checkUserExists_1(username):
@@ -131,6 +135,7 @@ def backendlogic_1(username):
                   return NewEntry_1(username,video_lists, sid)
 def backendlogic_2(username):
       # For Double Stimulus
+      print("Inside Backend logic2")
       if checkUserExists_2(username) == False:
             NewEntry_2(username,video_lists2)
             return video_lists2
@@ -150,7 +155,7 @@ def update_urllookup():
             obj.save()
       return
 #don' delete this #update_urllookup()
-# update_urllookup()
+#update_urllookup()
 
 def getvid(videoname):
       #To get vid id from database for given video name"
@@ -173,7 +178,7 @@ def fetchVideo(video_id_list):
 def download(request):
       print(request.user)
       print("I am inside download and gonna call backened logic")
-      video_lists1 = backendlogic_1(request.user)
+      video_lists1 = backendlogic_2(request.user)
       print(video_lists2)
       # urls = fetchVideo(video_lists1)
       # print(urls)
@@ -186,7 +191,7 @@ def download(request):
 def home(request):
     return render(request, 'videoplay/home.html')
 
-def play(request):
+def play_for_single(request):
       if request.method == 'POST':
             query = json.loads(request.POST['score'])
             query1=(request.POST['fileName'])
@@ -197,7 +202,9 @@ def play(request):
             context = {'message': message, }
             return render(request, 'videoplay/play.html', context)
       return render(request, 'videoplay/play.html')
-def play2(request):
+
+
+def play_for_double(request):
       if request.method == 'POST':
             # query = json.loads(request.POST['score'])
             # query1=(request.POST['fileName'])
