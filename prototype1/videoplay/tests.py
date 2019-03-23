@@ -107,9 +107,9 @@ class SearchText(unittest.TestCase):
     #     # enter search keyword and submit
         self.search_field.click()
         username_input = self.driver.find_element_by_name("username")
-        username_input.send_keys('ganeshraj')
+        username_input.send_keys('abcd32')
         password_input = self.driver.find_element_by_name("password")
-        password_input.send_keys('139Acolumbia')
+        password_input.send_keys('firbhulgya')
         self.search_field = self.driver.find_element_by_name("login")
     #     # enter search keyword and submit
         self.search_field.click()
