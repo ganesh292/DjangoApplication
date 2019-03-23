@@ -11,17 +11,17 @@
                                     <p>Please Read the Instructions and Click I agree to Start!
                                     <br>
                                     {% if user.is_authenticated %}
-                                      <a class="btn btn-primary btn-lg" href="{%url 'videoplay-download' %}" role="button">I agree to Start Experiment!</a>
+                                      <a class="btn btn-primary btn-lg" href="{%url 'videoplay-download' %}" role="button" name="Agree">I agree to Start Experiment!</a>
                                     {% else %}
                                       <div>
                                           <b>Need an Account?  </b>
                                           <p></p>
-                                          <a  class="btn btn-primary btn-md" href="{%url 'register'%}" role="button">Sign Up!</a>
+                                          <a name="signup" class="btn btn-primary btn-md" href="{%url 'register'%}" role="button">Sign Up!</a>
                                           <br>
                                           <br>
                                           <b>Already have an Account?  </b>
                                           <p></p>
-                                          <a class="btn btn-success btn-md" href="{%url 'login'%}" role="button">Login!</a>
+                                          <a name="login" class="btn btn-success btn-md" href="{%url 'login'%}" role="button">Login!</a>
                                     {% endif %}
                                   </div>
                               </div>
