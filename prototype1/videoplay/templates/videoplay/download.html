@@ -1,12 +1,14 @@
 {% extends "videoplay/base.html"%}
 {% load static %}
+{% block script %}
+
+{{name_list}} 
+{% endblock %}
+
 {% block content %}
- <script type="text/javascript" src="{% static 'videoplay/jszip.js' %}"></script>
- <script type="text/javascript" src="{% static 'videoplay/jszip.min.js' %}"></script>
- <script type="text/javascript" src="{% static 'videoplay/FileSaver.js' %}"></script>
  <script>
   var objs = '{{urls}}'.split(',');
-
+  var double_stimulus_list='{{name_list}}'
   /*function clickdownload(){
     var interval = setInterval(ondownload, 300,objs);
     if (objs.length == 0) {
