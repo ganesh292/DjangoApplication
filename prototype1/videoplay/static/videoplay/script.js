@@ -88,13 +88,10 @@ var data = {
 var files={};
 //Selecting Videos
 function readFiles(event) {
-<<<<<<< HEAD
   console.log("Inside ReadFile Function")
-=======
   //To enable and disable the select and begin button
   document.getElementById("selectLbl").style.display="none";
   document.getElementById("playBtn").hidden=false;
->>>>>>> d4c69986f4803066f29af439af6adc101ab50e1f
   files=document.getElementById("file").files;
   data['fileName']=files[i].name;
   console.log(files.length)
@@ -207,27 +204,27 @@ function loadAsUrl(theFile) {
     reader.readAsDataURL(theFile);
 }
 //Play the videos
-// function playVid(){
-//     if(i>0){
-//       data['score'] = JSON.stringify(data['score'])
-//       data['fileName'] = files[i-1].name;
-//       updateScore();
-//       submitButton.hidden = true;
-//       slider.hidden = true;
-//       slider.style.opacity = 0.2;
-//       slider.disabled = true;
-//       myVideo.autoplay=true;
-//     }
+function playVid(){
+    if(i>0){
+      data['score'] = JSON.stringify(data['score'])
+      data['fileName'] = files[i-1].name;
+      updateScore();
+      submitButton.hidden = true;
+      slider.hidden = true;
+      slider.style.opacity = 0.2;
+      slider.disabled = true;
+      myVideo.autoplay=true;
+    }
 
-//   if(i==files.length){
-//     window.location.href="/videoplay/temp/"
-//   }
-//     myVideo.style.display = "block";
-//     playButton.style.display = "none";
-//     myVideo.play();
-//     console.log(i);
+  if(i==files.length){
+    window.location.href="/videoplay/temp/"
+  }
+    myVideo.style.display = "block";
+    playButton.style.display = "none";
+    myVideo.play();
+    console.log(i);
     
-//   }
+  }
 
 // //Change to full screen
 function toggleFullscreen() {
@@ -248,6 +245,7 @@ function toggleFullscreen() {
   else if (myVideo.msRequestFullscreen) {
       myVideo.msRequestFullscreen();
   }
+  playVid();
 
     doublestimulus(name_list);
 
