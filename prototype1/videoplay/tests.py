@@ -1,5 +1,4 @@
 from django.test import TestCase
-from django.contrib.auth.models import User
 from videoplay.models import ScoreOneStimulus, VideoUrl,ScoreTwoStimulus
 import unittest
 from selenium import webdriver

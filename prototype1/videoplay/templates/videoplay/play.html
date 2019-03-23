@@ -9,6 +9,7 @@
     document.getElementById("playBtn").hidden=false;
   }
 </script>
+
 <!-- {% static 'video/video1.mp4' %} -->
                     <div class="container fluid">
                       <div class="selectingVideo">
@@ -21,6 +22,7 @@
                       </div>
                             <div class="row">
                               <div class="col text-center">
+                              
                                 <video  style="display: none" id="myVideo">
                                       <source src = "" type="video/mp4">
                                        Your browser does not support HTML5 video.
@@ -32,9 +34,9 @@
                                  <button id="playBtn" type="button" onclick="toggleFullscreen()" style="border-color:gray;background-color:rgb(8, 3, 56);border-width:2px " class="btn btn-primary btn-md" hidden>Begin</button>
                                  <div class="slidecontainer">
                                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange" disabled hidden>
-                                   <p id="scoreDisp" style="color:white;font-weight:bolder;" hidden>SCORE: <span id="demo"></span></p>
+                                   <p id="scoreDisp" style="color:white;font-weight:bolder;font-size:50px;" hidden>SCORE: <span id="demo" style="font-size: 50px;"></span></p>
                                  </div>
-                                 <button id="submitBtn" type="submit" onclick="toggleFullscreen()" class="btn btn-success btn-md" style="border-color:gray;background-color:black;border-width:3px " hidden>Submit Score</button>
+                                 <button id="submitBtn" type="submit" onclick="toggleFullscreen()" class="btn btn-success btn-md" style="border-color:gray;background-color:black;border-width:3px" hidden>Submit Score</button>
                               </div>
                             </div>
                           </div>
@@ -71,6 +73,7 @@
   }
   #demo{
     color: yellow;
+    font-size: 100px;
   }
 
   .slider {
@@ -119,4 +122,5 @@
 </style>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
 {% endblock content %}

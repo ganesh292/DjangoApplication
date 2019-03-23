@@ -15,7 +15,8 @@ stat_url = ["{% static url%}"]
 
 #Jatin's Backend code
 video_lists = ['0000001', '0000002','0000003']
-video_lists2 = [('0000001', '0000004'),('0000002','0000004')]
+video_lists2 = [('0000001', '0000002'),('0000003','0000004')]
+name_list=[('1_fps25.mp4', '2_fps24.mp4'), ('3_fps24.mp4', '4_fps25.mp4')]
 # jatin's changes moving to master
 
 def checkUserExists_1(username):
@@ -131,6 +132,7 @@ def backendlogic_1(username):
                   return NewEntry_1(username,video_lists, sid)
 def backendlogic_2(username):
       # For Double Stimulus
+      print("Inside Backend logic2")
       if checkUserExists_2(username) == False:
             NewEntry_2(username,video_lists2)
             return video_lists2
@@ -150,15 +152,16 @@ def update_urllookup():
             obj.save()
       return
 #don' delete this #update_urllookup()
-# update_urllookup()
+#update_urllookup()
 
 def getvid(videoname):
       #To get vid id from database for given video name"
-      print("Given below is the url for reverselookup")
-      print('http://vision-pc4.eng.uwaterloo.ca:/videos/'+videoname)
-      vid=VideoUrl.urlobj.get(vid_url='http://vision-pc4.eng.uwaterloo.ca:/videos/'+videoname).vid_id
-      print(vid)
-      return vid
+      # print("Given below is the url for reverselookup")
+      # print('http://vision-pc4.eng.uwaterloo.ca:/videos/'+videoname)
+      # vid=VideoUrl.urlobj.get(vid_url='http://vision-pc4.eng.uwaterloo.ca:/videos/'+videoname).vid_id
+      vid=VideoUrl.urlobj.filter(vid_url__contains="/"+videoname)
+      print(vid[0].vid_id)
+      return vid[0].vid_id
 def fetchVideo(video_id_list):
       #To fetch video url from database corresponding to each video id
       vid_url_list = []
@@ -167,12 +170,12 @@ def fetchVideo(video_id_list):
             print(item)
             vid_url_list.append(VideoUrl.urlobj.get(vid_id=item).vid_url)
       return vid_url_list
-
+# print(fetchVideo(video_lists))
 
 def download(request):
       print(request.user)
       print("I am inside download and gonna call backened logic")
-      video_lists1 = backendlogic_1(request.user)
+      video_lists1 = backendlogic_2(request.user)
       print(video_lists2)
       # urls = fetchVideo(video_lists1)
       # print(urls)
@@ -181,11 +184,24 @@ def download(request):
       return render(request, 'videoplay/download.html', context1)
 
 
+def download2(request):
+      print(request.user)
+      print("I am inside download and gonna call backened logic")
+      video_lists1 = backendlogic_2(request.user)
+      print(video_lists2)
+      # urls = fetchVideo(video_lists1)
+      # print(urls)
+      context1 = {}
+      context1['name_list'] = ','.join([str(i) for i in name_list])
+      # context1['urls'] = ','.join([str(i) for i in urls])
+      return render(request, 'videoplay/download.html', context1)
+
 # Create your views here.
 def home(request):
     return render(request, 'videoplay/home.html')
 
-def play(request):
+def play_for_single(request):
+      dummy = backendlogic_1(request.user)
       if request.method == 'POST':
             query = json.loads(request.POST['score'])
             query1=(request.POST['fileName'])
@@ -196,7 +212,11 @@ def play(request):
             context = {'message': message, }
             return render(request, 'videoplay/play.html', context)
       return render(request, 'videoplay/play.html')
-def play2(request):
+
+
+def play_for_double(request):
+      context = {}
+      context['name_list'] = ','.join([str(i) for i in name_list])
       if request.method == 'POST':
             # query = json.loads(request.POST['score'])
             # query1=(request.POST['fileName'])
@@ -219,10 +239,8 @@ def play2(request):
             # print(query1)
             
             # updateScore_1(request.user, findSessionId_1(request.user), getvid(query1), query)
-            message = "Thank You for watching!"
-            context = {'message': message, }
             return render(request, 'videoplay/play2.html', context)
-      return render(request, 'videoplay/play2.html')
+      return render(request, 'videoplay/play2.html',context)
 
 def temp(request):
       # if request.method == 'POST':
@@ -232,3 +250,12 @@ def temp(request):
       #       context = {'message': message, }
       #       return render(request, 'videoplay/temp.html', context)
       return render(request, 'videoplay/temp.html')
+
+def preference(request):
+      # if request.method == 'POST':
+      #       query = json.loads(request.POST['score'])
+      #       print(query)
+      #       message = "Thank You for watching! {}".format(query)
+      #       context = {'message': message, }
+      #       return render(request, 'videoplay/temp.html', context)
+      return render(request, 'videoplay/preference.html')
