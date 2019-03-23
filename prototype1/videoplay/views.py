@@ -15,11 +15,7 @@ stat_url = ["{% static url%}"]
 
 #Jatin's Backend code
 video_lists = ['0000001', '0000002','0000003']
-<<<<<<< HEAD
 video_lists2 = [('0000001', '0000003'),('0000002','0000004')]
-=======
-video_lists2 = [('0000002', '0000004'),('0000001','0000004')]
->>>>>>> 016a798521dd947bdd2fa844eac5ce1c4b1037fb
 # jatin's changes moving to master
 
 def checkUserExists_1(username):
@@ -192,6 +188,7 @@ def home(request):
     return render(request, 'videoplay/home.html')
 
 def play_for_single(request):
+      dummy = backendlogic_1(request.user)
       if request.method == 'POST':
             query = json.loads(request.POST['score'])
             query1=(request.POST['fileName'])

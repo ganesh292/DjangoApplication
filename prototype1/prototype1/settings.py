@@ -81,21 +81,17 @@ WSGI_APPLICATION = 'prototype1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': 'mydatabase',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
+    }
+}
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-<<<<<<< HEAD
         'NAME': 'CSVR',
-=======
-        'NAME': 'csvr',
->>>>>>> 016a798521dd947bdd2fa844eac5ce1c4b1037fb
         'USER': 'postgres',
         'PASSWORD': 'Jatin@156',
         'HOST': '127.0.0.1',

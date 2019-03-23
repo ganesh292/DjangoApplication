@@ -7,7 +7,7 @@ var a_d = document.getElementById("scorelink");
 var vidId_d = document.getElementById("videoid")
 var start = 0;
 var vid_pair_num = 0;
-var name_list = [['2_fps24.mp4', '4_fps25.mp4'], ['1_fps25.mp4', '4_fps25.mp4']]
+var name_list = [['1_fps25.mp4', '3_fps24.mp4'], ['2_fps24.mp4', '4_fps25.mp4']]
 console.log(name_list.length)
 function getCookie(name) {
   var cookieValue = null;
@@ -154,6 +154,22 @@ function playVid2() {
   return;
 }
 var pair_end = 0;
+function delay()
+{
+  k=0
+  
+  while(k<350)
+  {
+    console.log(k)
+    j=0
+    while(j<1000000)
+    {
+      j++
+    }
+    k++
+  }
+}
+
 function doublestimulus(name_list) {
   console.log("Inside Double Stimulus function")
   // debugger;
@@ -175,6 +191,7 @@ function doublestimulus(name_list) {
       loadAsUrl_d(path2)
 
       console.log('gonna sleep for 3 sec')
+      delay()
       playVid2();
       // const playPromise = myVideo_d.play();
       // if (playPromise !== null) {
