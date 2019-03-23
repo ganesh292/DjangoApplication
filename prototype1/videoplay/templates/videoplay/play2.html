@@ -17,8 +17,8 @@
                       <div class="selectingVideo">
                       <input class="inputfile" type="file" name="file" id="file" onchange="readFiles_d(event)" multiple>
                       <div class="button1">
-                      <button type="button" id="selectBtn" class="btn btn-primary btn-lg" style="border-block-start-width:200%;border-block-end-width: 200%; border-color:gray;background-color:rgb(8, 3, 56);border-width:2px;" onclick="enableBeginButton()">
-                      <label for="file">Select Videos</label>
+                      <label for="file" style="width:400%;padding:8px; border-style:solid;border-color:gray;background-color:black;border-width:1px;" id="selectLbl">SELECT   VIDEOS</label>
+
                       </button>
                       </div>
                       </div>
@@ -32,8 +32,8 @@
                                 <br/>
 
                                   <h1 id="mssg" style="color: white">{{message}}</h1>
-                                 <button id="playBtn" type="button" onclick="toggleFullscreen_d()" style="border-color:gray;background-color:rgb(8, 3, 56);border-width:2px " class="btn btn-primary btn-md" hidden>Begin</button>
-                              </div>
+                                  <button id="playBtn" type="button" onclick="toggleFullscreen_d()" style="width:300px;margin:0 auto;border-color:gray;background-color:black;border-width:1px " class="btn btn-primary btn-md" hidden>Begin Playing</button>
+                                </div>
                             </div>
                           </div>
 
@@ -69,6 +69,8 @@
   display: inline-block;
   border-radius: 12px;
   font-size: 18px;
+  margin-right: 250px;
+  margin-left: -250px;
 }
 
   .selectingVideo{
@@ -81,7 +83,7 @@
   #playBtn{
     position: absolute;
     top: 230px;
-    left: 540px;
+    left: 440px;
     display: block;
   }
 

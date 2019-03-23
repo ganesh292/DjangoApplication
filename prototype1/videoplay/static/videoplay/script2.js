@@ -101,6 +101,9 @@ var radiob1 = document.getElementsByName("optradio1");
 var files_d = {};
 //Selecting Videos
 function readFiles_d(event) {
+  document.getElementById("selectLbl").style.display="none";
+  document.getElementById("playBtn").hidden=false;
+
   console.log("Inside ReadFile Function")
   files_d = document.getElementById("file").files;
   console.log(files_d.length)
@@ -201,7 +204,7 @@ function playVid2() {
   return;
 }
 var pair_end = 0;
-function doublestimulus(result) {
+
 function delay()
 {
   k=0
@@ -217,7 +220,7 @@ function delay()
     k++
   }
 }
-}
+
 
 function doublestimulus(name_list) {
   console.log("Inside Double Stimulus function")

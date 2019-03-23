@@ -180,7 +180,7 @@ def download(request):
       # urls = fetchVideo(video_lists1)
       # print(urls)
       context1 = {}
-      context1['urls'] = ','.join([str(i) for i in urls])
+      # context1['urls'] = ','.join([str(i) for i in urls])
       return render(request, 'videoplay/download.html', context1)
 
 

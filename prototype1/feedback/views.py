@@ -75,12 +75,6 @@ def updateScore(username,sid,vid,scr):
 
 
 
-
-
-
-
-
-
 class score(TemplateView):
 	template_name = 'sample.html'
 

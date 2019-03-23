@@ -32,22 +32,14 @@ var data_single = {
 var files = {};
 //Selecting Videos
 function readFiles(event) {
-<<<<<<< HEAD
   console.log("Inside ReadFile Function")
   //To enable and disable the select and begin button
   document.getElementById("selectLbl").style.display="none";
   document.getElementById("playBtn").hidden=false;
   files=document.getElementById("file").files;
-  data['fileName']=files[i].name;
+  // data['fileName']=files[i].name;
   console.log(files.length)
-  // console.log(data['fileName'])
-  // console.log(files[i])
-  // loadAsUrl(files[i]);
-=======
-  files = document.getElementById("file").files;
-  //data_single['fileName'] = files[i].name;
   loadAsUrl(files[i]);
->>>>>>> c27669985c400e1c9c972b6bf0c0594f7049bdab
 }
 //Generating csrf token for POST operation
 //Data to POST
@@ -145,17 +137,12 @@ function toggleFullscreen() {
     }
     playVid();
   }
-<<<<<<< HEAD
-  playVid();
 
-    doublestimulus(name_list);
+    // doublestimulus(name_list);
 
-}
+// }
    else {
      console.log("Video is not Pause")
-=======
-  else {
->>>>>>> c27669985c400e1c9c972b6bf0c0594f7049bdab
     document.exitFullscreen();
   }
   myVideo.style.display = "block";
