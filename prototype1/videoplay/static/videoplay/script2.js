@@ -165,8 +165,6 @@ function loadAsUrl_d(theFile) {
 function toggleFullscreen_d() {
   console.log("Toggle Screen");
   doublescorepage.hidden=true;
-  if (myVideo_d.paused) {
-    delay()
     console.log("Video is Paused")
     if (myVideo_d.requestFullscreen) {
       myVideo_d.requestFullscreen();
@@ -181,11 +179,7 @@ function toggleFullscreen_d() {
       myVideo_d.msRequestFullscreen();
     }
     doublestimulus(result);
-  }
-  else {
-    console.log("Video is not Pause")
-    document.exitFullscreen();
-  }
+
   myVideo_d.style.display = "block";
   console.log(i);
 
@@ -205,7 +199,7 @@ function getuploadedpath(vid_name) {
 ///////////////////////////////////////////////////////
 function playVid2() {
   console.log("Inside playVid2")
-
+  delay()
   myVideo_d.autoplay = true;
   myVideo_d.style.display = "block";
   playButton_d.style.display = "none";
@@ -217,10 +211,6 @@ function playVid2() {
   return;
 }
 var pair_end = 0;
-<<<<<<< HEAD
-
-=======
-function doublestimulus(result) {
 function delay()
 {
   k=0
@@ -236,8 +226,6 @@ function delay()
     k++
   }
 }
-}
->>>>>>> c27669985c400e1c9c972b6bf0c0594f7049bdab
 
 function doublestimulus(name_list) {
   console.log("Inside Double Stimulus function")

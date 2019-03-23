@@ -14,7 +14,7 @@ username = ''
 stat_url = ["{% static url%}"]
 
 #Jatin's Backend code
-video_lists = ['0000001', '0000002','0000003']
+video_lists = ['0000006', '0000007','0000008']
 video_lists2 = [('0000001', '0000002'),('0000003','0000004')]
 # name_list=[('1_fps25.mp4', '2_fps24.mp4'), ('3_fps24.mp4', '4_fps25.mp4')]
 # jatin's changes moving to master
