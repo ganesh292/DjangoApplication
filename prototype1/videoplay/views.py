@@ -18,7 +18,7 @@ video_lists = ['0000001', '0000002','0000003']
 video_lists2 = [('0000001', '0000003'),('0000002','0000004')]
 
 # jatin's changes moving to master
-def vidlist2vidlist(video_lists2):
+def vidlist2vidname(video_lists2):
       list1=[]
       for item1 in video_lists2:
             list2=[]
@@ -42,7 +42,7 @@ print(uniquelistfordownload(video_lists2))
 
 
 
-name_list=vidlist2vidlist(video_lists2)
+name_list=vidlist2vidname(video_lists2)
 
 
 
