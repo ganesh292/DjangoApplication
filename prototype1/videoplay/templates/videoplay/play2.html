@@ -10,11 +10,12 @@
     document.getElementById("selectBtn").disabled=true;
     document.getElementById("playBtn").hidden=false;
   }
+  var double_stimulus_list='{{name_list}}'
 </script>
 <!-- {% static 'video/video1.mp4' %} -->
                     <div class="container fluid">
                       <div class="selectingVideo">
-                      <input class="inputfile" type="file" name="file" id="file" onchange="readFiles(event)" multiple>
+                      <input class="inputfile" type="file" name="file" id="file" onchange="readFiles_d(event)" multiple>
                       <div class="button1">
                       <button type="button" id="selectBtn" class="btn btn-primary btn-lg" style="border-block-start-width:200%;border-block-end-width: 200%; border-color:gray;background-color:rgb(8, 3, 56);border-width:2px;" onclick="enableBeginButton()">
                       <label for="file">Select Videos</label>
@@ -23,7 +24,7 @@
                       </div>
                             <div class="row">
                               <div class="col text-center">
-                                <video  style="display: none" id="myVideo">
+                                <video  style="display: none" id="myVideo_d" controls>
                                       <source src = "" type="video/mp4">
                                        Your browser does not support HTML5 video.
                                 </video>
@@ -31,18 +32,37 @@
                                 <br/>
 
                                   <h1 id="mssg" style="color: white">{{message}}</h1>
-                                 <button id="playBtn" type="button" onclick="toggleFullscreen()" style="border-color:gray;background-color:rgb(8, 3, 56);border-width:2px " class="btn btn-primary btn-md" hidden>Begin</button>
-                                 <div class="slidecontainer">
-                                   <input type="range" min="1" max="100" value="50" class="slider" id="myRange" disabled hidden>
-                                   <!-- <p id="scoreDisp" style="color:white;font-weight:bolder;" hidden>SCORE: <span id="demo"></span></p> -->
-                                 </div>
-                                 <button id="submitBtn" type="submit" onclick="nextpair()" class="btn btn-success btn-md" style="border-color:gray;background-color:black;border-width:3px " hidden>Submit Score</button>
+                                 <button id="playBtn" type="button" onclick="toggleFullscreen_d()" style="border-color:gray;background-color:rgb(8, 3, 56);border-width:2px " class="btn btn-primary btn-md" hidden>Begin</button>
                               </div>
                             </div>
                           </div>
 
+                        <div id ="main" class="center" hidden >
+                            <h2 class="center"><font size="16">Which video's quality would you rate better?</font></h2>
+                                <font size="10">
+                                  <div id="options">
+                                  {% comment %} <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;"> {% endcomment %}
+                                  <label>
+                                    <input type="radio" id="radio1" name="optradio1" value="1">First
+                                  </label>
+                                  {% comment %} </canvas> {% endcomment %}
+
+                                  <label class="radio-inline">
+                                    <input type="radio" id="radio2" name="optradio1" value="2">Second
+                                  </label></font>
+                                  <div>
+                                <font size="5"><button class="center" id="prefBtn" type="submit" onclick="nextpair()" >Submit</button></font>
+                         </div>
+
 
 <style>
+#options{
+  position: relative;
+  bottom: 320px;
+  color: white;
+  bottom: 400px;
+}
+
 .button1 {
   color: white;
   text-align: center;
@@ -118,92 +138,65 @@
     background: #4CAF50;
     cursor: pointer;
   }
-</style>
 
-
-<!-- <head>
-    
-  <style>
-      p {
-      color: white
+p {
+  color: white;
 }
 h2 {
-      color: white    
-}
-form {
-      color: white
+        color: white;    
 }
 .center form {
-margin: 0;
-position: absolute;
-top: 50%;
-left: 50%;
--ms-transform: translate(-50%, -50%);
-transform: translate(-50%, -50%);
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 .center h2 {
-margin: 0;
-position: absolute;
-top: 30%;
-left: 50%;
--ms-transform: translate(-50%, -50%);
-transform: translate(-50%, -50%);
-text-align: center;
+  margin: 0;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 .center button {
-position: absolute;
-width: 200px;
-height: 50px;
-z-index: 15;
-top: 80%;
-left: 50%;
-margin: 50px 0 0 -100px;
-border-color:gray;
-background-color:black;
-border-width:3px;
-color: white; 
+  position: absolute;
+  width: 200px;
+  height: 50px;
+  z-index: 15;
+  top: 80%;
+  left: 50%;
+  margin: 50px 0 0 -100px;
+  border-color:gray;
+  background-color:black;
+  border-width:3px;
+  color: white; 
 }
 .checkbox-inline, .radio-inline {
-  margin-left: 150px;
-  
- 
+    margin-left: 150px;
+    
+   
+
+}
+input[type=radio] {
+    /* border: 10px; */
+    border-color:black;
+    border-width:5px;
+    width: 50%;
+    height: 1em;
 }
 #main
 {
-width:800px; 
-margin:0 auto;
-text-align: center;
+  width:800px; 
+  margin: auto auto;
+  text-align: center;
 }
-  </style>
-</head>
-<body>
-
-<div id ="main" class="center" >
-  <h2 class="center"><font size="16">Which video's quality would you better?</font></h2>
-  
-  <form>
-      <font size="10"><label>
-            <input type="radio" id="radio1" name="optradio1" value="1">First
-              
-            </label>
-            
-    <label class="radio-inline">
-      <input type="radio" id="radio2" name="optradio1" value="2">Second
-    </label></font>
-   <font size="5"><button class="center" id="prefBtn" type="submit" onclick="preference()" >Submit</button></font>
-  </form>
-  
-</div>
-
-</body> -->
 
 
-
-
-
-
-
-
+</style>
 
 
 {% endblock content %}

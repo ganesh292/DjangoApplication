@@ -1,11 +1,18 @@
 {% extends "videoplay/base.html"%}
 {% load static %}
-{% block content %}
- <script type="text/javascript" src="{% static 'videoplay/jszip.js' %}"></script>
- <script type="text/javascript" src="{% static 'videoplay/jszip.min.js' %}"></script>
- <script type="text/javascript" src="{% static 'videoplay/FileSaver.js' %}"></script>
- <script>
+{% block script %}
 
+{{name_list}} 
+{% endblock %}
+
+{% block content %}
+ <script>
+<<<<<<< HEAD
+
+=======
+  var objs = '{{urls}}'.split(',');
+  var double_stimulus_list='{{name_list}}'
+>>>>>>> c27669985c400e1c9c972b6bf0c0594f7049bdab
   /*function clickdownload(){
     var interval = setInterval(ondownload, 300,objs);
     if (objs.length == 0) {
@@ -102,7 +109,12 @@ saveAs(content, "videos.zip");
                                           <br/>
 
                                             <br/>
+<<<<<<< HEAD
                                           <a href="{% url 'videoplay-videos' %}"><button type="button" id="startButton" class="btn btn-primary btn-md" style="border-color:gray;background-color:black;" disabled=true>Start Watching <i2 class="arrow right"></i2></button></a>
+=======
+                                          <a href="{% url 'videoplay-videos' %}"><button type="button" id="startButton" class="btn btn-primary btn-md" style="border-color:gray;background-color:rgb(8, 3, 56);;">Part 1 <i2 class="arrow right"></i2></button></a>
+                                          <a href="{% url 'videoplay-videos2' %}"><button type="button" id="startButton" class="btn btn-primary btn-md" style="border-color:gray;background-color:rgb(8, 3, 56);;">Part 2 <i2 class="arrow right"></i2></button></a>
+>>>>>>> c27669985c400e1c9c972b6bf0c0594f7049bdab
                                           
 
 
