@@ -37,8 +37,8 @@
                             </div>
                           </div>
 
-                        <div id ="main" class="center" hidden>
-                            <h2 class="center"><font size="16">Which video's quality would you better?</font></h2>
+                        <div id ="main" class="center" hidden >
+                            <h2 class="center"><font size="16">Which video's quality would you rate better?</font></h2>
                                 <font size="10">
                                   <div id="options">
                                   {% comment %} <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;"> {% endcomment %}
@@ -60,6 +60,7 @@
   position: relative;
   bottom: 320px;
   color: white;
+  bottom: 400px;
 }
 
 .button1 {
@@ -180,6 +181,13 @@ h2 {
    
 
 }
+input[type=radio] {
+    /* border: 10px; */
+    border-color:black;
+    border-width:5px;
+    width: 50%;
+    height: 1em;
+}
 #main
 {
   width:800px; 
@@ -189,12 +197,6 @@ h2 {
 
 
 </style>
-
-
-
-
-
-
 
 
 {% endblock content %}

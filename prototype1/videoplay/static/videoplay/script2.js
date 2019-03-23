@@ -202,6 +202,24 @@ function playVid2() {
 }
 var pair_end = 0;
 function doublestimulus(result) {
+function delay()
+{
+  k=0
+  
+  while(k<350)
+  {
+    console.log(k)
+    j=0
+    while(j<1000000)
+    {
+      j++
+    }
+    k++
+  }
+}
+}
+
+function doublestimulus(name_list) {
   console.log("Inside Double Stimulus function")
   // debugger;
   if (vid_pair_num < result.length) {
@@ -222,6 +240,7 @@ function doublestimulus(result) {
       loadAsUrl_d(path2)
 
       console.log('gonna sleep for 3 sec')
+      delay()
       playVid2();
 
 

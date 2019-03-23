@@ -156,11 +156,12 @@ def update_urllookup():
 
 def getvid(videoname):
       #To get vid id from database for given video name"
-      print("Given below is the url for reverselookup")
-      print('http://vision-pc4.eng.uwaterloo.ca:/videos/'+videoname)
-      vid=VideoUrl.urlobj.get(vid_url='http://vision-pc4.eng.uwaterloo.ca:/videos/'+videoname).vid_id
-      print(vid)
-      return vid
+      # print("Given below is the url for reverselookup")
+      # print('http://vision-pc4.eng.uwaterloo.ca:/videos/'+videoname)
+      # vid=VideoUrl.urlobj.get(vid_url='http://vision-pc4.eng.uwaterloo.ca:/videos/'+videoname).vid_id
+      vid=VideoUrl.urlobj.filter(vid_url__contains="/"+videoname)
+      print(vid[0].vid_id)
+      return vid[0].vid_id
 def fetchVideo(video_id_list):
       #To fetch video url from database corresponding to each video id
       vid_url_list = []
@@ -169,7 +170,7 @@ def fetchVideo(video_id_list):
             print(item)
             vid_url_list.append(VideoUrl.urlobj.get(vid_id=item).vid_url)
       return vid_url_list
-
+# print(fetchVideo(video_lists))
 
 def download(request):
       print(request.user)
@@ -200,6 +201,7 @@ def home(request):
     return render(request, 'videoplay/home.html')
 
 def play_for_single(request):
+      dummy = backendlogic_1(request.user)
       if request.method == 'POST':
             query = json.loads(request.POST['score'])
             query1=(request.POST['fileName'])
