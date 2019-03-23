@@ -15,7 +15,7 @@ stat_url = ["{% static url%}"]
 
 #Jatin's Backend code
 video_lists = ['0000001', '0000002','0000003']
-video_lists2 = [('0000001', '0000004'),('0000002','0000004')]
+video_lists2 = [('0000002', '0000004'),('0000001','0000004')]
 # jatin's changes moving to master
 
 def checkUserExists_1(username):
@@ -131,6 +131,7 @@ def backendlogic_1(username):
                   return NewEntry_1(username,video_lists, sid)
 def backendlogic_2(username):
       # For Double Stimulus
+      print("Inside Backend logic2")
       if checkUserExists_2(username) == False:
             NewEntry_2(username,video_lists2)
             return video_lists2
@@ -150,7 +151,7 @@ def update_urllookup():
             obj.save()
       return
 #don' delete this #update_urllookup()
-# update_urllookup()
+#update_urllookup()
 
 def getvid(videoname):
       #To get vid id from database for given video name"
@@ -172,7 +173,7 @@ def fetchVideo(video_id_list):
 def download(request):
       print(request.user)
       print("I am inside download and gonna call backened logic")
-      video_lists1 = backendlogic_1(request.user)
+      video_lists1 = backendlogic_2(request.user)
       print(video_lists2)
       # urls = fetchVideo(video_lists1)
       # print(urls)
@@ -226,19 +227,6 @@ def play_for_double(request):
             return render(request, 'videoplay/play2.html', context)
       return render(request, 'videoplay/play2.html')
 
-<<<<<<< HEAD
-
-def temp(request):
-      if request.method == 'POST':
-            query = (request.POST['score'])
-            query1 = (request.POST['video1'])
-            query2 = (request.POST['video2'])
-            print(query)
-            print(query1)
-            print(query2)
-            #updateScore(request.user, findSessionId(request.user), getvid(query1), query)
-            return render(request, 'videoplay/temp.html')
-=======
 def temp(request):
       # if request.method == 'POST':
       #       query = json.loads(request.POST['score'])
@@ -246,7 +234,6 @@ def temp(request):
       #       message = "Thank You for watching! {}".format(query)
       #       context = {'message': message, }
       #       return render(request, 'videoplay/temp.html', context)
->>>>>>> 712fa423b1aa85185471af12b2259e924e8319ed
       return render(request, 'videoplay/temp.html')
 
 def preference(request):
