@@ -88,7 +88,13 @@ var data = {
 var files={};
 //Selecting Videos
 function readFiles(event) {
+<<<<<<< HEAD
   console.log("Inside ReadFile Function")
+=======
+  //To enable and disable the select and begin button
+  document.getElementById("selectLbl").style.display="none";
+  document.getElementById("playBtn").hidden=false;
+>>>>>>> d4c69986f4803066f29af439af6adc101ab50e1f
   files=document.getElementById("file").files;
   data['fileName']=files[i].name;
   console.log(files.length)

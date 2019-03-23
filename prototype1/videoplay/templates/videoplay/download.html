@@ -31,11 +31,18 @@
  //for creating zip folder
  function createZip(objs)
 {
+<<<<<<< HEAD
   var objs = '{{urls}}'.split(',');
   // console.log("Inside download.html script...gonna print urls list",objs)
 
   var zip = new JSZip();
 // console.log("Insdice create zip....printing objs",objs[0])
+=======
+  //Enabling and Disabling start and download button
+  document.getElementById("downloadButton").disabled=true;
+    document.getElementById("startButton").disabled=false;
+var zip = new JSZip();
+>>>>>>> d4c69986f4803066f29af439af6adc101ab50e1f
 
 // Add an top-level, arbitrary text file with contents
 //zip.file("Hello.txt", "Hello World\n");
@@ -91,7 +98,11 @@ saveAs(content, "videos.zip");
    
                                     <br>
 
+<<<<<<< HEAD
                                     <button type="button" id="downloadButton" class="btn btn-primary btn-md" style="width:100%;border-color:gray;background-color:rgb(8, 3, 56);;border-width:3px " onclick ="createZip(objs)"><i class="fa fa-download"></i> Download Your Personalized Videos for the Ratings</button>
+=======
+                                    <button type="button" id="downloadButton" class="btn btn-primary btn-md" style="width:100%;border-color:gray;background-color:black;border-width:2px " onclick ="createZip()"><i class="fa fa-download"></i> Download Your Personalized Videos for the Ratings</button>
+>>>>>>> d4c69986f4803066f29af439af6adc101ab50e1f
 
 
                                         <br/>
@@ -99,7 +110,11 @@ saveAs(content, "videos.zip");
                                           <br/>
 
                                             <br/>
+<<<<<<< HEAD
                                           <a href="{% url 'videoplay-videos' %}"><button type="button" id="startButton" class="btn btn-primary btn-md" style="border-color:gray;background-color:rgb(8, 3, 56);;">Start Watching <i2 class="arrow right"></i2></button></a>
+=======
+                                          <a href="{% url 'videoplay-videos' %}"><button type="button" id="startButton" class="btn btn-primary btn-md" style="border-color:gray;background-color:black;" disabled=true>Start Watching <i2 class="arrow right"></i2></button></a>
+>>>>>>> d4c69986f4803066f29af439af6adc101ab50e1f
                                           
 
 
