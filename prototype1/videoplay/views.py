@@ -15,7 +15,7 @@ stat_url = ["{% static url%}"]
 
 #Jatin's Backend code
 video_lists = ['0000001', '0000002','0000003']
-video_lists2 = [('0000001', '0000004'),('0000002','0000004')]
+video_lists2 = [('0000001', '0000003'),('0000002','0000004')]
 # jatin's changes moving to master
 
 def checkUserExists_1(username):
@@ -154,11 +154,12 @@ def update_urllookup():
 
 def getvid(videoname):
       #To get vid id from database for given video name"
-      print("Given below is the url for reverselookup")
-      print('http://vision-pc4.eng.uwaterloo.ca:/videos/'+videoname)
-      vid=VideoUrl.urlobj.get(vid_url='http://vision-pc4.eng.uwaterloo.ca:/videos/'+videoname).vid_id
-      print(vid)
-      return vid
+      # print("Given below is the url for reverselookup")
+      # print('http://vision-pc4.eng.uwaterloo.ca:/videos/'+videoname)
+      # vid=VideoUrl.urlobj.get(vid_url='http://vision-pc4.eng.uwaterloo.ca:/videos/'+videoname).vid_id
+      vid=VideoUrl.urlobj.filter(vid_url__contains="/"+videoname)
+      print(vid[0].vid_id)
+      return vid[0].vid_id
 def fetchVideo(video_id_list):
       #To fetch video url from database corresponding to each video id
       vid_url_list = []
@@ -167,7 +168,7 @@ def fetchVideo(video_id_list):
             print(item)
             vid_url_list.append(VideoUrl.urlobj.get(vid_id=item).vid_url)
       return vid_url_list
-
+# print(fetchVideo(video_lists))
 
 def download(request):
       print(request.user)

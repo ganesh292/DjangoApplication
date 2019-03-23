@@ -14,10 +14,6 @@ var start=0;
 var vid_pair_num=0;
 var name_list=[['1_fps25.mp4','4_fps25.mp4'],['2_fps24.mp4','4_fps25.mp4']]
 console.log(name_list.length)
-
-
-
-
 var objs = ["video1","video2"];
 for(var i =0;i<objs.length;i++)
 {
@@ -281,11 +277,26 @@ function playVid2()
   myVideo.autoplay=true;
   myVideo.style.display = "block";
   playButton.style.display = "none";
+  myVideo.blur();
   myVideo.play();
   console.log("finished playing video")
   return;
 }
-
+function delay()
+{
+  k=0
+    while(k<400)
+    {
+      console.log("Inside Delay loop")
+      j=0;
+      while(j<1000000)
+      {
+        j++
+      }
+      k++;
+    }
+    return;
+}
 var pair_end=0;
 function doublestimulus(name_list)
 {
@@ -303,19 +314,16 @@ function doublestimulus(name_list)
       vid_num=2
     }
     else{
-      console.log("Gonna Play Vid2")
+    console.log("Gonna Play Vid2")
     console.log(name_list[vid_pair_num][1])
     path2 = getuploadedpath(name_list[vid_pair_num][1])
     console.log('path2\n',path2)
     loadAsUrl(path2)
     // await sleep(3000)
-    console.log('gonna sleep for 3 sec')
-    k=0
-    while(k<1000000)
-    {
-      k++;
-    }
-    window.setTimeout(playVid2,3000);
+    console.log('gonna pause before starting second video')
+    delay();  
+    playVid2();
+    // window.setTimeout(playVid2,3000);
     // window.setTimeout(playVid2,10000)
     vid_num=1
     vid_pair_num+=1;

@@ -1,6 +1,7 @@
 from django.test import TestCase
 from videoplay.models import ScoreOneStimulus, VideoUrl,ScoreTwoStimulus
 import videoplay.views as views
+import re
 class ScoreOneStimulusTest(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -94,7 +95,23 @@ class ScoreTwoStimulusTest(TestCase):
         self.assertEqual(views.backendlogic_2("test01"),[('vid_007', 'vid_008'), ('vid_009', 'vid_010')])
         self.assertEqual(views.backendlogic_2("test02"),views.video_lists2)
         self.assertEqual(views.backendlogic_2("random"),views.video_lists2)
-    
+
+class VideoUrlTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        line1=VideoUrl(vid_id="0000001",vid_url="http:/testurl1")
+        line2=VideoUrl(vid_id="0000002",vid_url="http:/testurl2")
+        line1.save()
+        line2.save()
+
+    # def setUp(self):
+    #     print("setUp: Run once for every test method to setup clean data.")
+    #     pass
+    def test_getvid(self):
+        self.assertEqual(views.getvid("testurl1"), "0000001")
+    def test_fetchvideo(self):
+        self.assertEqual(views.fetchVideo(["0000001"]),['http:/testurl1'])
+
 
     
 
