@@ -150,10 +150,6 @@ def update_urllookup():
             obj.save()
       return
 #don' delete this #update_urllookup()
-<<<<<<< HEAD
-# update_urllookup()
-=======
->>>>>>> 712fa423b1aa85185471af12b2259e924e8319ed
 # update_urllookup()
 
 def getvid(videoname):
@@ -177,11 +173,11 @@ def download(request):
       print(request.user)
       print("I am inside download and gonna call backened logic")
       video_lists1 = backendlogic_1(request.user)
-      print(video_lists2)
-      # urls = fetchVideo(video_lists1)
-      # print(urls)
+      # print(video_lists2)
+      urls = fetchVideo(video_lists1)
+      print("printing urls inside download",urls)
       context1 = {}
-      # context1['urls'] = ','.join([str(i) for i in urls])
+      context1['urls'] = ','.join([str(i) for i in urls])
       return render(request, 'videoplay/download.html', context1)
 
 
