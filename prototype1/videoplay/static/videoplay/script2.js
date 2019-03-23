@@ -7,9 +7,73 @@ var a_d = document.getElementById("scorelink");
 var vidId_d = document.getElementById("videoid")
 var start = 0;
 var vid_pair_num = 0;
-var name_list = [['1_fps25.mp4', '3_fps24.mp4'], ['2_fps24.mp4', '4_fps25.mp4']]
-console.log(name_list.length)
-function getCookie(name) {
+// var result = [['2_fps24.mp4', '4_fps25.mp4'], ['1_fps25.mp4', '4_fps25.mp4']]
+var x = 0;
+var y = 0;
+var videolist =  Array();
+var video_pair1 = Array();
+var video_pair2 = Array();
+var result= Array();
+
+
+
+var videolist_double = double_stimulus_list.split('&#39;')
+
+function Video_List_Parsing()
+
+{
+  console.log("Double StimulusVideoPair")
+
+  var result = []
+
+  console.log("Inside pair videos")
+
+  // console.log(videolist_double)
+
+  for (var i = 0; i < videolist_double.length; i++) {
+
+    if (videolist_double[i].match('.mp4')) {
+
+      videolist[x] = videolist_double[i];
+
+      x++;
+
+
+
+      // console.log(videolist_double[i])
+
+      //var videolist_double1=videolist_double1.push()
+
+    }
+
+
+
+  }
+
+  console.log("Final List", videolist)
+
+
+
+  var a=0;
+  var result = Array();
+
+  for (var i = 0; i <videolist.length/2; i++) {
+
+    result.push([videolist[a],videolist[a+1]]);
+    a=a+2;
+
+  }
+
+  return result;
+
+
+
+}
+
+result = Video_List_Parsing();
+console.log("result is", result)
+console.log("Printing Name list", result)
+function getCookie_d(name) {
   var cookieValue = null;
   if (document.cookie && document.cookie !== '') {
     var cookies = document.cookie.split(';');
@@ -25,29 +89,13 @@ function getCookie(name) {
   }
   return cookieValue;
 }
-var csrftoken = getCookie('csrftoken');
+var csrftoken_d = getCookie_d('csrftoken');
 var data = {
-  'csrfmiddlewaretoken': csrftoken,
+  'csrfmiddlewaretoken': csrftoken_d,
 }
 
 var radiob1 = document.getElementsByName("optradio1");
-// for (var i = 0, length = radiob1.length; i < length; i++) {
-//   console.log(radiob1[i]);
-// }
-// function preference() {
-//   // var b1 = document.getElementById('radio1');
-//   // var b2 = document.getElementById('radio2');
-//   console.log("Inside func peference");
 
-//   //console.log("length is ",radiob1.length);
-//   if (document.getElementById('radio1').checked) {
-//     //Male radio button is checked
-//     console.log(radiob1[0].value);
-//   } else if (document.getElementById('radio2').checked) {
-//     //Female radio button is checked
-//     console.log(radiob1[1].value);
-//   }
-// }
 
 
 var files_d = {};
@@ -55,7 +103,6 @@ var files_d = {};
 function readFiles_d(event) {
   console.log("Inside ReadFile Function")
   files_d = document.getElementById("file").files;
-  data['fileName'] = files_d[i].name;
   console.log(files_d.length)
 
 }
@@ -133,7 +180,7 @@ function toggleFullscreen_d() {
     else if (myVideo_d.msRequestFullscreen) {
       myVideo_d.msRequestFullscreen();
     }
-    doublestimulus(name_list);
+    doublestimulus(result);
   }
   else {
     console.log("Video is not Pause")
@@ -170,16 +217,36 @@ function playVid2() {
   return;
 }
 var pair_end = 0;
+<<<<<<< HEAD
 
+=======
+function doublestimulus(result) {
+function delay()
+{
+  k=0
+  
+  while(k<350)
+  {
+    console.log(k)
+    j=0
+    while(j<1000000)
+    {
+      j++
+    }
+    k++
+  }
+}
+}
+>>>>>>> c27669985c400e1c9c972b6bf0c0594f7049bdab
 
 function doublestimulus(name_list) {
   console.log("Inside Double Stimulus function")
   // debugger;
-  if (vid_pair_num < name_list.length) {
+  if (vid_pair_num < result.length) {
     if (vid_num == 1) {
       console.log("Gonna Play Vid1")
-      console.log(name_list[vid_pair_num][0])
-      path1 = getuploadedpath(name_list[vid_pair_num][0])
+      console.log(result[vid_pair_num][0])
+      path1 = getuploadedpath(result[vid_pair_num][0])
       console.log('path1\n', path1)
       loadAsUrl_d(path1)
       playVid2();
@@ -187,18 +254,15 @@ function doublestimulus(name_list) {
     }
     else {
       console.log("Gonna Play Vid2")
-      console.log(name_list[vid_pair_num][1])
-      path2 = getuploadedpath(name_list[vid_pair_num][1])
+      console.log(result[vid_pair_num][1])
+      path2 = getuploadedpath(result[vid_pair_num][1])
       console.log('path2\n', path2)
       loadAsUrl_d(path2)
 
       console.log('gonna sleep for 3 sec')
       // delay()
       playVid2();
-      // const playPromise = myVideo_d.play();
-      // if (playPromise !== null) {
-      //   playPromise.catch(() => { myVideo_d.play(); })
-      // }
+
 
       vid_num = 1
       vid_pair_num += 1;
@@ -215,14 +279,14 @@ function doublestimulus(name_list) {
 }
 function videoloop(e) {
   console.log("Inside Videoloop")
-  // doublestimulus(name_list);
+  // doublestimulus(result);
   if (pair_end == 1) {
     document.exitFullscreen();
     enableDisablebuttons_d();
     pair_end = 0;
   }
   else {
-    doublestimulus(name_list);
+    doublestimulus(result);
   }
 }
 
@@ -240,8 +304,11 @@ function nextpair() {
   
   //var preference = prompt("Enter 1 if first video was better else enter 2!");
   data['preference'] = JSON.stringify(data['preference'])
-  data['vid_name1'] = name_list[vid_pair_num - 1][0]
-  data['vid_name2'] = name_list[vid_pair_num - 1][1]
+  data['vid_name1'] = result[vid_pair_num - 1][0]
+  console.log(data['vid_name1']);
+  data['vid_name2'] = result[vid_pair_num - 1][1]
+  console.log(data['vid_name2']);
+
   updateScore();
 }
 //Just to make sure static files are connected, see this message in console

@@ -33,7 +33,7 @@ var files = {};
 //Selecting Videos
 function readFiles(event) {
   files = document.getElementById("file").files;
-  data_single['fileName'] = files[i].name;
+  //data_single['fileName'] = files[i].name;
   loadAsUrl(files[i]);
 }
 //Generating csrf token for POST operation
@@ -61,23 +61,6 @@ slider.oninput = function () {
   data_single['score'] = score;
 }
 //To go to next video:'Submit Score' button
-function nextVid() {
-  //i++;
-  console.log(files[i]);
-  console.log(i);
-
-  if (i == 3) {
-    i = 0;
-    console.log(score);
-    // updateScore();
-  }
-  data_single['score'] = JSON.stringify(data_single['score'])
-  updateScore_single();
-  // loadAsUrl(files[i]);
-  slider.value = 50;
-  output.innerHTML = 50;
-  disableScroll();
-}
 function disableScroll() {
   submitButton.hidden = true;
   slider.hidden = true;
@@ -87,6 +70,8 @@ function disableScroll() {
 //Series of events after video ends
 myVideo.addEventListener('ended', enableDisablebuttons, false);
 function enableDisablebuttons(e) {
+  slider.value = 50;
+  output.innerHTML = 50;
   slider.style.opacity = 0.8;
   slider.disabled = false;
   slider.hidden = false;
@@ -110,8 +95,9 @@ function loadAsUrl(theFile) {
 //Play the videos
 function playVid() {
   if (i > 0) {
+    console.log("In playVid ");
     data_single['score'] = JSON.stringify(data_single['score'])
-    data_single['fileName'] = files[i - 1].name;
+    data_single['fileName'] = files[i-1].name;
     updateScore_single();
     submitButton.hidden = true;
     slider.hidden = true;

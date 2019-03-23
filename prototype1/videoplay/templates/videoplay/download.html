@@ -1,13 +1,15 @@
 {% extends "videoplay/base.html"%}
 {% load static %}
+{% block script %}
+
+{{name_list}} 
+{% endblock %}
+
 {% block content %}
- <script type="text/javascript" src="{% static 'videoplay/jszip.js' %}"></script>
- <script type="text/javascript" src="{% static 'videoplay/jszip.min.js' %}"></script>
- <script type="text/javascript" src="{% static 'videoplay/FileSaver.js' %}"></script>
  <script>
   var objs = '{{urls}}'.split(',');
-  console.log("Inside Download.html script...printing parsed urls",objs)
-  function clickdownload(){
+  var double_stimulus_list='{{name_list}}'
+  /*function clickdownload(){
     var interval = setInterval(ondownload, 300,objs);
     if (objs.length == 0) {
         clearInterval(interval);
@@ -78,7 +80,7 @@ zip.generateAsync({type:"Blob"})
 // Force down of the Zip file
 saveAs(content, "videos.zip");
 });
-}
+}*/
  
  </script> 
  

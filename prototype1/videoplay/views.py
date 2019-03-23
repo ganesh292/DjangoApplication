@@ -15,8 +15,8 @@ stat_url = ["{% static url%}"]
 
 #Jatin's Backend code
 video_lists = ['0000001', '0000002','0000003']
-video_lists2 = [('0000001', '0000003'),('0000002','0000004')]
-
+video_lists2 = [('0000001', '0000002'),('0000003','0000004')]
+# name_list=[('1_fps25.mp4', '2_fps24.mp4'), ('3_fps24.mp4', '4_fps25.mp4')]
 # jatin's changes moving to master
 def vidlist2vidname(video_lists2):
       list1=[]
@@ -211,6 +211,18 @@ def download(request):
       return render(request, 'videoplay/download.html', context1)
 
 
+def download2(request):
+      print(request.user)
+      print("I am inside download and gonna call backened logic")
+      video_lists1 = backendlogic_2(request.user)
+      print(video_lists2)
+      # urls = fetchVideo(video_lists1)
+      # print(urls)
+      context1 = {}
+      context1['name_list'] = ','.join([str(i) for i in name_list])
+      # context1['urls'] = ','.join([str(i) for i in urls])
+      return render(request, 'videoplay/download.html', context1)
+
 # Create your views here.
 def home(request):
     return render(request, 'videoplay/home.html')
@@ -230,6 +242,8 @@ def play_for_single(request):
 
 
 def play_for_double(request):
+      context = {}
+      context['name_list'] = ','.join([str(i) for i in name_list])
       if request.method == 'POST':
             # query = json.loads(request.POST['score'])
             # query1=(request.POST['fileName'])
@@ -252,10 +266,8 @@ def play_for_double(request):
             # print(query1)
             
             # updateScore_1(request.user, findSessionId_1(request.user), getvid(query1), query)
-            message = "Thank You for watching!"
-            context = {'message': message, }
             return render(request, 'videoplay/play2.html', context)
-      return render(request, 'videoplay/play2.html')
+      return render(request, 'videoplay/play2.html',context)
 
 def temp(request):
       # if request.method == 'POST':
