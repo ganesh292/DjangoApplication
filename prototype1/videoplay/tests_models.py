@@ -111,6 +111,9 @@ class VideoUrlTest(TestCase):
         self.assertEqual(views.getvid("testurl1"), "0000001")
     def test_fetchvideo(self):
         self.assertEqual(views.fetchVideo(["0000001"]),['http:/testurl1'])
+    # def test_vidlist2vidname(self,video_lists2=[('0000001', '0000002')]):
+    #     self.assertEqual(views.vidlist2vidname(video_lists2),["testurl1","testurl2"])
+
 
 
     

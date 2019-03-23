@@ -12,7 +12,7 @@ class SearchText(unittest.TestCase):
     def setUp(self):
         # create a new Firefox session
         self.driver =webdriver.Chrome(ChromeDriverManager().install())
-        self.driver.implicitly_wait(30)
+        # self.driver.implicitly_wait(30)
         self.driver.maximize_window()
         # navigate to the application home page
         self.driver.get('http://127.0.0.1:8000')
