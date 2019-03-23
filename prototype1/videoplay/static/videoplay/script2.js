@@ -91,6 +91,21 @@ function enableDisablebuttons_d() {
   document.exitFullscreen();
 }
 //Loading the video files
+function delay()
+{
+  k=0
+  
+  while(k<350)
+  {
+    console.log(k)
+    j=0
+    while(j<1000000)
+    {
+      j++
+    }
+    k++
+  }
+}
 function loadAsUrl_d(theFile) {
   var reader_d = new FileReader();
   reader_d.onload = function (loadedEvent) {
@@ -104,6 +119,7 @@ function toggleFullscreen_d() {
   console.log("Toggle Screen");
   doublescorepage.hidden=true;
   if (myVideo_d.paused) {
+    delay()
     console.log("Video is Paused")
     if (myVideo_d.requestFullscreen) {
       myVideo_d.requestFullscreen();
@@ -154,21 +170,7 @@ function playVid2() {
   return;
 }
 var pair_end = 0;
-function delay()
-{
-  k=0
-  
-  while(k<350)
-  {
-    console.log(k)
-    j=0
-    while(j<1000000)
-    {
-      j++
-    }
-    k++
-  }
-}
+
 
 function doublestimulus(name_list) {
   console.log("Inside Double Stimulus function")
@@ -191,7 +193,7 @@ function doublestimulus(name_list) {
       loadAsUrl_d(path2)
 
       console.log('gonna sleep for 3 sec')
-      delay()
+      // delay()
       playVid2();
       // const playPromise = myVideo_d.play();
       // if (playPromise !== null) {

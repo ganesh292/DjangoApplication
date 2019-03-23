@@ -16,7 +16,35 @@ stat_url = ["{% static url%}"]
 #Jatin's Backend code
 video_lists = ['0000001', '0000002','0000003']
 video_lists2 = [('0000001', '0000003'),('0000002','0000004')]
+
 # jatin's changes moving to master
+def vidlist2vidlist(video_lists2):
+      list1=[]
+      for item1 in video_lists2:
+            list2=[]
+            url1=VideoUrl.urlobj.filter(vid_id=item1[0])[0].vid_url
+            url2=VideoUrl.urlobj.filter(vid_id=item1[1])[0].vid_url
+            name1 = re.split("/", url1)[-1]
+            name2 = re.split("/", url2)[-1]
+            list2.append(name1)
+            list2.append(name2)
+            list1.append(list2)
+      return list1
+
+def uniquelistfordownload(video_lists2):
+      list1=[]
+      for item1 in video_lists2:
+            list1.append(item1[0])
+            list1.append(item1[1])
+      return list(set(list1))
+print(uniquelistfordownload(video_lists2))
+
+
+
+
+name_list=vidlist2vidlist(video_lists2)
+
+
 
 def checkUserExists_1(username):
 	#To check if newuser or existing user?- For Single Stimulus
@@ -174,12 +202,12 @@ def fetchVideo(video_id_list):
 def download(request):
       print(request.user)
       print("I am inside download and gonna call backened logic")
-      video_lists1 = backendlogic_2(request.user)
+      video_lissts1 = backendlogic_2(request.user)
       print(video_lists2)
-      # urls = fetchVideo(video_lists1)
-      # print(urls)
+      urls = fetchVideo(video_lists)
+      print(urls)
       context1 = {}
-      # context1['urls'] = ','.join([str(i) for i in urls])
+      context1['urls'] = ','.join([str(i) for i in urls])
       return render(request, 'videoplay/download.html', context1)
 
 
