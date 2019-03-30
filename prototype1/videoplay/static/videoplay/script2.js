@@ -97,7 +97,6 @@ var data = {
 var radiob1 = document.getElementsByName("optradio1");
 
 
-
 var files_d = {};
 //Selecting Videos
 function readFiles_d(event) {
@@ -189,7 +188,7 @@ function getuploadedpath(vid_name) {
 ///////////////////////////////////////////////////////
 function playVid2() {
   console.log("Inside playVid2")
-
+  
   myVideo_d.autoplay = true;
   myVideo_d.style.display = "block";
   playButton_d.style.display = "none";
@@ -201,12 +200,12 @@ function playVid2() {
   return;
 }
 var pair_end = 0;
-function doublestimulus(result) {
+// function doublestimulus(result) {
 function delay()
 {
   k=0
   
-  while(k<350)
+  while(k<600)
   {
     console.log(k)
     j=0
@@ -217,7 +216,7 @@ function delay()
     k++
   }
 }
-}
+// }
 
 function doublestimulus(name_list) {
   console.log("Inside Double Stimulus function")
