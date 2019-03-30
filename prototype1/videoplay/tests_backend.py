@@ -2,6 +2,7 @@ from django.test import TestCase
 from videoplay.models import ScoreOneStimulus, VideoUrl,ScoreTwoStimulus
 import videoplay.views as views
 import re
+import unittest
 class ScoreOneStimulusTest(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -15,9 +16,9 @@ class ScoreOneStimulusTest(TestCase):
         line6=ScoreOneStimulus.userScore.create(user_name="test01", session_id=2, vid_id="vid_007")
         pass
 
-    # def setUp(self):
-    #     print("setUp: Run once for every test method to setup clean data.")
-    #     pass
+    def setUp(self):
+        print("setUp: Run once for every test method to setup clean data.")
+        pass
     def test_Score_Table_Intialization(self):
         line1=ScoreOneStimulus.userScore.get(user_name="test01", session_id=1, vid_id="vid_001")
         score=line1.score
@@ -64,9 +65,9 @@ class ScoreTwoStimulusTest(TestCase):
         # line6=ScoreOneStimulus.userScore.create(user_name="test01", session_id=2, vid_id="vid_007")
         pass
 
-    # def setUp(self):
-    #     print("setUp: Run once for every test method to setup clean data.")
-    #     pass
+    def setUp(self):
+        print("setUp: Run once for every test method to setup clean data.")
+        pass
     def test_Score_Table_Intialization(self):
         line1=ScoreTwoStimulus.userPref.get(user_name="test01", session_id=1, vid_id1="vid_001",vid_id2="vid_002")
         pref=line1.preference
@@ -104,14 +105,18 @@ class VideoUrlTest(TestCase):
         line1.save()
         line2.save()
 
-    # def setUp(self):
-    #     print("setUp: Run once for every test method to setup clean data.")
-    #     pass
+    def setUp(self):
+        print("setUp: Run once for every test method to setup clean data.")
+        pass
     def test_getvid(self):
         self.assertEqual(views.getvid("testurl1"), "0000001")
     def test_fetchvideo(self):
         self.assertEqual(views.fetchVideo(["0000001"]),['http:/testurl1'])
+    # def test_vidlist2vidname(self,video_lists2=[('0000001', '0000002')]):
+    #     self.assertEqual(views.vidlist2vidname(video_lists2),["testurl1","testurl2"])
 
+    # if __name__ == '__main__':
+    #     unittest.main()
 
     
 
