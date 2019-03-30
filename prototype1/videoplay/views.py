@@ -14,7 +14,7 @@ username = ''
 stat_url = ["{% static url%}"]
 
 #Jatin's Backend code
-video_lists = ['0000001', '0000002','0000003']
+video_lists = ['0000001', '0000002','0000003','0000004']
 video_lists2 = [('0000001', '0000002'),('0000003','0000004')]
 # name_list=[('1_fps25.mp4', '2_fps24.mp4'), ('3_fps24.mp4', '4_fps25.mp4')]
 # jatin's changes moving to master
@@ -37,7 +37,7 @@ def uniquelistfordownload(video_lists2):
             list1.append(item1[0])
             list1.append(item1[1])
       return list(set(list1))
-print(uniquelistfordownload(video_lists2))
+print("Printing unique list\n",uniquelistfordownload(video_lists2))
 name_list=vidlist2vidname(video_lists2)
 print("name_list",name_list)
 
@@ -125,6 +125,7 @@ def findSessionId_2(username):
 # print("SessionId2\t",incSessionId_2('abcd1'))
 def updateScore_1(username, sid, vid, scr):
 	# To update score in the database table
+      print("Inside update score, gonna update score for id",vid)
       obj = ScoreOneStimulus.userScore.get(user_name=username, session_id=sid, vid_id=vid)
       obj.score = scr
       obj.save()
@@ -166,16 +167,6 @@ def backendlogic_2(username):
                   sid = incSessionId_2(username)
                   return NewEntry_2(username,video_lists2, sid)
 
-def update_urllookup():
-      data = open('static/video_list.txt', 'r',).read()
-      rows = re.split('\n', data)  # splits along new line
-      for index, row in enumerate(rows):
-            cells = row.split(' ')
-            obj = VideoUrl(vid_id=cells[0], vid_url='http://' + cells[1])
-            obj.save()
-      return
-#don' delete this #update_urllookup()
-#update_urllookup()
 
 def getvid(videoname):
       #To get vid id from database for given video name"
@@ -198,7 +189,7 @@ def fetchVideo(video_id_list):
 def download(request):
       print(request.user)
       print("I am inside download and gonna call backened logic")
-      video_lissts1 = backendlogic_2(request.user)
+      video_lists2 = backendlogic_2(request.user)
       print(video_lists2)
       urls = fetchVideo(video_lists)
       print(urls)
@@ -229,7 +220,7 @@ def play_for_single(request):
             query = json.loads(request.POST['score'])
             query1=(request.POST['fileName'])
             print(query)
-            print(query1)
+            print("vid returned from frontend",query1)
             updateScore_1(request.user, findSessionId_1(request.user), getvid(query1), query)
             message = "Thank You for watching! {}".format(query)
             context = {'message': message, }
@@ -282,3 +273,15 @@ def preference(request):
       #       context = {'message': message, }
       #       return render(request, 'videoplay/temp.html', context)
       return render(request, 'videoplay/preference.html')
+def update_urllookup():
+      data = open('static/new_video_list.txt', 'r',).read()
+      rows = re.split('\n', data)  # splits along new line
+      for index, row in enumerate(rows):
+            cells = row.split(' ')
+            print(cells[0])
+            print(cells[1])
+            obj = VideoUrl(vid_id=cells[0], vid_url='http://' + cells[1])
+            obj.save()
+      return
+#don' delete this #update_urllookup()
+# update_urllookup()

@@ -2,8 +2,8 @@ from django.test import TestCase
 from videoplay.models import ScoreOneStimulus, VideoUrl,ScoreTwoStimulus
 import videoplay.views as views
 import re
+import unittest
 class ScoreOneStimulusTest(TestCase):
-    multi_db=True
     @classmethod
     def setUpTestData(cls):
         print("setUpTestData: Run once to set up non-modified data for all class methods.")
@@ -49,7 +49,6 @@ class ScoreOneStimulusTest(TestCase):
 
 
 class ScoreTwoStimulusTest(TestCase):
-    multi_db=True
     @classmethod
     def setUpTestData(cls):
         print("setUpTestData: Run once to set up non-modified data for all class methods.")
@@ -99,7 +98,6 @@ class ScoreTwoStimulusTest(TestCase):
         self.assertEqual(views.backendlogic_2("random"),views.video_lists2)
 
 class VideoUrlTest(TestCase):
-    multi_db=True
     @classmethod
     def setUpTestData(cls):
         line1=VideoUrl(vid_id="0000001",vid_url="http:/testurl1")
@@ -117,7 +115,8 @@ class VideoUrlTest(TestCase):
     # def test_vidlist2vidname(self,video_lists2=[('0000001', '0000002')]):
     #     self.assertEqual(views.vidlist2vidname(video_lists2),["testurl1","testurl2"])
 
-
+    # if __name__ == '__main__':
+    #     unittest.main()
 
     
 

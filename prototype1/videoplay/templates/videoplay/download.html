@@ -9,77 +9,37 @@
  <script>
   var objs = '{{urls}}'.split(',');
   var double_stimulus_list='{{name_list}}'
-  function clickdownload(){
-    var interval = setInterval(ondownload, 300,objs);
-    if (objs.length == 0) {
-        clearInterval(interval);
-        return;
-      }
-  }
- 
-    function ondownload(objs){
-      if (objs.length == 0) {
-        return;
-      }
- 
-      var url = objs.pop();
-      console.log(url)
- 
-      var a = document.createElement("a");
-      a.setAttribute('href',  url);
-      a.setAttribute('download', '');
-      a.setAttribute('target', '_blank');
-      a.click();
-     }
-//  //for creating zip folder
-
-//       Promise.all(urls.map(function(url) {
-//           return request(url)
-//         }))
-//         .then(function() {
-//           console.log(zip);
-//           zip.generateAsync({
-//               type: "blob"
-//           })
-//           .then(function(content) {
-//             a.download = "folder" + new Date().getTime();
-//             a.href = URL.createObjectURL(content);
-//             a.innerHTML = "download " + a.download;
-//           });
-//         })
-//     }
-// }
 
  function createZip()
 {
 var zip = new JSZip();
+var count = 0;
+var zipFilename = "video.zip";
 
-// Add an top-level, arbitrary text file with contents
-//zip.file("Hello.txt", "Hello World\n");
-
-// Generate a directory within the Zip file structure
-var video = zip.folder("videos");
-// Add a file to the directory, in this case an image with data URI as contents
-for(var i =0;i<objs.length;i++)
-{
-console.log("Inside createZip...printing",objs)
-var f =  objs[i];
-
-$.get(f,function(data, status){
-      alert("Data: " + data + "\nStatus: " + status);     
-})
-
-// video.file(f, {binary:true});
-console.log(f);
-console.log(video);
-}
-
-// Generate the zip file asynchronously
-zip.generateAsync({type:"Blob"})
-.then(function(content) {
-// Force down of the Zip file
-saveAs(content, "videos.zip");
+console.log(objs);
+objs.forEach(function(url){
+  console.log("Starting download before")
+  // loading a file and add it in a zip file
+  JSZipUtils.getBinaryContent(url, function (err, data) {
+     if(err) {
+        throw err; // or handle the error
+     }
+     var namef = url.split('/');
+     var filename = namef[namef.length-1];
+     console.log("Starting download")
+     console.log(filename);
+     zip.file(filename, data, {binary:true});
+     count++;
+     console.log(count)
+     if (count == objs.length) {
+      console.log("Starting zip")
+       zip.generateAsync({type:'blob'}).then(function(content) {
+          saveAs(content, zipFilename);
+       });
+    }
+  });
 });
+
 }
  
  </script> 
@@ -109,7 +69,7 @@ saveAs(content, "videos.zip");
    
                                     <br>
 
-                                    <button type="button" id="downloadButton" class="btn btn-primary btn-md" style="width:100%;border-color:gray;background-color:rgb(8, 3, 56);;border-width:3px " onclick ="clickdownload()" name="download"><i class="fa fa-download"></i> Download Your Personalized Videos for the Ratings</button>
+                                    <button type="button" id="downloadButton" class="btn btn-primary btn-md" style="width:100%;border-color:gray;background-color:rgb(8, 3, 56);;border-width:3px " onclick ="createZip()" name="download"><i class="fa fa-download"></i> Download Your Personalized Videos for the Ratings</button>
 
 
                                         <br/>
