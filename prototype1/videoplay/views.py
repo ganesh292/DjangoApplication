@@ -15,10 +15,53 @@ username = ''
 stat_url = ["{% static url%}"]
 
 #Jatin's Backend code
-video_lists = ['0000001', '0000002','0000003','0000004']
+def update_urllookup():
+      data = open('static/modified_list.txt', 'r',).read()
+      rows = re.split('\n', data)  # splits along new line
+      for index, row in enumerate(rows):
+            cells = row.split(' ')
+            print(cells[0])
+            print(cells[1])
+            obj = VideoUrl(vid_id=cells[0], vid_url='http://' + cells[1])
+            obj.save()
+      return
+# update_urllookup()
+
+def randomidpicker1(n):
+      completelist=[]
+      for i in range(len(VideoUrl.urlobj.filter())):
+            completelist.append(VideoUrl.urlobj.filter()[i].vid_id)
+      # print("Complete List",completelist)
+      video_lists1=list(set(random.sample(completelist,n)))
+      # print(video_lists1)
+      if (len(video_lists1)==n):
+            return video_lists1
+      else:
+            randomidpicker1(n)
+def activelearningpicker(n):
+      pass
+      return
+
+# print("Random Id List",randomidpicker1(5))
+#don' delete this #update_urllookup()
+# update_urllookup()
+
+
+
+
+
+
+
+
+# video_lists = ['0000001', '0000002','0000003','0000004']
+# video_lists=randomidpicker1(5)
+# print("Random list for single stimulus",video_lists)
 video_lists2 = [('0000002', '0000004'),('0000001','0000003')]
 # name_list=[('1_fps25.mp4', '2_fps24.mp4'), ('3_fps24.mp4', '4_fps25.mp4')]
-# jatin's changes moving to master
+
+
+
+
 def vidlist2vidname(video_lists2):
       list1=[]
       for item1 in video_lists2:
@@ -40,7 +83,7 @@ def uniquelistfordownload(video_lists2):
       return list(set(list1))
 print("Printing unique list\n",uniquelistfordownload(video_lists2))
 name_list=vidlist2vidname(video_lists2)
-# print("name_list",name_list)
+print("name_list",name_list)
 
 
 def checkUserExists_1(username):
@@ -146,6 +189,7 @@ def updatePref_2(username, sid, vid1,vid2, pref):
 # updatePref_2('abcd121',1,'0000003','0000001','0000003')
 def backendlogic_1(username):
       # For Single Stimulus
+      video_lists=randomidpicker1(4)
       if checkUserExists_1(username) == False:
             NewEntry_1(username,video_lists)
             return video_lists
@@ -276,21 +320,7 @@ def preference(request):
       #       context = {'message': message, }
       #       return render(request, 'videoplay/temp.html', context)
       return render(request, 'videoplay/preference.html')
-def update_urllookup():
-      data = open('static/video_list.txt', 'r',).read()
-      rows = re.split('\n', data)  # splits along new line
-      for index, row in enumerate(rows):
-            cells = row.split(' ')
-            print(cells[0])
-            print(cells[1])
-            obj = VideoUrl(vid_id=cells[0], vid_url='http://' + cells[1])
-            obj.save()
-      return
-# def randomidpicker1(n):
-#       pass
-#       obj = VideoUrl.urlobj.filter();
 
-#       return video_lists1
 
 def randomidpicker1(n):
       completelist=[]
