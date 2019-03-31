@@ -160,4 +160,4 @@ CRISPY_TEMPLATE_PACK='bootstrap4'
 #
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # =======
-LOGIN_REDIRECT_URL='videoplay-home'
+LOGIN_REDIRECT_URL='videoplay-agree'
