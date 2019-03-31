@@ -97,7 +97,6 @@ var data = {
 var radiob1 = document.getElementsByName("optradio1");
 
 
-
 var files_d = {};
 //Selecting Videos
 function readFiles_d(event) {
@@ -215,7 +214,7 @@ function delay()
 {
   k=0
   
-  while(k<350)
+  while(k<600)
   {
     console.log(k)
     j=0
