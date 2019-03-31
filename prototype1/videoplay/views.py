@@ -1,5 +1,6 @@
 import os
 import json
+import random
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.shortcuts import render
@@ -14,9 +15,9 @@ username = ''
 stat_url = ["{% static url%}"]
 
 #Jatin's Backend code
-video_lists = ['0000001', '0000002','0000003','0000004']
-video_lists2 = [('0000001', '0000002'),('0000003','0000004')]
-# name_list=[('1_fps25.mp4', '2_fps24.mp4'), ('3_fps24.mp4', '4_fps25.mp4')]
+video_lists = ['0000005', '0000006','0000007','0000008']
+video_lists2 = [('0000005', '0000006'),('0000007','0000008')]
+name_list=[('1_fps25.mp4', '2_fps24.mp4'), ('3_fps24.mp4', '4_fps25.mp4')]
 # jatin's changes moving to master
 def vidlist2vidname(video_lists2):
       list1=[]
@@ -38,8 +39,8 @@ def uniquelistfordownload(video_lists2):
             list1.append(item1[1])
       return list(set(list1))
 print("Printing unique list\n",uniquelistfordownload(video_lists2))
-name_list=vidlist2vidname(video_lists2)
-print("name_list",name_list)
+# name_list=vidlist2vidname(video_lists2)
+# print("name_list",name_list)
 
 
 def checkUserExists_1(username):
@@ -60,7 +61,7 @@ def NewEntry_1(username,video_lists, sid=1):
 	#To insert initial data into the table for single stimulus
 
       for item in video_lists:
-            print("Inside NewEntry Function and gonna add ", item, "\n")
+            print("Inside NewEntry1 Function and gonna add ", item, "\n")
             obj = ScoreOneStimulus(
             	user_name=username, session_id=sid, vid_id=item)
             obj.save()
@@ -69,7 +70,7 @@ def NewEntry_2(username,video_lists2, sid=1):
 	#To insert initial data into the table for double stimulus
 
       for item in video_lists2:
-            print("Inside NewEntry Function and gonna add ", item[0],item[1], "\n")
+            print("Inside NewEntry2 Function and gonna add ", item[0],item[1], "\n")
             obj = ScoreTwoStimulus(
             	user_name=username, session_id=sid, vid_id1=item[0],vid_id2=item[1])
             obj.save()
@@ -186,11 +187,11 @@ def fetchVideo(video_id_list):
       return vid_url_list
 # print(fetchVideo(video_lists))
 
-def download(request):
+def download1(request):
       print(request.user)
-      print("I am inside download and gonna call backened logic")
-      video_lists2 = backendlogic_2(request.user)
-      print(video_lists2)
+      print("I am inside download1 and gonna call backened logic1")
+      video_lists1 = backendlogic_1(request.user)
+      print(video_lists1)
       urls = fetchVideo(video_lists)
       print(urls)
       context1 = {}
@@ -198,16 +199,17 @@ def download(request):
       return render(request, 'videoplay/download.html', context1)
 
 
-def download2(request):
+def download(request):
       print(request.user)
-      print("I am inside download and gonna call backened logic")
-      video_lists1 = backendlogic_2(request.user)
+      print("I am inside download2 and gonna call backened logic2")
+      video_lists2 = backendlogic_2(request.user)
       print(video_lists2)
-      # urls = fetchVideo(video_lists1)
-      # print(urls)
+      downloadlist2=uniquelistfordownload(video_lists2)
+      urls = fetchVideo(downloadlist2)
+      print(urls)
       context1 = {}
       context1['name_list'] = ','.join([str(i) for i in name_list])
-      # context1['urls'] = ','.join([str(i) for i in urls])
+      context1['urls'] = ','.join([str(i) for i in urls])
       return render(request, 'videoplay/download.html', context1)
 
 # Create your views here.
@@ -274,7 +276,7 @@ def preference(request):
       #       return render(request, 'videoplay/temp.html', context)
       return render(request, 'videoplay/preference.html')
 def update_urllookup():
-      data = open('static/new_video_list.txt', 'r',).read()
+      data = open('static/video_list.txt', 'r',).read()
       rows = re.split('\n', data)  # splits along new line
       for index, row in enumerate(rows):
             cells = row.split(' ')
@@ -283,5 +285,27 @@ def update_urllookup():
             obj = VideoUrl(vid_id=cells[0], vid_url='http://' + cells[1])
             obj.save()
       return
+# def randomidpicker1(n):
+#       pass
+#       obj = VideoUrl.urlobj.filter();
+
+#       return video_lists1
+
+def randomidpicker1(n):
+      completelist=[]
+      for i in range(len(VideoUrl.urlobj.filter())):
+            completelist.append(VideoUrl.urlobj.filter()[i].vid_id)
+      # print("Complete List",completelist)
+      video_lists1=list(set(random.sample(completelist,n)))
+      # print(video_lists1)
+      if (len(video_lists1)==n):
+            return video_lists1
+      else:
+            randomidpicker1(n)
+def activelearningpicker(n):
+      pass
+      return
+
+print("Random Id List",randomidpicker1(10))
 #don' delete this #update_urllookup()
 # update_urllookup()
