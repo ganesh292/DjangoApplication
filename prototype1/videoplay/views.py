@@ -261,6 +261,12 @@ def download2(request):
 def home(request):
     return render(request, 'videoplay/home.html')
 
+
+def agree(request):
+    return render(request, 'videoplay/agreement.html')
+
+
+
 def play_for_single(request):
       dummy = backendlogic_1(request.user)
       if request.method == 'POST':
