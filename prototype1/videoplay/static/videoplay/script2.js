@@ -198,11 +198,7 @@ function getuploadedpath(vid_name) {
 ///////////////////////////////////////////////////////
 function playVid2() {
   console.log("Inside playVid2")
-<<<<<<< HEAD
-  
-=======
   delay()
->>>>>>> 1ec4f0bae789bb4bbdae79c811dd1515843d4f41
   myVideo_d.autoplay = true;
   myVideo_d.style.display = "block";
   playButton_d.style.display = "none";
@@ -214,10 +210,6 @@ function playVid2() {
   return;
 }
 var pair_end = 0;
-<<<<<<< HEAD
-// function doublestimulus(result) {
-=======
->>>>>>> 1ec4f0bae789bb4bbdae79c811dd1515843d4f41
 function delay()
 {
   k=0
@@ -233,10 +225,6 @@ function delay()
     k++
   }
 }
-<<<<<<< HEAD
-// }
-=======
->>>>>>> 1ec4f0bae789bb4bbdae79c811dd1515843d4f41
 
 function doublestimulus(name_list) {
   console.log("Inside Double Stimulus function")
