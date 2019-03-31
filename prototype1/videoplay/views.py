@@ -15,9 +15,9 @@ username = ''
 stat_url = ["{% static url%}"]
 
 #Jatin's Backend code
-video_lists = ['0000005', '0000006','0000007','0000008']
-video_lists2 = [('0000005', '0000006'),('0000007','0000008')]
-name_list=[('1_fps25.mp4', '2_fps24.mp4'), ('3_fps24.mp4', '4_fps25.mp4')]
+video_lists = ['0000001', '0000002','0000003','0000004']
+video_lists2 = [('0000002', '0000004'),('0000001','0000003')]
+# name_list=[('1_fps25.mp4', '2_fps24.mp4'), ('3_fps24.mp4', '4_fps25.mp4')]
 # jatin's changes moving to master
 def vidlist2vidname(video_lists2):
       list1=[]
@@ -39,7 +39,7 @@ def uniquelistfordownload(video_lists2):
             list1.append(item1[1])
       return list(set(list1))
 print("Printing unique list\n",uniquelistfordownload(video_lists2))
-# name_list=vidlist2vidname(video_lists2)
+name_list=vidlist2vidname(video_lists2)
 # print("name_list",name_list)
 
 
@@ -187,30 +187,31 @@ def fetchVideo(video_id_list):
       return vid_url_list
 # print(fetchVideo(video_lists))
 
-def download1(request):
+def download(request):
       print(request.user)
       print("I am inside download1 and gonna call backened logic1")
       video_lists1 = backendlogic_1(request.user)
       print(video_lists1)
-      urls = fetchVideo(video_lists)
+      urls = fetchVideo(video_lists1)
       print(urls)
       context1 = {}
       context1['urls'] = ','.join([str(i) for i in urls])
       return render(request, 'videoplay/download.html', context1)
 
 
-def download(request):
+def download2(request):
       print(request.user)
       print("I am inside download2 and gonna call backened logic2")
       video_lists2 = backendlogic_2(request.user)
-      print(video_lists2)
-      downloadlist2=uniquelistfordownload(video_lists2)
-      urls = fetchVideo(downloadlist2)
-      print(urls)
+      # print(video_lists2)
+      uniquelist=uniquelistfordownload(video_lists2)
+      print("unique list",uniquelist)
+      urls = fetchVideo(uniquelist)
+      print("Double stimulus urls",urls)
       context1 = {}
       context1['name_list'] = ','.join([str(i) for i in name_list])
       context1['urls'] = ','.join([str(i) for i in urls])
-      return render(request, 'videoplay/download.html', context1)
+      return render(request, 'videoplay/download2.html', context1)
 
 # Create your views here.
 def home(request):
