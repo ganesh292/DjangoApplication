@@ -13,7 +13,8 @@ class ScoreOneStimulusTest(TestCase):
         line4=ScoreOneStimulus.userScore.create(user_name="test02", session_id=1, vid_id="vid_004",score=78)
         line5=ScoreOneStimulus.userScore.create(user_name="test01", session_id=2, vid_id="vid_005",score=88)
         line6=ScoreOneStimulus.userScore.create(user_name="test01", session_id=2, vid_id="vid_006")
-        line6=ScoreOneStimulus.userScore.create(user_name="test01", session_id=2, vid_id="vid_007")
+        line7=ScoreOneStimulus.userScore.create(user_name="test01", session_id=2, vid_id="vid_007")
+        views.update_urllookup()
         pass
 
     def setUp(self):
@@ -44,8 +45,14 @@ class ScoreOneStimulusTest(TestCase):
         self.assertEqual(obj.score,98)
     def test_backendlogic_1(self):
         self.assertEqual(views.backendlogic_1("test01"),["vid_006","vid_007"])
-        self.assertEqual(views.backendlogic_1("test02"),views.video_lists)
-        self.assertEqual(views.backendlogic_1("random"),views.video_lists)
+        self.assertEqual(len(views.backendlogic_1("test02")),4)
+        self.assertEqual(len(views.backendlogic_1("random")),4)
+    def test_randomidpicker1(self):
+        self.assertEqual(len(views.randomidpicker1(3)),3)
+    # def test_activelearningpicker(self):
+    #     self.assertEqual(views.activelearningpicker(3),3)
+
+
 
 
 class ScoreTwoStimulusTest(TestCase):
