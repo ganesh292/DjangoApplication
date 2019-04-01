@@ -310,13 +310,11 @@ def play_for_double(request):
       return render(request, 'videoplay/play2.html',context)
 
 def temp(request):
-      # if request.method == 'POST':
-      #       query = json.loads(request.POST['score'])
-      #       print(query)
-      #       message = "Thank You for watching! {}".format(query)
-      #       context = {'message': message, }
-      #       return render(request, 'videoplay/temp.html', context)
       return render(request, 'videoplay/temp.html')
+
+
+def temp2(request):
+      return render(request, 'videoplay/temp2.html')
 
 def preference(request):
       # if request.method == 'POST':
@@ -345,4 +343,4 @@ def activelearningpicker(n):
 
 print("Random Id List",randomidpicker1(10))
 #don' delete this #update_urllookup()
-# update_urllookup()
+#update_urllookup()
