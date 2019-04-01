@@ -45,7 +45,7 @@ objs.forEach(function(url){
       document.getElementById("messagedownload").hidden=true;
        zip.generateAsync({type:'blob'}).then(function(content) {
           saveAs(content, zipFilename);
-      width=width+(96.2)/num_of_videos;
+      width=width+(100)/num_of_videos;
       element.style.width = width + '%';
       document.getElementById("messagezip").hidden=true; 
       document.getElementById("messagethanks").hidden=false; 
