@@ -7,7 +7,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', views.agree,name='videoplay-agree'),
     path('home/', views.home,name='videoplay-home'),
-    re_path('download/', views.download,name='videoplay-download1'), 
+    re_path('download/', views.downlo,name='videoplay-download1'), 
     re_path('download2/', views.download2,name='videoplay-download2'), 
     path('temp/',views.temp, name='score-collection'),
     path('preference/',views.preference, name='score-preference'),
