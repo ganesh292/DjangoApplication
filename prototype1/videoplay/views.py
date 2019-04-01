@@ -38,9 +38,9 @@ def randomidpicker1(n):
             return video_lists1
       else:
             randomidpicker1(n)
-def activelearningpicker(n):
-      pass
-      return
+# def activelearningpicker(n):
+#       pass
+#       return
 
 # print("Random Id List",randomidpicker1(5))
 #don' delete this #update_urllookup()
@@ -295,10 +295,10 @@ def play_for_double(request):
             pref=json.loads(request.POST['preference'])
             # updatePref_2(request.user, 1, vid1,vid2, vid1)
             if(pref=='1'):
-                  updatePref_2(request.user, 1, vid1,vid2, vid1)
+                  updatePref_2(request.user, findSessionId_2(request.user), vid1,vid2, vid1)
                   print("Bingo")
             elif(pref=='2'):
-                  updatePref_2(request.user, 1, vid1,vid2, vid2)
+                  updatePref_2(request.user, findSessionId_2(request.user), vid1,vid2, vid2)
                   print('bingo!')
             else:
                   print("Enter Wrong Preference")
