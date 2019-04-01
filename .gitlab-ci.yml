@@ -22,5 +22,5 @@ before_script:
   - cd prototype1
 
 test:
-#   script: python manage.py test --pattern="tests_backend*.py"
-    script: echo "Testing"
+  script: python manage.py test --pattern="tests_backend*.py"
+    # script: echo "Testing"
