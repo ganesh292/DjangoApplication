@@ -10,6 +10,7 @@
   //var double_stimulus_list='{{name_list}}'
  function createZip()
 {
+  document.getElementById("downloadButton").hidden=true; 
 var element = document.getElementById("myprogressBar");    
 document.getElementById("Progress_Status").hidden=false;    
 document.getElementById("messagedownload").hidden=false;    
@@ -17,7 +18,7 @@ var width = 1;
 var zip = new JSZip();
 var count = 0;
 var num_of_videos=objs.length;
-var zipFilename = "video.zip";
+var zipFilename = "Experiment1_Videos.zip";
 console.log(objs);
 objs.forEach(function(url){
       if (width >= 100) { 
@@ -49,7 +50,6 @@ objs.forEach(function(url){
       element.style.width = width + '%';
       document.getElementById("messagezip").hidden=true; 
       document.getElementById("messagethanks").hidden=false; 
-      document.getElementById("downloadButton").hidden=true; 
       document.getElementById("startButton1").hidden=false;
        });   
 
@@ -65,16 +65,18 @@ objs.forEach(function(url){
       <div class="col text-center">
                                   
                                     <h1 class="display-4 text-white">Welcome!</h1>
-                                    <p class="lead text-muted">Thank you for your participation!</p>
+                                    {% comment %} <p class="lead text-muted">Thank you for your participation!</p> {% endcomment %}
                                     <hr class="my-4 text-center">
                                     
                                     <div class="list-group text-left text-white">
                                     <ol>
-                                    <li> As Step one download the videos using download button given below</li>
-                                    <li>Once Videos are Downloaded click "Start Watching" and provide the location to the downloaded videos by clicking the "Select Videos" button on the next page</li>
-                                    <li>The Study comprises in total of 20 Videos,Pause the video at any moment you want to take a break.</li>
-                                    <li>At the end of each video enter your rating from scale of 1-10</li>
-                                    <li>Study will end only when ratings are given to all the videos</li>
+                                    <li> Download the videos using download button given below. It will be downloaded as a zip file</li>
+                                    <li>Unzip the file click the Experiment button below </li>
+                                    <li>There will be a "Select Videos" on the next page. Make sure you have selected all the videos you have downloaded.</li>
+                                    <li>If you have selected 'Experiment 1', give a score ranging from 1-100 after each video ends.</li>
+                                    <li>If you have selected 'Experiment 2', select your preferred video, after watching Two videos.</li>
+                                    <li>If you have selected 'Experiment 2', select your preferred video, after watching Two videos.</li>
+                                    <li>At the end of both the experiments, you can either continue with the next experiment, or conintue later.</li>
                                    </ol>
                                 
                                 </div>

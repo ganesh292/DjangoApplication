@@ -259,7 +259,7 @@ function doublestimulus(name_list) {
 
   }
   else {
-    window.location.href = "/videoplay/temp/"
+    window.location.href = "/videoplay/temp2/"
   }
 
   return;
