@@ -41,7 +41,9 @@
                                       <input id="agreebox" type="checkbox" onchange="toggle1()" name="vehicle"> I Agree
                                       <input id="disagreebox" type="checkbox" onchange="toggle2()" name="vehicle"> I Disagree<br>
                                        <h4 style="font-weight:bold;">Read the above terms and conditions <br>and check on "I Agree" to proceed</h4>
-                                      <a class="btn btn-primary btn-lg" href="{%url 'videoplay-home' %}" role="button" name="Agree">Start Experiment</a>                    
+                                       <form action="{%url 'videoplay-home' %}">
+                                      <button id="StartExperiment" type="submit" class="btn btn-primary btn-lg" disabled><a >Start Experiment</button>         
+                                      </form>         
                                     {% else %}
                                       <div>
                                           <b>Need an Account?  </b>
@@ -67,6 +69,7 @@
   width: 100%;
   height: 450px;
   overflow: scroll;
+  text-align:left;
 }
 </style>
 
@@ -74,12 +77,14 @@
 var box1=document.getElementById("agreebox")
 var box2=document.getElementById("disagreebox")
 function toggle1(){
-box1.checked=true  
+box1.checked=true
+document.getElementById("StartExperiment").disabled=false
 box2.checked=false  
 }
 function toggle2(){
 box1.checked=false  
-box2.checked=true  
+box2.checked=true 
+document.getElementById("StartExperiment").disabled=true
 }
 </script>
     {%endblock content%}

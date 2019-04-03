@@ -7,9 +7,10 @@
  <script>
  //var percentagevalue=document.getElementById("percentage");
   var objs = '{{urls}}'.split(',');
-  //var double_stimulus_list='{{name_list}}'
+  var double_stimulus_list='{{name_list}}'
  function createZip()
 {
+document.getElementById("downloadButton").hidden=true;
 var element = document.getElementById("myprogressBar");    
 document.getElementById("Progress_Status").hidden=false;    
 document.getElementById("messagedownload").hidden=false;    
@@ -49,8 +50,9 @@ objs.forEach(function(url){
       element.style.width = width + '%';
       document.getElementById("messagezip").hidden=true; 
       document.getElementById("messagethanks").hidden=false; 
-      document.getElementById("downloadButton").hidden=true; 
-      document.getElementById("startButton1").hidden=false;
+      document.getElementById("startButton1").hidden=false; 
+      document.getElementById("startButton2").hidden=false; 
+       
        });   
 
     }
@@ -94,8 +96,9 @@ objs.forEach(function(url){
                                         <br/>
                                           <br/>
                                             <br/>
-                                         <a href="{% url 'videoplay-videos' %}"><button type="button" id="startButton1" class="btn btn-primary btn-md" style="border-color:gray;background-color:rgb(8, 3, 56);;" name="part1" hidden>Experiment 1 <i2 class="arrow right"></i2></button></a>
-
+                                          <a href="{% url 'videoplay-videos' %}"><button type="button" id="startButton1" class="btn btn-primary btn-md" style="border-color:gray;background-color:rgb(8, 3, 56);;" name="part1" hidden>Experiment 1 <i2 class="arrow right"></i2></button></a>
+                                          <a href="{% url 'videoplay-videos2' %}"><button type="button" id="startButton2" class="btn btn-primary btn-md" style="border-color:gray;background-color:rgb(8, 3, 56);;" name="part2" hidden>Experiment 2 <i2 class="arrow right"></i2></button></a>
+                                          
                                     {% else %}
                                       <div>
                                           <b>Need an Account?  </b>
