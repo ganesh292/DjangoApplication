@@ -27,7 +27,7 @@ class SearchText(unittest.TestCase):
         self.search_field.click()
 
         #get the list of elements which are displayed after the search
-        #currently on result page usingfind_elements_by_class_namemethod
+        #ccccurrently on result page usingfind_elements_by_class_namemethod
         self.assertEqual(self.driver.current_url,'http://127.0.0.1:8000/login/')
     
     def test_only_signup(self):
@@ -48,7 +48,7 @@ class SearchText(unittest.TestCase):
     #     # enter search keyword and submit
         self.search_field.click()
         username_input = self.driver.find_element_by_name("username")
-        username_input.send_keys('ani61')
+        username_input.send_keys('ani71')
         password_input = self.driver.find_element_by_name("password")
         password_input.send_keys('testing123@')
         self.search_field = self.driver.find_element_by_name("login")
@@ -58,10 +58,6 @@ class SearchText(unittest.TestCase):
         # self.agree = self.driver.find_element_by_name("Agree")
         #     # enter search keyword and submit
         # self.agree.click()
-        # self.agree = self.driver.find_element_by_name("vehicle")
-        #     # enter search keyword and submit
-        # self.agree.click()
-
         # self.assertEqual(self.driver.current_url,'http://127.0.0.1:8000/videoplay/download/')
     
     def test_download(self):
@@ -69,49 +65,56 @@ class SearchText(unittest.TestCase):
     #     # enter search keyword and submit
         self.search_field.click()
         username_input = self.driver.find_element_by_name("username")
-        username_input.send_keys('ani61')
+        username_input.send_keys('ani71')
         password_input = self.driver.find_element_by_name("password")
         password_input.send_keys('testing123@')
         self.search_field = self.driver.find_element_by_name("login")
     #     # enter search keyword and submit
         self.search_field.click()
         self.assertEqual(self.driver.current_url,'http://127.0.0.1:8000/videoplay/')
-        # self.agree = self.driver.find_element_by_name("Agree")
-        #     # enter search keyword and submit
-        # self.agree.click()
-        # self.search_field = self.driver.find_element_by_name("download")
-        # c = Client()
-        # response = c.get(self.search_field.click())
-      
-        # self.assertEqual(response.status_code,200)
+        self.agree = self.driver.find_element_by_name("vehicle")
+            # enter search keyword and submit
+        self.agree.click()
+        self.search_field = self.driver.find_element_by_id("StartExperiment")
+        self.search_field.click()
+        self.assertEqual(self.driver.current_url,'http://127.0.0.1:8000/videoplay/home/?')
+        # self.search_field = self.driver.find_element_by_name("startexp")
+        self.next = self.driver.find_element_by_name("Agree1")
+        c = Client()
+        response = c.get(self.next.click())
+        self.assertEqual(self.driver.current_url,'http://127.0.0.1:8000/videoplay/download/')
     
     def test_playfunction_scoreone(self):
         self.search_field = self.driver.find_element_by_name("login")
     #     # enter search keyword and submit
         self.search_field.click()
         username_input = self.driver.find_element_by_name("username")
-        username_input.send_keys('ani61')
+        username_input.send_keys('ani71')
         password_input = self.driver.find_element_by_name("password")
         password_input.send_keys('testing123@')
         self.search_field = self.driver.find_element_by_name("login")
     #     # enter search keyword and submit
         self.search_field.click()
         self.assertEqual(self.driver.current_url,'http://127.0.0.1:8000/videoplay/')
-        # self.agree = self.driver.find_element_by_name("Agree")
-        #     # enter search keyword and submit
-        # self.agree.click()
-        # self.search_field = self.driver.find_element_by_name("download")
-        # self.agree = self.driver.find_element_by_name("part1")
-        #     # enter search keyword and submit
-        # self.agree.click()
-        # self.assertEqual(self.driver.current_url,'http://127.0.0.1:8000/videoplay/videos/')
+        self.agree = self.driver.find_element_by_name("vehicle")
+            # enter search keyword and submit
+        self.agree.click()
+        self.search_field = self.driver.find_element_by_id("StartExperiment")
+        self.search_field.click()
+        self.next = self.driver.find_element_by_name("Agree1")
+        self.next.click()
+        self.download = self.driver.find_element_by_name("download")
+        self.download.click()
+        # self.agree = self.driver.find_element_by_name("")
+            # enter search keyword and submit
+        self.assertEqual(self.driver.current_url,'http://127.0.0.1:8000/videoplay/download/')
     
     def test_playfunction_scoretwo(self):
         self.search_field = self.driver.find_element_by_name("login")
     #     # enter search keyword and submit
         self.search_field.click()
         username_input = self.driver.find_element_by_name("username")
-        username_input.send_keys('ani61')
+        username_input.send_keys('ani71')
         password_input = self.driver.find_element_by_name("password")
         password_input.send_keys('testing123@')
         self.search_field = self.driver.find_element_by_name("login")

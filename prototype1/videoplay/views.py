@@ -25,7 +25,7 @@ def update_urllookup():
             obj = VideoUrl(vid_id=cells[0], vid_url='http://' + cells[1])
             obj.save()
       return
-# update_urllookup()
+#update_urllookup()
 
 def randomidpicker1(n):
       completelist=[]
@@ -57,7 +57,7 @@ def randomidpicker1(n):
 # video_lists=randomidpicker1(5)
 # print("Random list for single stimulus",video_lists)
 video_lists2 = [('0000002', '0000004'),('0000001','0000003')]
-# name_list=[('1_fps25.mp4', '2_fps24.mp4'), ('3_fps24.mp4', '4_fps25.mp4')]
+#name_list=[('1_fps25.mp4', '2_fps24.mp4'), ('3_fps24.mp4', '4_fps25.mp4')]
 
 
 
@@ -83,9 +83,9 @@ def uniquelistfordownload(video_lists2):
       return list(set(list1))
 print("Printing unique list\n",uniquelistfordownload(video_lists2))
 name_list=vidlist2vidname(video_lists2)
-print("name_list",name_list)
+#print("name_list",name_list)
 
-
+#Testing CI
 def checkUserExists_1(username):
 	#To check if newuser or existing user?- For Single Stimulus
 	obj = ScoreOneStimulus.userScore.filter(user_name=username)
@@ -295,10 +295,10 @@ def play_for_double(request):
             pref=json.loads(request.POST['preference'])
             # updatePref_2(request.user, 1, vid1,vid2, vid1)
             if(pref=='1'):
-                  updatePref_2(request.user, findSessionId_2(request.user), vid1,vid2, vid1)
+                  updatePref_2(request.user, findSessionId_2(request.user), vid1, vid2, vid1)
                   print("Bingo")
             elif(pref=='2'):
-                  updatePref_2(request.user, findSessionId_2(request.user), vid1,vid2, vid2)
+                  updatePref_2(request.user, findSessionId_2(request.user), vid1, vid2, vid2)
                   print('bingo!')
             else:
                   print("Enter Wrong Preference")
